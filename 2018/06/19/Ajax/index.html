@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Ajax ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期二, 六月 19日 2018, 8:16 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    3.2k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 14 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h2 id="什么是AJAX？"><a href="#什么是AJAX？" class="headerlink" title="什么是AJAX？"></a>什么是AJAX？</h2><p> Ajax（Asynchronous JavaScript and XML的缩写）是一种异步请求数据的web开发技术，对于改善用户的体验和页面性能很有帮助。简单地说，在不需要重新刷新页面的情况下，Ajax 通过异步请求加载后台数据，并在网页上呈现出来。常见运用场景有表单验证是否登入成功、百度搜索下拉框提示和快递单号查询等等。</p>
+<p><strong>AJAX的好处</strong>：可以通过<code>js</code>代码发送get或者post的请求去从后台获取到相应数据，并只对页面中的部分标签进行刷新渲染，而不需要刷新整个页面，节约了带宽，优化了性能</p>
+<h2 id="创建AJAX对象"><a href="#创建AJAX对象" class="headerlink" title="创建AJAX对象"></a>创建AJAX对象</h2><pre><code>//兼容性写法  ActiveXObject(&#39;Microsoft.XMLHTTP&#39;);是为了兼容IE5 IE6
+var ajax = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject(&#39;Microsoft.XMLHTTP&#39;);</code></pre><h2 id="AJAX的方法"><a href="#AJAX的方法" class="headerlink" title="AJAX的方法"></a>AJAX的方法</h2><pre><code>//设置请求方式
+ajax.open(&quot;post&quot;,&quot;url&quot;,true);  //第三个参数如果为true，则是异步，反之同步
+
+//设置请求头格式（post请求时一定要加请求头，这是因为在传输过程中会出现转码的情况，可能导致乱码的情况）
+xhr.setRequestHeader(&#39;Content-Type&#39;, &#39;application/x-www-form-urlencoded&#39;);
+
+//发送请求:get请求参数放在url后面，post请求参数send()方法里面
+ajax.send(&quot;数据&quot;); 
+
+//监听ajax状态，当ajax的状态发生改变的时候执行
+ajax.onreadystatechange = function(){
+    //响应完成，浏览器已经可以获取到服务器响应结果了
+    if(this.readyState == 4){  //这是AJAX的状态码 区别与http的状态码 状态码还有 1 2 3 其中3是数据正在传输时的状态，他不保证数据的完整性
+        //http响应的状态码
+        if(this.state == 200){  //还有302  301  404...
+            //获取响应内容
+            console.log(this.responseText); //用ajax.responseText获取服务器返回的数据
+                //responseText 获得字符串形式的响应数据。
+               //responseXML 获得XML 形式的响应数据
+        }
+    }
+}</code></pre><h2 id="数据渲染的两种方式"><a href="#数据渲染的两种方式" class="headerlink" title="数据渲染的两种方式"></a>数据渲染的两种方式</h2><h3 id="数据在服务器中渲染完毕，返回给客户端一个完整页面"><a href="#数据在服务器中渲染完毕，返回给客户端一个完整页面" class="headerlink" title="数据在服务器中渲染完毕，返回给客户端一个完整页面"></a>数据在服务器中渲染完毕，返回给客户端一个完整页面</h3><ol>
+<li>浏览器发送请求至服务器</li>
+<li>服务器接收到请求的信息，根据请求找到相应的信息（如JSON数据），在读取相应的页面文件，并渲染成一个完整的页面，将这个页面返回给客户端</li>
+<li>客户端接收到此页面，并显示 (此方式要在服务器端安装art-template express-art-template等第三方模板）</li>
+</ol>
+<h3 id="服务器只返回相应的数据，客户端接收到数据后，在客户端进行渲染，并显示"><a href="#服务器只返回相应的数据，客户端接收到数据后，在客户端进行渲染，并显示" class="headerlink" title="服务器只返回相应的数据，客户端接收到数据后，在客户端进行渲染，并显示"></a>服务器只返回相应的数据，客户端接收到数据后，在客户端进行渲染，并显示</h3><ol>
+<li>客户端发送数据请求给服务器</li>
+<li>服务器拿到请求，找到相应的数据（如JSON），直接将此数据返回给客户端</li>
+<li>客户端拿到数据后，在客户端进行渲染，并显示。（此方式要用到前端渲染插件template-web.js）</li>
+</ol>
+<h2 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h2><p>XML extensible Markup Language 扩展的标记语言，XML的标签可以自定义<br>HTML Hyper Text Markup Lanaguage HTML的标签是由W3C规范的，大概一共200多个</p>
+<p><strong>XML用途：</strong><br>1、 定义数据结构<br>2、 作为配置文件出现</p>
+<p><strong>XML组成：</strong><br>1、 XML文档声明<br>2、 XML标签<br>3、 XML属性<br>4、 XML注释</p>
+<p><strong>XML文档注意点：</strong><br>1）xml的标签必须成对出现如，为成对出现时的标签也必须要是自关闭标签 如<br>2）xml标签名称区分大小写。<br>3）xml标签一定要正确配对。<br>4）xml标签名中间不能使用空格<br>5）xml标签名不能以数字开头<br>6）注意： 在一个xml文档中，有且仅有一个根标签</p>
+<pre><code>//使用xml设计一个通讯录
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;contact&gt;
+    &lt;person id=&quot;100&quot;&gt;
+         &lt;name&gt;张三&lt;/name&gt;
+         &lt;age&gt;18&lt;/age&gt;
+         &lt;phone&gt;12345678&lt;/phone&gt;
+         &lt;email&gt;12453@qq.com&lt;/email&gt;
+    &lt;/person&gt;
+    &lt;person id=&quot;101&quot;&gt;
+         &lt;name&gt;李四&lt;/name&gt;
+         &lt;age&gt;20&lt;/age&gt;
+         &lt;phone&gt;22345678&lt;/phone&gt;
+         &lt;email&gt;34453@qq.com&lt;/email&gt;
+    &lt;/person&gt;
+&lt;/contact&gt;</code></pre><p><strong>xml的使用</strong></p>
+<pre><code>//服务器代码
+//返回XML格式的数据
+app.get(&quot;/getXML&quot;,(req,res)=&gt;{
+    //设置响应头，指定返回的数据是XML
+    res.header(&quot;content-type&quot;,&quot;application/xml&quot;);
+
+    var xml =  &#39;&lt;?xml version=&quot;1.1&quot; encoding=&quot;utf-8&quot;?&gt;&#39;;//XML文档声明
+    xml += &#39;&lt;person&gt;&#39;;
+    xml += &#39;&lt;name&gt;羊杨&lt;/name&gt;&#39;;
+    xml += &#39;&lt;age&gt;16&lt;/age&gt;&#39;;
+    xml += &#39;&lt;gender&gt;男&lt;/gender&gt;&#39;;
+    xml += &#39;&lt;/person&gt;&#39;;
+
+    res.send(xml);
+})
+
+//客户端代码
+ajax.onreadystatechange = function(){
+    if(this.readyState == 4){
+        //获取响应的XML数据
+        var xml = this.responseXML.documentElement;//ajax.responseXML.documentElement拿到文档数据
+        var age = xml.querySelector(&quot;age&quot;);//用标签选择器获取到age数据  但此时age是&lt;age&gt;16&lt;/age&gt;
+        console.log(age.innerHTML);//此处用innerText拿不到数据
+        console.log(xml.children);//xml的语法几乎与html语法类似
+    }
+}</code></pre><p>JSON</p>
+<p>json数据的使用</p>
+<pre><code>//服务器代码
+//返回JSON格式的数据
+app.get(&quot;/getJSON&quot;,(req,res)=&gt;{
+    //数组
+    let arr = [
+        {
+            name:&quot;zhangsan&quot;,
+            age:&quot;18&quot;,
+            gender:&quot;男&quot;,
+            id:001
+        },
+        {
+            name:&quot;lisi&quot;,
+            age:&quot;28&quot;,
+            gender:&quot;男&quot;,
+            id:002
+        }
+    ]
+    //将数组转换为JSON数据
+    res.status(200).send(JSON.stringify(arr));
+})
+
+//客户端代码
+ajax.onreadystatechange = function(){
+    if(this.readyState == 4){
+        console.log(this.responseText); //这是JSON字符串，在使用的时候往往需要转换为对象
+        var students = JSON.parse(this.responseText);
+        var html = template(&quot;generatorTable&quot;,{students:students});
+        container.innerHTML = html;
+    }
+}</code></pre><h2 id="jQuery中的AJAX"><a href="#jQuery中的AJAX" class="headerlink" title="jQuery中的AJAX"></a>jQuery中的AJAX</h2><p>推荐使用 方便的一批</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>客户端代码</p>
+<pre><code>$.ajax({
+    //请求方式
+    type:&quot;get&quot;, //post
+
+    //请求路径
+    url:&quot;&quot;, //如http://localhost:3000/index
+
+    //请求参数，无论是get还是post请求，请求参数都可以写在这里
+    //注意：请求为get时  在服务器得到请求参数时 仍然使用res.query
+    //这里的data数据必须为字符串 若要传入json数据 需要将json数据转换为字符串如 JSON.stringify({[{},{}]})
+    data:{name:&quot;zhangsan&quot;},
+
+    //规定所要请求的数据的类型
+    dataType: &#39;&#39;,
+
+    //在jQuery中如果请求已经是post，默认的contentType就是application/x-www-form-urlencoded,不需要单独再去写
+    //contentType: &quot;application/x-www-form-urlencoded&quot;,
+    //请求成功的回调
+    success:function(res){
+        console.log(res);//res是请求的到的数据
+    }
+    //请求出错的回调 推荐写
+    error:function(err){
+        console.log(err);
+    }
+    //无论请求的成功与否，只要请求结束都会执行此函数
+    complete:function(xhr){
+
+    }
+})</code></pre><p>服务器代码</p>
+<pre><code>let express = require(&quot;express&quot;);
+let app = express();
+const bodyParser = require(&#39;body-parser&#39;);
+app.use(bodyParser.urlencoded({extended:false}));
+//注意 当客户端中的data:JSON.stringify([{name:&#39;zhangsan&#39;},{name:&#39;lisi&#39;}])时，服务器需要此配置
+//以解析body中的json数据
+app.use(bodyParser.json({extended:false}));
+
+app.use(express.static(&quot;./views&quot;));
+
+//当ajax的url为&#39;/getJSON&#39;时 此接口响应 返回JSON格式的数据
+//此时ajax的dataType要设置为&#39;json&#39;
+app.get(&quot;/getJSON&quot;,(req,res)=&gt;{
+    //数组
+    let arr = [
+        {
+            name:&quot;zhangsan&quot;,
+            age:&quot;18&quot;,
+            gender:&quot;男&quot;,
+            id:001
+        },
+        {
+            name:&quot;lisi&quot;,
+            age:&quot;28&quot;,
+            gender:&quot;男&quot;,
+            id:002
+        }
+    ]
+
+    arr.forEach((user,idx)={
+        if(user.name == req.body.name){
+            res.status(200).send(JSON.stringify(user));
+        }
+    })
+
+})
+
+//当ajax的url为&#39;/getXML&#39;时 此接口响应 返回XML格式的数据
+//此时ajax的dataType要设置为&#39;xml&#39;
+app.get(&quot;/getXML&quot;,(req,res)=&gt;{
+    //设置响应头，指定返回的数据是XML
+    res.header(&quot;content-type&quot;,&quot;application/xml&quot;);
+
+    var xml =  &#39;&lt;?xml version=&quot;1.1&quot; encoding=&quot;utf-8&quot;?&gt;&#39;;
+    xml += &#39;&lt;person&gt;&#39;;
+    xml += &#39;&lt;name&gt;zhangsan&lt;/name&gt;&#39;;
+    xml += &#39;&lt;age&gt;16&lt;/age&gt;&#39;;
+    xml += &#39;&lt;gender&gt;男&lt;/gender&gt;&#39;;
+    xml += &#39;&lt;/person&gt;&#39;;
+
+    res.send(xml);
+})</code></pre><p>发送也接受html或script数据</p>
+<p>服务器代码</p>
+<pre><code>const express = require(&#39;express&#39;);
+const app = express();
+const bodyParser = require(&#39;body-parser&#39;);
+app.use(bodyParser.urlencoded({extended:false}));
+
+app.use(express.static(&#39;views&#39;));
+
+app.get(&#39;/getScript&#39;,(req,res)=&gt;{
+    res.header(&#39;content-type&#39;,&#39;application/javascript;charset=utf-8&#39;);
+    res.send(&#39;alert(123);&#39;);
+});
+
+app.get(&#39;/getHtml&#39;,(req,res)=&gt;{
+
+    res.header(&#39;content-type&#39;,&#39;text/html;charset=utf-8&#39;)
+    res.send(&#39;&lt;h1&gt;HTML&lt;/h1&gt;&#39;);
+});
+
+app.listen(3000,()=&gt;{
+    console.log(&#39;running...&#39;);
+});</code></pre><p>客户端代码</p>
+<pre><code>$(&#39;#btn1&#39;).click(function(){
+    $.ajax({
+        type: &#39;get&#39;,
+        url: &#39;/getHtml&#39;,
+        data: &#39;&#39;,
+        dataType: &#39;html&#39;,
+        success:function(res){
+            //因为dataType为html  jQuery。AJAX会自动设置响应头为text/html  则 可以直接追加res到页面中
+            $(&#39;#info&#39;).append(res);
+        },
+        error:function(err){
+            console.log(err);
+        }
+    });
+});
+
+$(&#39;#btn2&#39;).click(function(){
+    $.ajax({
+        type: &#39;get&#39;,
+        url: &#39;/getScript&#39;,
+        data: &#39;&#39;,
+        dataType: &#39;script&#39;,
+        success:function(res){
+            //之所以alert()能执行  是因为将script代码打印到控制台  控制台会执行script代码
+            //也可以用script标签的对res进行封装 追加到页面中 也可以执行
+            console.log(res);
+        },
+        error:function(err){
+            console.log(err);
+        }
+    });
+});</code></pre><h3 id="dataType"><a href="#dataType" class="headerlink" title="dataType"></a>dataType</h3><p><strong>dataType取值有xml、html、json、jsonp、script或者text</strong></p>
+<p>当dataType取值为<strong>json</strong>，会自动将服务器返回的文本数据通过JSON.parse()转换成对象。<br>服务器应该设置这个响应头：<strong>res.header(“content-type”, “application/json;charset=utf-8”);</strong></p>
+<p>当dataType为<strong>xml或者text</strong>的时候，返回的数据不会另做处理<br>服务器应该设置这个响应头：<strong>res.header(“content-type”,”application/xml”);</strong><br><strong>res.header(“content-type”,”text/plain;charset=utf-8”);</strong></p>
+<p>当dataType为<strong>html</strong>的时候，返回的内容中的script标签会在网页内容被拼接到页面的时候执行<br>服务器应该设置这个响应头：<strong>res.header(“content-type”,”text/html;charset=utf-8”);</strong></p>
+<p>当dataType为<strong>script</strong>的时候，会将服务器返回的结果当成js代码执行并且将js代码的文本内容返回给客户端<br>服务器应该设置这个响应头：<strong>res.header(“content-type”,”application/javascript”);</strong></p>
+<p>当dataType为<strong>jsonp</strong>的时候，会向服务器发送一个jsonp请求<br>服务器应该设置这个响应头：<strong>res.header(“content-type”,”application/javascript”);</strong></p>
+<h2 id="nprogress的使用（全局事件处理）"><a href="#nprogress的使用（全局事件处理）" class="headerlink" title="nprogress的使用（全局事件处理）"></a>nprogress的使用（全局事件处理）</h2><p>1、在html文件中引入nprogress.js 和 nprogress.css</p>
+<p>2</p>
+<pre><code>$(document).ajaxStart(function(){//请求数据开始
+    NProgress.start();//数据加载动画
+}).ajaxStop(function(){//请求数据结束
+    NProgress.done();//数据加载完毕动画
+});</code></pre><h2 id="跨域请求"><a href="#跨域请求" class="headerlink" title="跨域请求"></a>跨域请求</h2><p><strong>同源策略</strong>是浏览器的一种安全策略，所谓同源是指 <strong>域名，协议，端口完全相同</strong> ，只有同源的地址才可以相互通过AJAX的方式请求。</p>
+<p>同源或者不同源说的是两个地址之间的关系，不同源地址之间请求我们称之为<strong>跨域请求</strong></p>
+<p>例如</p>
+<pre><code>http://localhost:8000  是不可以通过ajax访问  http://locally.uieee.com/categories的
+因为两者不满足同源的条件</code></pre><h3 id="如何进行跨域请求"><a href="#如何进行跨域请求" class="headerlink" title="如何进行跨域请求"></a>如何进行跨域请求</h3><ol>
+<li>CORS</li>
+<li>JSONP</li>
+<li>代理服务器</li>
+<li>修改document.domain</li>
+<li>Iframe</li>
+<li>Location.hash</li>
+<li>Window.postMessage()</li>
+<li>Websocket</li>
+</ol>
+<h4 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h4><p>只需要改动服务器，不用改动客户端代码，客户端可以直接使用$.ajax()</p>
+<p>Cross Origin Resource Share，跨域资源共享。这种方案无需客户端作出任何变化（客户端不用改代码），只是在被请求的服务端响应的时候添加一个Access- Control-Allow-Origin 的响应头，表示这个资源是否允许指定域请求。</p>
+<pre><code>//直接在服务器配置如下,客户端代码和以前一样写
+app.all(&#39;*&#39;, function(req, res, next) {
+    res.header(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);
+    res.header(&#39;Access-Control-Allow-Headers&#39;, &#39;Content-type&#39;);
+    res.header(&quot;Access-Control-Allow-Methods&quot;, &quot;PUT,POST,GET,DELETE,OPTIONS,PATCH&quot;);
+    res.header(&#39;Access-Control-Max-Age&#39;,6000);//预请求缓存10分钟
+    next();  
+});</code></pre><h4 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h4><p>JSON with Padding 实质上是通过script的src属性进行数据请求。本质上不是AJAX请求</p>
+<p>需要服务器和客户端配合</p>
+<pre><code>//此时客户端的地址为http://localhost:3000
+实现要点
+//客户端代码
+var script = document.createElement(&#39;script&#39;);
+script.src = &#39;http://localhost:9999/testJSONP&#39;;//向http://localhost:9999发送跨域请求
+document.body.appendChild(script)
+
+//服务器代码
+app.get(&quot;/testJSONP&quot;,(req,res)=&gt;{
+    //设置响应头 服务器给客户端发送了一个js代码块
+    res.header(&quot;content-type&quot;,&quot;application/javascript&quot;);
+    let data = JSON.stringify({&quot;name&quot;:&quot;zhangsan&quot;}) ;
+    //服务器发送 `foo(&#39;{&quot;name&quot;:&quot;zhangsan&quot;}&#39;)` 这个字符串给客户端
+    res.send(`foo(${data})`);
+})
+//如果服务器给客户端返回的js代码块中有函数调用，必须提前在客户端中声明要调用的那个函数
+function foo(data){
+    console.log(data);
+}</code></pre><p><strong>jQuery代码</strong></p>
+<pre><code>//客户端代码
+$.ajax({
+    type:&quot;get&quot;,
+    url:&quot;http://localhost:9999/testJSONP&quot;,
+    data:&#39;&#39;,
+    dataType: &#39;jsonp&#39;,
+    success:function(res){
+        $(&#39;body&#39;).append(res);
+    }
+    error:function(err){
+        console.log(err);
+    }
+    complete:function(xhr){
+    }
+});
+
+function foo(data){
+    console.log(data);
+}
+
+//服务器http://localhost:3000代码
+const express = require(&#39;express&#39;);
+const app = express();
+const bodyParser = require(&#39;body-parser&#39;);
+app.use(bodyParser.urlencoded({extended:false}));
+
+app.use(express.static(&#39;views&#39;));
+
+app.listen(3000,()=&gt;{
+    console.log(&#39;running...&#39;);
+});
+
+//服务器http://localhost:8888代码
+const express = require(&#39;express&#39;);
+const app = express();
+const bodyParser = require(&#39;body-parser&#39;);
+app.use(bodyParser.urlencoded({extended:false}));
+
+app.get(&#39;/getJsonp&#39;,(req,res)=&gt;{
+    res.send(&#39;foo(&quot;你拿到了http://localhost:8888的jsonp&quot;);&#39;);
+});
+
+
+app.listen(8888,()=&gt;{
+    console.log(&#39;running...&#39;);
+});</code></pre><h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>AJAX是通过<code>XMLHttpRequest</code>或者封装后的框架进行网络请求，由于这种方式的配置和调用方式非常混乱，已被Fetch取代</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Ajax&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

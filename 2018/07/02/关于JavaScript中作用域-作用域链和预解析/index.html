@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>关于JavaScript中作用域/作用域链和预解析 ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期一, 七月 2日 2018, 10:33 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.3k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 5 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="浅析Javascript中作用域、作用域链和预解析"><a href="#浅析Javascript中作用域、作用域链和预解析" class="headerlink" title="浅析Javascript中作用域、作用域链和预解析"></a>浅析Javascript中作用域、作用域链和预解析</h1><h2 id="一、作用域"><a href="#一、作用域" class="headerlink" title="一、作用域"></a>一、作用域</h2><pre><code>作用域（scope），程序设计概念，通常来说，一段程序代码中所用到的名字并不总是有效/可用的，而限定这个名字的可用性的代码范围就是这个名字的作用域。</code></pre><p>作用域的使用提高了程序逻辑的局部性，增强程序的可靠性，减少名字冲突。</p>
+<h3 id="1-全局作用域（全局变量）"><a href="#1-全局作用域（全局变量）" class="headerlink" title="1.全局作用域（全局变量）"></a>1.全局作用域（全局变量）</h3><p><strong>全局变量，原理就是将变量挂载到window对象中.</strong></p>
+<p><strong>全局变量拥有全局的作用域，可在任意地方被调用</strong></p>
+<p>全局变量有两种声明方式</p>
+<h3 id="（1）函数外部"><a href="#（1）函数外部" class="headerlink" title="（1）函数外部"></a>（1）函数外部</h3><p>(写在函数外面的都是全局变量)</p>
+<pre><code>&lt;script&gt;
+    var num = 15; //全局变量
+        function f() {
+        var num = 10; //不是全局变量
+            function f2(){
+               /*----*/ 
+            }
+            f2();
+        }
+    f();
+    console.log(num); //  15
+&lt;/script&gt;</code></pre><h3 id="（2）函数内部"><a href="#（2）函数内部" class="headerlink" title="（2）函数内部"></a>（2）函数内部</h3><p>(不加var的变量声明，隐式全局变量)</p>
+<pre><code>&lt;script&gt;
+    function f() {
+        num = 10; //隐式全局变量
+    }
+    f();
+    console.log(num); // 10
+&lt;/script&gt;</code></pre><h4 id="全局变量与隐式全局变量的区别"><a href="#全局变量与隐式全局变量的区别" class="headerlink" title="全局变量与隐式全局变量的区别"></a>全局变量与隐式全局变量的区别</h4><pre><code>隐式全局变量可以通过delete关键字来删除，全局变量不可以
+//全局变量不可被delete
+&lt;script&gt;
+    var a = 2; //全局变量
+    function f(){
+        //****
+    }
+    console.log(a); //  2
+    delete a;
+    console.log(a); //  2
+&lt;/script&gt;
+//隐式全局变量被delete
+&lt;script&gt;
+    function f(){
+        a = 2; //隐式全局变量
+    }
+    console.log(a); //  2
+    delete a;
+    console.log(a); //  not defined (已被删除)
+&lt;/script&gt;</code></pre><h3 id="2-局部作用域-局部变量"><a href="#2-局部作用域-局部变量" class="headerlink" title="2.局部作用域(局部变量)"></a>2.局部作用域(局部变量)</h3><pre><code>局部变量：写在函数体里面的变量
+
+局部变量只可以在当前函数内部使用
+&lt;script&gt;
+    function f() {
+        var num = 10; //局部变量
+        function f2(){
+            console.log(num); // 10
+        }
+        f2();
+    }
+    f();
+    console.log(num); //  not defined
+&lt;/script&gt;</code></pre><h2 id="二、作用域链"><a href="#二、作用域链" class="headerlink" title="二、作用域链"></a>二、作用域链</h2><p>作用域链简而言之就是，调用变量时，若当前作用域内没有该变量时就向它的上一级作用域去寻找。</p>
+<p>Javascript用的是词法作用域（静态作用域）</p>
+<p>实例：</p>
+<pre><code>&lt;script&gt;    /* 0级作用域 */
+var a = 1;
+function aa(){    /* 1级作用域 */
+    //var a = 2;
+    function bb(){  /* 2级作用域 */
+        //var a = 3;
+        console.log(a);  // 1
+    }
+    bb();
+}
+aa();
+&lt;/script&gt;</code></pre><p>作用过程：</p>
+<ol>
+<li>当运行到console.log(a)时，会在当前作用域（2级作用域）内寻找是否有a可用；</li>
+<li>若有直接使用，否则向上一级作用域（1级作用域）去寻找；</li>
+<li>此时来到1级作用域，若此时有a可用则用，否则继续向上一级寻找，直到到达0级作用域；</li>
+<li>此时来到0级作用域，若此时有a可用则用，否则报错；</li>
+</ol>
+<p><img src="https://howlcn1997.github.io/2018/02/26/%E6%B5%85%E6%9E%90Javascript%E4%B8%AD%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E5%92%8C%E9%A2%84%E8%A7%A3%E6%9E%90/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE.jpg" srcset="/study.github.io/img/loading.gif" alt="作用域链"></p>
+<p><strong>值得注意的是：作用域链的始发点与函数的调用位置无关，而与函数的声明位置有关</strong> 例子如下：</p>
+<pre><code>&lt;script&gt;
+    var value = 1;
+    function foo() {
+        console.log(value);
+    }
+
+    function bar() {
+        var value = 2;
+        foo();
+    }
+    bar();
+&lt;/script&gt;</code></pre><p>此时的打印结果为1，而不是foo函数调用所在作用域的value = 2；</p>
+<p>这里的1是foo函数声明所在的作用域中的value = 1；</p>
+<p>## 三、预解析</p>
+<p>当浏览器执行Javascript代码时，为了提高执行效率会在代码解释执行前进行预解析处理。</p>
+<p>预解析处理规则：</p>
+<p>\1. 变量提升 仅仅将变量声明提升到当前作用域的最上面，不包括变量的赋值<br>\2. 函数提升 将函数的声明提升到当前作用域的最上面，不包括函数的调用 <strong>函数的声明会提前到变量声明之前</strong></p>
+<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p>实例：</p>
+<pre><code>&lt;script&gt;
+    console.log(a); //undefined
+    var a = 10;
+&lt;/script&gt;</code></pre><p>上述代码结果打印为undefined,而不是10，这是为什么呢？</p>
+<p>我们来看看与解析之后的结果，</p>
+<p>预解析为：</p>
+<pre><code>&lt;script&gt;
+    var a
+    console.log(a);
+    a = 10;
+&lt;/script&gt;</code></pre><p>由于变量声明被提升到作用域最前端，而赋值没有被提升，导致执行console.log(a);时 a还未被赋值。</p>
+<h3 id="函数提升"><a href="#函数提升" class="headerlink" title="函数提升"></a>函数提升</h3><p>实例：</p>
+<pre><code>&lt;script&gt;
+    f1();
+    function f1() {
+        /*-----*/
+    }
+&lt;/script&gt;</code></pre><p>被解析为：</p>
+<pre><code>&lt;script&gt;
+    function f1() {
+        /*-----*/
+    }
+    f1();
+&lt;/script&gt;</code></pre><h3 id="函数的声明会提前到变量声明之前"><a href="#函数的声明会提前到变量声明之前" class="headerlink" title="函数的声明会提前到变量声明之前"></a>函数的声明会提前到变量声明之前</h3><pre><code>函数提升和变量提升同时发生时，函数的声明会提前到变量声明之前。
+&lt;script&gt;
+    var a = 3;
+    function a(){
+        console.log(10);
+    }   
+    console.log(a);
+    a();
+&lt;/script&gt;</code></pre><p>被解析为：</p>
+<pre><code>&lt;script&gt;
+    function a(){
+        console.log(10);
+    }
+    var a;
+    a = 3
+    console.log(a);
+    a(); //not function  因为此时a为变量而不是函数
+&lt;/script&gt;</code></pre><p><strong>值得注意的是：</strong></p>
+<p>1.函数是可以被打印的</p>
+<pre><code>&lt;script&gt;
+    function a(){
+    /*----*/
+    }
+console.log(a); //打印函数a
+&lt;/script&gt;</code></pre><p>2.变量a的赋值可以被普通类型和函数互相取代</p>
+<pre><code>&lt;script&gt;
+    var a；
+    a = function(){
+        /*----*/
+        }
+    console.log(a); //打印函数a
+    a = 1;
+    console.log(a); // 1；
+&lt;/script&gt;</code></pre><h3 id="匿名函数的申明不遵循预解析规则"><a href="#匿名函数的申明不遵循预解析规则" class="headerlink" title="匿名函数的申明不遵循预解析规则"></a>匿名函数的申明不遵循预解析规则</h3><pre><code>&lt;script&gt;
+    f();  //报错
+    var f = function(){
+        /*----*/
+    }
+&lt;/script&gt;</code></pre><p>因为解析前后代码相同 执行 <strong>f()</strong> 时，f未被声明为函数类型。</p>
+<h3 id="隐式全局变量的注意点"><a href="#隐式全局变量的注意点" class="headerlink" title="隐式全局变量的注意点"></a>隐式全局变量的注意点</h3><pre><code>&lt;script&gt;
+    f();
+    console.log(a);  //undefined
+    console.log(b);  //9
+    function f() {
+      var a = b = c = 9;
+      console.log(a); //9
+      console.log(b); //9
+    }
+&lt;/script&gt;</code></pre><p>被解析为：</p>
+<pre><code>&lt;script&gt;
+    function f() {
+      var a;  //局部变量
+      a = 9;  
+      b = 9;  //隐式全局变量
+      console.log(a);  //9
+      console.log(b);  //9
+    }
+    f();
+    console.log(b);  //9
+    console.log(a);  //undefined   因为a是局部变量
+&lt;/script&gt;</code></pre>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "关于JavaScript中作用域/作用域链和预解析&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

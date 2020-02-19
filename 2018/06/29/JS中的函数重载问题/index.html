@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>关于JS函数的重载问题 ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期五, 六月 29日 2018, 4:10 下午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 4 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="关于Javascript的函数重载问题"><a href="#关于Javascript的函数重载问题" class="headerlink" title="关于Javascript的函数重载问题"></a>关于Javascript的函数重载问题</h1><p><strong>在Javascript与Java等语言不同，它自身没有重载的具体方法，但我们可以利用Javascript的特性来完成重载的效果</strong></p>
+<h2 id="1-什么是重载"><a href="#1-什么是重载" class="headerlink" title="1.什么是重载"></a>1.什么是重载</h2><pre><code>重载，简单说，就是函数或者方法有相同的名称，但是参数列表不相同的情形，这样的同名不同参数的函数或者方法之间，互相称之为重载函数或者方法。</code></pre><h2 id="2-Javascript如何实现重载"><a href="#2-Javascript如何实现重载" class="headerlink" title="2.Javascript如何实现重载"></a>2.Javascript如何实现重载</h2><h3 id="方法一：利用函数的arguments来完成函数的重载"><a href="#方法一：利用函数的arguments来完成函数的重载" class="headerlink" title="方法一：利用函数的arguments来完成函数的重载"></a>方法一：利用函数的arguments来完成函数的重载</h3><pre><code>//函数的声明
+function overLoading() {
+　　// 根据arguments.length，对不同的值进行不同的操作
+　　switch(arguments.length) {
+　　　　case 0: console.log(&#39;无参&#39;);
+　　　　　    break;
+　　　　case 1: console.log(&#39;一个参数&#39;);
+　　　　　    break;
+　　　　case 2: console.log(&#39;两个参数&#39;);
+              break;
+    }
+ }
+//函数的调用
+overLoading();  //结果：无参
+overLoading(1);  //结果：一个参数
+overLoading(1,2);  //结果：两个参数</code></pre><h3 id="方法二：《Secrets-of-the-JavaScript-Ninja》中的方法"><a href="#方法二：《Secrets-of-the-JavaScript-Ninja》中的方法" class="headerlink" title="方法二：《Secrets of the JavaScript Ninja》中的方法"></a>方法二：《Secrets of the JavaScript Ninja》中的方法</h3><p>重载方法实例：</p>
+<pre><code>function addMethod(object, name, fn) {
+　　var old = object[name];   //把前一次添加的方法存在一个临时变量old里面
+　　object[name] = function() {   // 重写了object[name]的方法
+　　　　// 如果调用object[name]方法时，传入的参数个数跟预期的一致，则直接调用
+　　　　if(fn.length === arguments.length) {
+　　　　　　return fn.apply(this, arguments);
+　　　　// 否则，判断old是否是函数，如果是，就调用old
+　　　　} else if(typeof old === &quot;function&quot;) {
+　　　　　　return old.apply(this, arguments);
+　　　　}
+　　}
+}</code></pre><p>所谓<strong>addMethod</strong>函数，简单的理解，就是给某个<strong>object</strong>，添加一个指定<strong>name</strong>的函数<strong>fn</strong>。它利用了<strong>闭包</strong>，可以通过<strong>old</strong>变量将先后绑定的函数链接起来。</p>
+<p>你可以这样使用<strong>addMethod</strong>函数，将<strong>find</strong>函数直接添加到每个对象实例：</p>
+<pre><code>function Users(){
+  addMethod(this, &quot;find&quot;, function(){
+      // Find All
+  });
+  addMethod(this, &quot;find&quot;, function(name){
+    // Find a user by name
+  });
+  addMethod(this, &quot;find&quot;, function(first, last){
+    // Find a user by first and last name
+  });
+}</code></pre><p>你也可以将<strong>find</strong>函数添加到对象的<strong>prototype</strong>，这样所有对象实例将共享<strong>find</strong>函数:</p>
+<pre><code>function Users(){
+    addMethod(Users.prototype, &quot;find&quot;, function(){
+      // Find all users...
+    });
+    addMethod(Users.prototype, &quot;find&quot;, function(name){
+      // Find a user by name
+    });
+    addMethod(Users.prototype, &quot;find&quot;, function(first, last){
+      // Find a user by first and last name
+    });
+}</code></pre><p><strong>users</strong>对象的<strong>find</strong>方法成功实现了重载，可以根据不同的输入调用不同的函数：</p>
+<pre><code>var users = new Users();
+users.find(); // Finds all
+users.find(&quot;John&quot;); //  Finds users by name
+users.find(&quot;John&quot;, &quot;Resig&quot;); // Finds users by first and last name
+users.find(&quot;John&quot;, &quot;E&quot;, &quot;Resig&quot;); // Does nothing</code></pre><p>这种方法有一些明显的缺陷:</p>
+<ul>
+<li>重载只能处理输入参数个数不同的情况，它不能区分参数的类型、名称等其他要素。(ECMAScript 4计划支持这一特性，称作Multimethods，然而该版本已被放弃)。</li>
+<li>重载过的函数将会有一些额外的负载，对于性能要求比较高的应用，使用这个方法要慎重考虑。</li>
+</ul>
+<p><strong>addMethod</strong>函数的秘诀之一在于<strong>fn.length</strong>。或许很多人并不清楚，所有函数都有一个<strong>length</strong>属性，它的值等于定义函数时的参数个数。比如，当你定义的函数只有1个参数时，其<strong>length</strong>属性为1：</p>
+<pre><code>(function(foo){}).length == 1</code></pre><p>如果你担心只绑定单个函数时的性能问题，你可以使用如下<strong>addMethod</strong>函数：</p>
+<pre><code>function addMethod(object, name, fn){
+    var old = object[ name ];
+    if ( old )
+        object[ name ] = function(){
+            if ( fn.length == arguments.length )
+                return fn.apply( this, arguments );
+            else if ( typeof old == &#39;function&#39; )
+                return old.apply( this, arguments );
+        };
+    else
+        object[ name ] = fn;
+}</code></pre><p>这样绑定第一个函数时，将不会有额外的操作，既简单又快速。当绑定更多函数时，则与原<strong>addMethod</strong>函数一样，会有额外的性能损失。</p>
+<p>这样做还有一个额外的好处：对于那些参数个数不符合要求的函数调用，将统一又第一个绑定的函数处理。这时调用<strong>find</strong>方法的输出如下：</p>
+<pre><code>var users = new Users();
+users.find(); // Finds all
+users.find(&quot;John&quot;); // Finds users by name
+users.find(&quot;John&quot;, &quot;Resig&quot;); // Finds users by first and last name
+users.find(&quot;John&quot;, &quot;E&quot;, &quot;Resig&quot;); // Finds all</code></pre>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "关于JS函数的重载问题&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

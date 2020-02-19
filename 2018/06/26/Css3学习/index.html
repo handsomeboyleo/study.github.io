@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Css3学习 ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期二, 六月 26日 2018, 8:22 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    2.7k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 11 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h1><h2 id="边框图片"><a href="#边框图片" class="headerlink" title="边框图片"></a>边框图片</h2><pre><code>width: 200px;
+height: 200px;
+border: 30px solid pink;
+box-sizing: border-box;
+border-image: url(./img/border1.png);
+/* 切割 */
+border-image-slice: 30 fill;
+/* 背景图会被拉升 */
+border-image-repeat: stretch;
+
+/* 将内容缩放进行完整的重复平铺 使得能够正好放下若干元素 */
+border-image-repeat: round;
+
+/* 背景会被直接平铺 */
+border-image-repeat: repeat;
+
+/* 设置边框图片的宽度 */
+border-image-width: 30px;
+
+/* 将背景图延伸到盒子外 不会放大 只会延伸 */
+/*放大中间部分*/
+border-image-outset: 100px;</code></pre><h2 id="颜色渐变"><a href="#颜色渐变" class="headerlink" title="颜色渐变"></a>颜色渐变</h2><h3 id="简单渐变"><a href="#简单渐变" class="headerlink" title="简单渐变"></a>简单渐变</h3><h4 id="简单线性渐变-linear-gradient"><a href="#简单线性渐变-linear-gradient" class="headerlink" title="简单线性渐变 linear-gradient"></a>简单线性渐变 linear-gradient</h4><pre><code>.box1{
+    width: 400px;
+    height: 800px;
+    margin: 10px auto;
+    /*linear-gradient(方向，开始颜色位置，颜色2位置，颜色3位置...)
+    1. to left：设置渐变为从右到左。相当于: 270deg;
+    2. to right：设置渐变从左到右。相当于: 90deg;   
+    3. to top：设置渐变从下到上。相当于: 0deg;
+    4. to bottom：设置渐变从上到下。相当于: 180deg。这是默认值，等同于留空不写。也可以直接指定度数，如45deg
+    */
+    background: linear-gradient(to right,pink,skyblue,yellowgreen,orange);
+    background: linear-gradient(20deg,pink,skyblue,yellowgreen,orange);
+    background: linear-gradient(-20deg,pink,skyblue,yellowgreen,orange);
+}</code></pre><h4 id="简单径向渐变radial-gradient"><a href="#简单径向渐变radial-gradient" class="headerlink" title="简单径向渐变radial-gradient"></a>简单径向渐变radial-gradient</h4><pre><code>.box2{
+    width: 400px;
+    height: 800px;
+    margin: 10px auto;
+    /* radial-gradient(·形状 大小 坐标·,颜色1，颜色2...) */
+
+    /* 圆形 */
+    background: radial-gradient(circle at center,pink,skyblue,yellowgreen,orange);
+    /* background: radial-gradient(circle at 200px 100px,pink,skyblue,yellowgreen,orange); */
+
+    /* 0%至10%是red渐变至green  10%至100%是green渐变至yellow */
+    background: radial-gradient(circle at 100px 100px,red 0%,green 10%,yellow 100%);
+
+    /* 椭圆 */
+    background: radial-gradient(ellipse at center,pink,skyblue,yellowgreen,orange);
+    /* 0%至20%是pink渐变至skyblue  20%至40%是skyblue渐变至yellowgreen  40%之后是纯yellowgreen */
+    background: radial-gradient(ellipse at 10px 100px,pink 0%,skyblue 20%,yellowgreen 40%);
+
+    /* 参数加入大小 */
+    /*
+    closest-side：最近边；  
+    farthest-side：最远边； 
+    closest-corner：最近角；  
+    farthest-corner：最远角。默认是最远的角farthest-corner  
+    */
+
+    /* 渐变的范围边缘触及最近的border结束 */
+    background: radial-gradient(circle closest-side at 100px 100px,pink,skyblue,yellowgreen,orange);
+    /* 渐变的范围边缘触及最远的border结束 */
+    background: radial-gradient(circle farthest-side at 100px 100px,pink,skyblue,yellowgreen,orange);
+    /* 渐变的范围边缘触及最近的角结束 */
+    background: radial-gradient(circle closest-corner at 100px 100px,pink,skyblue,yellowgreen,orange);
+    /* 渐变的范围边缘触及最圆的角结束 */
+    background: radial-gradient(circle farthest-corner at 10px 500px,pink,skyblue,yellowgreen,orange);
+}</code></pre><h3 id="重复渐变"><a href="#重复渐变" class="headerlink" title="重复渐变"></a>重复渐变</h3><h4 id="重复线性渐变repeating-linear-gradient"><a href="#重复线性渐变repeating-linear-gradient" class="headerlink" title="重复线性渐变repeating-linear-gradient"></a>重复线性渐变repeating-linear-gradient</h4><pre><code>/* 重复渐变 */
+.box3 {
+    width: 400px;
+    height: 800px;
+    margin: 10px auto;
+    /*线性重复性渐变
+    repeating-linear-gradient(角度,颜色1 %0,颜色2 %10)
+    */
+    background: repeating-linear-gradient(45deg,red 0%,red 3%,orange 3%,orange 6%,yellow 6%,yellow 9%,green 9%,green 12%,blue 12%,blue 15%,indigo 15%,indigo 18%,purple 18%,purple 21%); */
+    /* background: repeating-linear-gradient(45deg,#fff 0px,#fff 2px,#000 2px,#000 4px); */
+}</code></pre><h4 id="重复径向渐变repeating-radial-gradient"><a href="#重复径向渐变repeating-radial-gradient" class="headerlink" title="重复径向渐变repeating-radial-gradient"></a>重复径向渐变repeating-radial-gradient</h4><pre><code>.box4{
+    width: 400px;
+    height: 800px;
+    margin: 10px auto;
+    /*径向的重复性渐变
+    repeating-radial-gradient(形状 终点位置 at 起点位置,颜色1 0%,颜色2 5%,颜色3 10%)
+    */
+    background: repeating-radial-gradient(circle farthest-corner at 10px 20px,red 0%,red 3%,orange 3%,orange 6%,yellow 6%,yellow 9%,green 9%,green 12%,blue 12%,blue 15%,indigo 15%,indigo 18%,purple 18%,purple 21%);</code></pre><h3 id="玩法"><a href="#玩法" class="headerlink" title="玩法"></a>玩法</h3><p>多次使用渐变，利用透明度，达到交叉效果</p>
+<pre><code>background: repeating-linear-gradient(45deg,rgba(0,0,0,.5) 0%,rgba(255,255,255,.5) 10%),repeating-linear-gradient(-45deg,rgba(0,0,0,.5) 0%,rgba(255,255,255,.5) 10%);
+    background: repeating-radial-gradient(circle farthest-corner at left top,rgba(0,0,0,.5) 0%,rgba(255,255,255,.5) 10%),repeating-radial-gradient(circle farthest-corner at right top,rgba(0,0,0,.5) 0%,rgba(255,255,255,.5) 10%);
+}</code></pre><p><img src="https://howlcn1997.github.io/2018/02/15/CSS3/%E6%B8%90%E5%8F%98%E8%89%B2.png" srcset="/study.github.io/img/loading.gif" alt="渐变色"></p>
+<h2 id="transition"><a href="#transition" class="headerlink" title="transition"></a>transition</h2><pre><code>transition: 要过渡的属性  花费时间  运动曲线  何时开始;
+/*可以一次性设置，也可以分开设置*/
+    transition-property : 设置哪个属性要进行动画
+    transition-duration: 设置动画的时间
+    transition-timing-function : 设置动画运动的曲线(linear  ease  ease-in  ease-out  ease-in-out)
+    transition-delay : 设置动画延迟的时间</code></pre><h2 id="CSS-2D变形"><a href="#CSS-2D变形" class="headerlink" title="CSS 2D变形"></a>CSS 2D变形</h2><h3 id="translate-x-y"><a href="#translate-x-y" class="headerlink" title="translate(x, y)"></a>translate(x, y)</h3><pre><code>transform: translate(100px,100px);
+transform: translateX(100px);</code></pre><h3 id="缩放-scale-x-y"><a href="#缩放-scale-x-y" class="headerlink" title="缩放 scale(x, y)"></a>缩放 scale(x, y)</h3><pre><code>transform:scale(0.8,2.0);  //宽  高</code></pre><h3 id="旋转-rotate-deg"><a href="#旋转-rotate-deg" class="headerlink" title="旋转 rotate(deg)"></a>旋转 rotate(deg)</h3><p> 注意设置旋转中心点的时候不要设置在hover上</p>
+<pre><code>transform:rotate(45deg);   //如果是正数，则顺时针，否则为逆时针
+transform-origin: left top; //默认为center
+transform-origin: 10px 100px;</code></pre><h3 id="倾斜-skew-deg-deg"><a href="#倾斜-skew-deg-deg" class="headerlink" title="倾斜 skew(deg, deg)"></a>倾斜 skew(deg, deg)</h3><pre><code>transform:skew(45deg);</code></pre><p> 注意点角度不要是90的奇数整倍数，因为skew时，元素的高度是不发生变化的，当倾斜90度时元素的斜边要水平（上下边要与左右边重合）与高度不为零冲突，元素动画会 <strong>鬼畜</strong></p>
+<p><strong>添加多个变形动画时用空格隔开，如</strong></p>
+<pre><code>transform: rotate(45deg) translateX(100px);</code></pre><h3 id="坐标系问题"><a href="#坐标系问题" class="headerlink" title="坐标系问题"></a>坐标系问题</h3><p>下面两种的效果是不同的</p>
+<pre><code>（1）transform: rotate(45deg) translateX(100px); 
+（2）transform: translateX(100px) rotate(45deg);</code></pre><p>这是因为元素在进行2D变化时是根据坐标轴的，而旋转和缩放会改变坐标轴，发生意想不到的结果。但好好利用可以做出好的动画效果。</p>
+<pre><code>transform: rotate(700deg) translateX(100px); /*达到蜗牛旋转效果*/</code></pre><h2 id="盒子居中的方法"><a href="#盒子居中的方法" class="headerlink" title="盒子居中的方法"></a>盒子居中的方法</h2><h3 id="盒子水平居中的办法"><a href="#盒子水平居中的办法" class="headerlink" title="盒子水平居中的办法"></a>盒子水平居中的办法</h3><p> 1、text-align: center</p>
+<p> 2、margin: auto; 元素需要时block</p>
+<h3 id="盒子垂直居中的办法"><a href="#盒子垂直居中的办法" class="headerlink" title="盒子垂直居中的办法"></a>盒子垂直居中的办法</h3><p> 1、line-height</p>
+<p> 2、padding</p>
+<h3 id="盒子垂直水平居中的方法"><a href="#盒子垂直水平居中的方法" class="headerlink" title="盒子垂直水平居中的方法"></a>盒子垂直水平居中的方法</h3><h4 id="利用transform让盒子垂直水平居中"><a href="#利用transform让盒子垂直水平居中" class="headerlink" title="利用transform让盒子垂直水平居中"></a>利用transform让盒子垂直水平居中</h4><pre><code>width: 200px;
+height: 200px;
+background-color: red;
+position: absolute;
+/*transform 百分比参照的是元素本身的宽高*/
+transform: translate(-50%,-50%); 
+/*left和top参照的是父容器宽高的50%*/
+left: 50%;
+top:50%;</code></pre><h4 id="利用margin"><a href="#利用margin" class="headerlink" title="利用margin"></a>利用margin</h4><pre><code>position:fixed;
+width:200px;
+height:200px;
+left:50%;
+top:50%;
+margin-left:-100px;
+margin-top:-100px;</code></pre><h4 id="calc和定位的组合使用"><a href="#calc和定位的组合使用" class="headerlink" title="calc和定位的组合使用"></a>calc和定位的组合使用</h4><pre><code>top: calc(50% - 元素高度/2);
+left: calc(50% - 元素宽度/2);</code></pre><h2 id="background"><a href="#background" class="headerlink" title="background"></a>background</h2><pre><code>/*
+    有：    background-color        背景颜色
+        background-image        背景图片地址
+        background-repeat        是否平铺  查手册了解其取值
+        background-position        背景位置       查手册了解其取值 left right center top bottom  两两搭配
+                                            使用方位名词时，前后无顺序要求；但是使用数字10px 10px时注意前后顺序
+        background-attachment    背景固定还是滚动
+*/
+div{
+    width: 400px;
+    height: 400px;
+    background-color: skyblue;
+    background-repeat: no-repeat;/*大小自适应充满*/
+    background-image: url(../img/girl.jpg);
+    background-size: 200px;
+    background-position: center;
+    /*background-position: 30px 10px;第一个值为X轴 第二个值为Y轴    其中网页顶端为X轴  右为正方向   左边为Y轴  下为正方向*/
+    /*background-position: 10px center;*/
+}</code></pre><h2 id="背景缩放"><a href="#背景缩放" class="headerlink" title="背景缩放"></a>背景缩放</h2><pre><code>div{
+    width: 800px;
+    height: 500px;
+    background: #000 url(../img/王者荣耀背景图.jpg) no-repeat top center;
+    /*background-size: 100px 100px;     设置两个属性值可能导致图片失真扭曲
+    background-size: 100px;   尽量使用一个属性值 另一个属性值会等比例缩放*/
+    /*background-size: 50%;     使用一个值 另一个值等比例缩放*/
+    background-size:cover;     /*会自动  |等比例缩放|  保证图片充满容器 但有可能图片溢出导致部分图片无法显示  【最常用】*/
+    /*background-size:contain;    等比例缩放，过程中图片的高度或者宽度任意一个属性值满足容器高宽时就停止缩放，保证图片完整性，但可能无法充满容器*/
+}</code></pre><h2 id="多背景"><a href="#多背景" class="headerlink" title="多背景"></a>多背景</h2><pre><code>/*一个元素可以设置多重背景图像；
+    每组属性之间使用逗号分隔
+    如果设置的多重背景图之间存在交集（即存在着重叠关系），前面的背景图会覆盖在后面的背景图之上
+    为了避免背景色将图像盖住，背景色通常都定义在最后一组上。*/
+div{
+    width: 500px;
+    height: 500px;
+    /*background: pink url(../img/水浒传.jpg) no-repeat fixed center center;  此处添加fixed后 该图片便以body为容器*/
+
+    background: url(../第1阶段HTML/img/水浒传.jpg) no-repeat left top,
+        url(../第1阶段HTML/img/三国演义.jpg) no-repeat right bottom pink;/*当一个div中需要出现多个背景图片时 中间用逗号隔开。值得注意的是：背景色的设置要放在最后一个设置中，不然会覆盖之前的图片效果*/
+
+}</code></pre><h2 id="凹凸文字"><a href="#凹凸文字" class="headerlink" title="凹凸文字"></a>凹凸文字</h2><pre><code>/*凸起*/
+/*text-shadow:水平位置 垂直位置 模糊位置 阴影颜色  右和下为正方向*/
+text-shadow: 1px 1px 1px #000,-1px -1px 1px #fff;
+
+/*凹下*/
+/*text-shadow:水平位置 垂直位置 模糊位置 阴影颜色  右和下为正方向*/
+text-shadow: 1px 1px 1px #fff,-1px -1px 1px #000;</code></pre><h2 id="景深"><a href="#景深" class="headerlink" title="景深"></a>景深</h2><h3 id="观察距离"><a href="#观察距离" class="headerlink" title="观察距离"></a>观察距离</h3><p><img src="https://howlcn1997.github.io/2018/02/15/CSS3/%E6%99%AF%E6%B7%B1.png" srcset="/study.github.io/img/loading.gif" alt="景深"></p>
+<pre><code>perspective:1000px; /*设置视角与投射面的距离*/</code></pre><p>注意的是：若要给某元素设置景深效果，那么perspective要设置在他的父元素上</p>
+<p>分别设置 transform: translateZ()后的效果</p>
+<pre><code>transform: translateZ(0px);
+transform: translateZ(500px);
+transform: translateZ(999px);
+transform: translateZ(1001px);</code></pre><h3 id="视角观察点"><a href="#视角观察点" class="headerlink" title="视角观察点"></a>视角观察点</h3><p><img src="https://howlcn1997.github.io/2018/02/15/CSS3/%E8%A7%82%E5%AF%9F%E7%82%B9.png" srcset="/study.github.io/img/loading.gif" alt="观察点"></p>
+<p>默认为中心（center center）</p>
+<pre><code>perspective-origin: left top;/*是body的左上角*/
+perspective-origin: 0px 0px; /*也可以精确化垂点*/</code></pre><h3 id="利用景深达到伪3d效果"><a href="#利用景深达到伪3d效果" class="headerlink" title="利用景深达到伪3d效果"></a>利用景深达到伪3d效果</h3><pre><code>body {
+    perspective: 1000px;
+    /*设置视角观察方向 且是相对于body的，且视角是一直垂直与body的*/
+    perspective-origin: left top;/*是body的左上角*/
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    /*transition 设置过渡动画*/
+    transition: all  1s;
+}
+
+.box1:hover {
+    transform: translateZ(500px);
+}
+&lt;div class=&quot;box box1&quot;&gt;&lt;/div&gt;</code></pre><p>当鼠标移动到box上时触发 transform: translateZ(500px); 致使box在他的Z轴上正方向移动500px;而他的父元素body设置了观察点为body的左上角，则box的移动轨迹是向右下角的。</p>
+<h2 id="3d变形"><a href="#3d变形" class="headerlink" title="3d变形"></a>3d变形</h2><p>(注：3d变形结合景深后可以呈现空间立体效果。)</p>
+<p>每个元素都有自己的坐标系</p>
+<p><img src="https://howlcn1997.github.io/2018/02/15/CSS3/3d%E5%9D%90%E6%A0%87%E7%B3%BB.png" srcset="/study.github.io/img/loading.gif" alt="3d坐标系"></p>
+<h3 id="translate3d-x-y-z"><a href="#translate3d-x-y-z" class="headerlink" title="translate3d(x,y,z)"></a>translate3d(x,y,z)</h3><p>例：</p>
+<pre><code>.box1 {
+    transform: translate3d(100px,-50px,500px);
+}
+/*向x轴正方向移动100px 向y轴负方向移动50px  向z轴正方向移动500px*/</code></pre><h3 id="rotate3d-x-y-z-angle"><a href="#rotate3d-x-y-z-angle" class="headerlink" title="rotate3d(x,y,z,angle)"></a>rotate3d(x,y,z,angle)</h3><p>[x,y,z]向量，定义旋转轴；</p>
+<p>angle定义旋转角度，正值为顺时针，负值为逆时针；</p>
+<p> <strong>关于向量的运作原理</strong></p>
+<p><img src="https://howlcn1997.github.io/2018/02/15/CSS3/rotate%E5%90%91%E9%87%8F1.png" srcset="/study.github.io/img/loading.gif" alt="1560564644997"></p>
+<p>[x,y,z]向量为[0,0,1]时代表z轴，旋转绕z轴旋转</p>
+<p>[x,y,z]向量为[0,1,0]时代表y轴，旋转绕y轴旋转</p>
+<p>[x,y,z]向量为[1,0,0]时代表x轴，旋转绕x轴旋转</p>
+<p>[x,y,z]向量为[1,1,1]时，旋转轴如图绿色线所示</p>
+<p><img src="https://howlcn1997.github.io/2018/02/15/CSS3/rotate%E5%90%91%E9%87%8F2.png" srcset="/study.github.io/img/loading.gif" alt="1560564933962"></p>
+<p>再加上旋转角度后：</p>
+<pre><code>.box2 {
+    transform: rotate3d(1,1,1,45deg);
+}</code></pre><p>效果</p>
+<p><img src="https://howlcn1997.github.io/2018/02/15/CSS3/rotate%E5%90%91%E9%87%8F3.png" srcset="/study.github.io/img/loading.gif" alt="1560565807459"></p>
+<h3 id="transform-origin"><a href="#transform-origin" class="headerlink" title="transform-origin"></a>transform-origin</h3><p> transform-origin: x-axis y-axis z-axis;</p>
+<h3 id="scale3d-x-y-z"><a href="#scale3d-x-y-z" class="headerlink" title="scale3d(x,y,z)"></a>scale3d(x,y,z)</h3><pre><code>/* transform: scaleX(0.5); */
+/* transform: scaleY(0.5); */
+/*元素没有厚度 Z轴上的缩放暂时是没有意义的*/
+scale3d(2,2,0.5);</code></pre><h3 id="backface-visibility"><a href="#backface-visibility" class="headerlink" title="backface-visibility"></a>backface-visibility</h3><pre><code>/*当图片不是正面对象用户的时候就隐藏*/
+backface-visibility: hidden;</code></pre><h3 id="preserve-3d"><a href="#preserve-3d" class="headerlink" title="preserve-3d"></a>preserve-3d</h3><p> 让元素以3d效果去呈现 他是添加在父元素上的一个属性</p>
+<h3 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h3><p> 关键帧动画(animation)：允许我们在多个状态之间进行动画</p>
+<p> 过渡动画(transition )：允许我们在两个状态之间进行动画</p>
+<p>1、先申明动画函数</p>
+<pre><code>@keyframes Animate{
+    0%{
+        /* 可以同时对多个属性添加动画效果 */
+        transform: scale3d(1,1,1);
+    }
+    50%{
+        transform: scale3d(2,2,2);
+    }
+    100%{
+        transform: scale3d(1,1,1);
+    }
+}</code></pre><p>2、使用 并配置</p>
+<pre><code>.box:hover{
+    /*动画的名字 调用动画函数*/
+    animation-name: Animate;
+
+    /*动画持续的时间*/
+    animation-duration: 2s;
+
+    /*动画延迟多长时间执行*/
+    animation-delay: 1s;
+
+    /*动画运动的曲线  linear匀速动画*/
+    animation-timing-function: linear;
+
+    /*指定动画执行的次数*/
+    animation-iteration-count: infinite;
+
+    /*让动画结束之后保留在动画结束的状态*/
+    animation-fill-mode: forwards; 
+    /*让动画结束之后保留在动画初始的状态*/
+    /* animation-fill-mode: backwards;  */
+}</code></pre>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Css3学习&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>
