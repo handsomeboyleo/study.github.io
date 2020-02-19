@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>归档 ~ Hexo</title>
+  <title>cookie session ~ Hexo</title>
 
   <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -94,8 +94,8 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/default.png')no-repeat center center;
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask rgba-black-light flex-center">
@@ -104,6 +104,41 @@
               
             </span>
 
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期一, 八月 20日 2018, 5:33 下午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    291 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 1 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -115,53 +150,85 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 11 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/study.github.io/2020/02/19/webpack%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">webpack的基本使用心得</span>
-      <span style="float: right;">02-19</span>
-    </a>
-  
-    
-    <a href="/study.github.io/2020/02/19/Express%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Express服务器的搭建</span>
-      <span style="float: right;">02-19</span>
-    </a>
-  
-    
-    <a href="/study.github.io/2020/02/19/wamp%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">wamp环境的搭建</span>
-      <span style="float: right;">02-19</span>
-    </a>
-  
-    
-    <a href="/study.github.io/2020/02/19/Less%E7%9A%84%E4%BD%BF%E7%94%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Less的使用</span>
-      <span style="float: right;">02-19</span>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><pre><code>npm init -y</code></pre><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code>npm install express-cookie --save</code></pre><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="引入与配置"><a href="#引入与配置" class="headerlink" title="引入与配置"></a>引入与配置</h4><pre><code>const cookieParser = require(&#39;cookie-parser&#39;);
+//中间件 签名
+app.use(cookieParser(&#39;howlcn&#39;));</code></pre><h4 id="用cookie储存信息"><a href="#用cookie储存信息" class="headerlink" title="用cookie储存信息"></a>用cookie储存信息</h4><pre><code>res.cookie(&#39;username&#39;,req.body.username,{
+    maxAge:1000*60, //cookie失效的时长（单位毫秒）
+    signed:true//开启签名 方式用户篡改cookie
+});</code></pre><h4 id="清空cookie"><a href="#清空cookie" class="headerlink" title="清空cookie"></a>清空cookie</h4><pre><code>res.cookie();</code></pre><h4 id="获取cookie中的数据"><a href="#获取cookie中的数据" class="headerlink" title="获取cookie中的数据"></a>获取cookie中的数据</h4><pre><code>let username = req.signedCookies.username;//获取cookie中的username</code></pre><h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>session底层还是调用了cookie</p>
+<p><img src="https://i.loli.net/2019/05/30/5cef97889476388883.png" srcset="/study.github.io/img/loading.gif" alt="session"></p>
+<h3 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h3><pre><code>npm init -y</code></pre><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><pre><code>npm install express-session --save</code></pre><h3 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h3><h4 id="引入与配置-1"><a href="#引入与配置-1" class="headerlink" title="引入与配置"></a>引入与配置</h4><pre><code>const express = require(&#39;express&#39;);
+const app = express();
+const expressSession = require(&#39;express-session&#39;);
 
-              </div>
-            </div>
+//配置expressSession中间件
+app.use(expressSession({
+    //cookie的名字
+    name:&#39;howlcn&#39;,
+    //cookie签名的信息
+    secret:&#39;howlcn&#39;,
+    cookie:{
+        maxAge:100000
+    },
+    resave:false,
+    //saveUninitialized为true时会将没有初始化的session的数据保存到storage中
+    //一般没有初始化的session是没有数据的  不必保存  则设置为false
+    saveUninitialized: false,
+    //为true时，某客户端每一次访问都会重置cookie的重置时间(maxAge)
+    rolling:true,
+    //指定session数据存放的地方(数据库),默认保存在服务器内存中（null也是）
+    store:null
+}));</code></pre><h4 id="用session存储数据"><a href="#用session存储数据" class="headerlink" title="用session存储数据"></a>用session存储数据</h4><pre><code>req.session.username = username;</code></pre><h4 id="清空session"><a href="#清空session" class="headerlink" title="清空session"></a>清空session</h4><pre><code>req.session.destroy()</code></pre><h4 id="获取session中的信息"><a href="#获取session中的信息" class="headerlink" title="获取session中的信息"></a>获取session中的信息</h4><pre><code>let username = req.session.username;</code></pre>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -240,6 +307,26 @@
 
 
 
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
 
 
   <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
@@ -268,7 +355,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "cookie session&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>ES6的语法学习 ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期二, 八月 21日 2018, 6:35 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    2.8k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 12 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="ES6新特性"><a href="#ES6新特性" class="headerlink" title="ES6新特性"></a>ES6新特性</h1><p>ES6 = ECMAScript 6</p>
+<h2 id="申明变量let和const"><a href="#申明变量let和const" class="headerlink" title="申明变量let和const"></a>申明变量let和const</h2><h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><h4 id="1、let申明变量不存在预解析；"><a href="#1、let申明变量不存在预解析；" class="headerlink" title="1、let申明变量不存在预解析；"></a>1、let申明变量不存在预解析；</h4><pre><code>console.log(flag);
+let flag = 123;
+//结果：报错</code></pre><h4 id="2、let声明的变量不允许重复"><a href="#2、let声明的变量不允许重复" class="headerlink" title="2、let声明的变量不允许重复"></a>2、let声明的变量不允许重复</h4><pre><code>let flag = 123;
+let flag = 456;
+console.log(flag);</code></pre><h4 id="3、ES6引入了块级作用域"><a href="#3、ES6引入了块级作用域" class="headerlink" title="3、ES6引入了块级作用域"></a>3、ES6引入了块级作用域</h4><p>块内部定义的变量，在外部无法访问(PS: 只要被 { } 包裹起来，就形成块级作用域)</p>
+<pre><code>if (true){
+    let flag = 123;
+}
+console.log(flag);</code></pre><h4 id="4、let必须先声明在使用"><a href="#4、let必须先声明在使用" class="headerlink" title="4、let必须先声明在使用"></a>4、let必须先声明在使用</h4><p>因为用let申明的变量没有预解析</p>
+<pre><code>tem = 123;
+let tem;  //报错</code></pre><h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>const声明的常量不能被重新赋值，且在申明的同时就要被初始化</p>
+<pre><code>const n = 1;//申明的同时就要初始化
+n = 2;//此处报错</code></pre><h2 id="变量的结构赋值"><a href="#变量的结构赋值" class="headerlink" title="变量的结构赋值"></a>变量的结构赋值</h2><h4 id="数组的解构赋值"><a href="#数组的解构赋值" class="headerlink" title="数组的解构赋值"></a>数组的解构赋值</h4><pre><code>// var a =1,b=2,c=3;//js中的写法
+let [a,b,c] = [1,2,3];//node中 数组的解构赋值
+console.log(a,b,c);// 1 2 3
+//声明时赋初值
+let [a=123,b,c] = [,456,];
+console.log(a,b,c);// 123 456 undefined</code></pre><p>利用解构赋值交换两个变量的值</p>
+<pre><code>let a = 1;
+let b = 2;
+[a, b] = [b, a];
+console.log(a,b);// 2 1</code></pre><p>对象的解构赋值</p>
+<pre><code>let {foo,bar} = {foo : &#39;hello&#39;,bar : &#39;hi&#39;};
+console.log(foo,bar);</code></pre><p>字符串的解构赋值</p>
+<pre><code>let [a,b,c,d,e] = &quot;hello&quot;;
+console.log(a,b,c,d,e);//h e l l o</code></pre><h2 id="字符串相关扩展"><a href="#字符串相关扩展" class="headerlink" title="字符串相关扩展"></a>字符串相关扩展</h2><h3 id="includes"><a href="#includes" class="headerlink" title="includes"></a>includes</h3><p>include(str [,index]) str 所要匹配的字符串 ； index 从什么位置开始匹配</p>
+<pre><code>console.log(&#39;hello world&#39;.includes(&#39;world&#39;);//true
+console.log(&#39;hello world&#39;.includes(&#39;world&#39;,7);//false</code></pre><h3 id="startsWith"><a href="#startsWith" class="headerlink" title="startsWith()"></a>startsWith()</h3><p>判断字符串是否特定字符串开始</p>
+<pre><code>console.log(&#39;admin/index.php&#39;.startsWith(&#39;admin&#39;));// true</code></pre><h3 id="endsWith"><a href="#endsWith" class="headerlink" title="endsWith()"></a>endsWith()</h3><p>判断字符串是否特定字符串结束</p>
+<pre><code>console.log(&#39;admin/index.php&#39;.startsWith(&#39;php&#39;));// true</code></pre><h3 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h3><p>在js中若要拼接字符串</p>
+<pre><code>var obj = {
+    name:&#39;张三&#39;,
+    age:13,
+    gender:&#39;男&#39;
+}
+var str = &#39;&lt;div&gt;&lt;span&gt;&#39;+obj.name+&#39;&lt;/span&gt;&lt;span&gt;&#39;+obj.age+&#39;&lt;/span&gt;&lt;span&gt;&#39;+obj.gender+&#39;&lt;/span&gt;&lt;/div&gt;&#39;;
+console.log(str);//&lt;div&gt;&lt;span&gt;张三&lt;/span&gt;&lt;span&gt;13&lt;/span&gt;&lt;span&gt;男&lt;/span&gt;&lt;/div&gt;</code></pre><p>利用模板字符串进行拼接</p>
+<pre><code>let obj = {
+    name:&#39;张三&#39;,
+    age:13,
+    gender:&#39;男&#39;
+}
+let str = &#39;&lt;div&gt;
+                &lt;span&gt;${obj.name}&lt;/span&gt;
+                &lt;span&gt;${obj.age}&lt;/span&gt;
+                &lt;span&gt;${obj.gender}&lt;/span&gt;
+               &lt;span&gt;${1+1}&lt;/span&gt;
+               &lt;span&gt;${fn(&#39;你好&#39;)}&lt;/span&gt;
+          &lt;/div&gt;&#39;;
+console.log(str);
+//&lt;div&gt;
+//    &lt;span&gt;张三&lt;/span&gt;
+//    &lt;span&gt;13&lt;/span&gt;
+//    &lt;span&gt;男&lt;/span&gt;
+//      &lt;span&gt;2&lt;/span&gt;
+//      &lt;span&gt;你好&lt;/span&gt;
+//&lt;/div&gt;</code></pre><h2 id="函数的相关扩展"><a href="#函数的相关扩展" class="headerlink" title="函数的相关扩展"></a>函数的相关扩展</h2><p>1、参数的默认值</p>
+<p>2、参数的解构赋值</p>
+<p>3、rest参数</p>
+<p>4、…扩展运算符</p>
+<p>5、箭头函数</p>
+<h3 id="参数的默认值"><a href="#参数的默认值" class="headerlink" title="参数的默认值"></a>参数的默认值</h3><p>在js中的若要给函数参数指定默认值</p>
+<pre><code>function foo(param){
+    let p = param || &#39;hello&#39;;
+    console.log(p);
+}
+//foo();
+//foo(&#39;nihao&#39;);</code></pre><p>在ES6中给函数参数指定默认值</p>
+<pre><code>function foo(param = &#39;hello&#39;){
+    console.log(p);
+}
+//foo();
+//foo(&#39;nihao&#39;);</code></pre><h3 id="参数的解构赋值"><a href="#参数的解构赋值" class="headerlink" title="参数的解构赋值"></a>参数的解构赋值</h3><p>默认参数的做法</p>
+<pre><code>function foo(param = &#39;hello&#39; , age = 12){
+    console.log(param,age);
+}
+//foo();
+//foo(&#39;nihao&#39;,18);</code></pre><p>参数的解构赋值的做法</p>
+<pre><code>function foo({param,age}}){
+    console.log(param,age);
+}
+//foo({});  //注意 此时一定要传入一个对象
+//添加默认参数
+function foo({param = &#39;hello&#39;,age = 12}}){
+    console.log(param,age);
+}
+//foo({});  //注意 此时一定要传入一个对象
+//foo({param = &#39;nihao&#39;,age = 18})</code></pre><h3 id="rest参数（剩余参数）"><a href="#rest参数（剩余参数）" class="headerlink" title="rest参数（剩余参数）"></a>rest参数（剩余参数）</h3><pre><code>function foo(a,b,...param){ //...param会以数组的形式存储剩余的参数
+    console.log(param);
+}
+foo(1,2,3,4,5,6,7);//[3,4,5,6,7]</code></pre><h3 id="扩展运算符-…"><a href="#扩展运算符-…" class="headerlink" title="扩展运算符 …"></a>扩展运算符 …</h3><p>使用 … 将数组拆撒后入参</p>
+<pre><code>function foo(a,b,c,d){
+    console.log(a + b + c + d);
+}
+//foo(1,2,3,4);//传统调用方式
+
+//当要传入一个数组时 arr = [1,2,3,4]
+//方法一 使用foo.apply(null,arr);
+//方法二 使用 ...   将数组拆散
+foo(...arr); //10</code></pre><p>使用 … 合并数组</p>
+<pre><code>let arr1 = [1,2,3];
+let arr2 = [4,5,6];
+let arr3 = [...arr1,...arr2];
+console.log(arr3);//[1,2,3,4,5,6]</code></pre><h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><pre><code>//传统函数声明以及调用
+function foo(参数列表){
+    函数体
+}
+foo();
+//ES6 中新增的函数申明以及调用  =&gt;
+let foo = (形参参数列表) =&gt; {函数体};
+foo(实参列表);
+//用处 例子
+var arr = [1,2,3,4];
+//arr.forEach(function(e,index){
+//    console.log(e);
+//      console.log(index);
+//});
+arr.forEach((e,index) =&gt; {console.log(e);console.log(index)});</code></pre><p>箭头函数的注意事项</p>
+<p>1、箭头函数中this取决于函数的定义，而不是函数的调用</p>
+<pre><code>//不使用箭头函数时 this取决于调用者  此时是window
+var obj = {
+    name:&quot;张三&quot;,
+    doSomething: function(){
+        setTimeout(function(){
+            console.log(this);
+        },1000);
+    }
+}
+obj.doSomething();//window
+
+//使用箭头函数中的this 取决函数声明的环境 此时是在obj中声明的  则this指向obj
+var obj = {
+    name:&quot;张三&quot;,
+    doSomething: function(){
+        setTimeout(()=&gt;{
+            console.log(this);
+        },1000);
+    }
+}
+obj.doSomething();//obj{name:&quot;张三&quot;}</code></pre><p>2、箭头参数不可以new</p>
+<p>3、箭头函数不可以使用arguments获取参数列表，可以使用rest代替</p>
+<pre><code>let foo = (...param) =&gt; console.log(param);
+foo(1,2,3,4);</code></pre><h2 id="数组的扩展"><a href="#数组的扩展" class="headerlink" title="数组的扩展"></a>数组的扩展</h2><pre><code>let a = [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;].keys(); //Array.keys()  返回数组的所有下标[0,1,2]
+console.log(a.next());  //迭代返回当前位置的下标 0
+console.log(a.next());  //1
+console.log(a.next());  //2
+
+let b = [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;].values(); //Array.values()  返回数组的所有值
+console.log(b.next());  //迭代返回当前位置的值  a
+console.log(b.next());  //b
+console.log(b.next());  //c
+
+//数组查找
+{
+    console.log([1,2,3,4,5,6].find((item)=&gt;{  //find 返回满足条件的第一个元素值
+        return item&gt;3;
+    }));
+
+    console.log([1,2,3,4,5,6].filter((item)=&gt;{  //filter 返回满足条件的所有元素值
+        return item&gt;3;
+    }));
+
+    console.log([1,2,3,4,5,6].findIndex((item)=&gt;{ //findIndex 返回满条件的第一个元素下标
+        return item&gt;3;
+    }));
+}
+
+//数组包含
+{
+    let arr = [123,456,7,8,9,NaN];
+    console.log(arr.includes(456));//Array.includes(item);在数组中查询有无item元素 返回boolean
+
+    //也可以查询有无非数字
+    console.log([1,2,NaN].includes(1));
+    console.log([1,2,NaN].includes(NaN));
+}</code></pre><h2 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h2><p>ES6新增数据类型 属于基本数据类型，Symbol不可以new</p>
+<p>Symbol声明的变量是唯一的，意义在于减少命名冲突；</p>
+<pre><code>{
+    //Symbol的变量是唯一的，所以a1和a2永远不相等
+    let a1 = Symbol();
+    let a2 = Symbol();
+    console.log(a1 === a2);
+
+   //Symbol.for(key)
+   //在使用Symbol时  会生成一个全局注册表，其中的数据以键值对的形式存在；能根据key来拿到对应的value
+   //若  a3  a4的key是相同的  那么a3 a4是相同的
+    let a3 = Symbol.for(&quot;a3&quot;);
+    let a4 = Symbol.for(&quot;a3&quot;);
+    console.log(a3 === a4);  //true
+
+    //问题  若改变a3的值  a4的值会改变吗？
+    //是值复制   还是指针
+
+}</code></pre><h2 id="ES6中涉及到的数据结构"><a href="#ES6中涉及到的数据结构" class="headerlink" title="ES6中涉及到的数据结构"></a>ES6中涉及到的数据结构</h2><h3 id="数组Array"><a href="#数组Array" class="headerlink" title="数组Array"></a>数组Array</h3><p>数组中的元素可以重复，且数组中元素的排列是有序的（因此可以通过下标访问）</p>
+<h3 id="集合Set"><a href="#集合Set" class="headerlink" title="集合Set"></a>集合Set</h3><p>集合的元素是唯一的，不可以重复出现，且集合中的元素是无序的（因此无法通过下标访问集合中的元素）</p>
+<h4 id="Set中的方法"><a href="#Set中的方法" class="headerlink" title="Set中的方法"></a>Set中的方法</h4><table>
+<thead>
+<tr>
+<th align="center"><strong>set.add(ele)</strong></th>
+<th align="center"><strong>向set集合中追加ele元素</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>set.has(ele)</strong></td>
+<td align="center"><strong>判断set集合中是否存在ele元素</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>set.delete(ele)</strong></td>
+<td align="center"><strong>从集合中删除ele元素</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>set.clear()</strong></td>
+<td align="center"><strong>清空set集合</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>set.forEach( (ele) =&gt;{} )</strong></td>
+<td align="center"><strong>遍历集和</strong></td>
+</tr>
+</tbody></table>
+<p>set对象的创建：</p>
+<pre><code>let set = new set();</code></pre><h3 id="数组与集合的互相转换"><a href="#数组与集合的互相转换" class="headerlink" title="数组与集合的互相转换"></a>数组与集合的互相转换</h3><h4 id="数组-gt-集合"><a href="#数组-gt-集合" class="headerlink" title="数组==&gt;集合"></a>数组==&gt;集合</h4><pre><code>let arr = [1,2,3];
+let set = new set(arr);</code></pre><h4 id="集合-gt-数组"><a href="#集合-gt-数组" class="headerlink" title="集合==&gt;数组"></a>集合==&gt;数组</h4><pre><code>let set = new set();
+let arr = [...set];</code></pre><h3 id="weakSet"><a href="#weakSet" class="headerlink" title="weakSet"></a>weakSet</h3><p><strong>WeakSet 结构与 Set 类似，也是不重复的值的集合。但是，它与 Set 有下面区别。</strong></p>
+<p> 1.WeakSet 的成员只能是对象，而不能是其他类型的值。</p>
+<p> 2.WeakSet 中的对象都是弱引用，即垃圾回收机制不考虑 WeakSet 对该对象的引用，也就是说，如果其他对象都不 再引用该对象，那么垃圾回收机制会自动回收该对象所占用的内存，不考虑该对象还存在于 WeakSet 之中。</p>
+<p> 3.WeakSet 只有add/delete/clear/has三个方法，不能遍历，没有size属性等</p>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>Map也是由键值对构成的，和对象的区别在于Map的key也可以是一个对象，Object只可以是字符串</p>
+<h2 id="代理和反射"><a href="#代理和反射" class="headerlink" title="代理和反射"></a>代理和反射</h2><h3 id="代理Proxy"><a href="#代理Proxy" class="headerlink" title="代理Proxy"></a>代理Proxy</h3><p>代理：通过代理对象访问目标对象</p>
+<p>作用：</p>
+<p> 1、控制目标对象的访问权限</p>
+<p> 2、扩展目标对象方法</p>
+<p>创建目标对象</p>
+<pre><code>let targetObject = {
+    name:&quot;target&quot;,
+    type:&quot;object&quot;,
+    fun:function(){
+        console.log(&#39;目标对象的fun&#39;);
+    }
+}</code></pre><p>创建代理对象</p>
+<pre><code>var p = new Proxy(targetObject,{
+    //target 就是目标的对象
+    //key 就是目标对象中的每一个属性和方法
+    //当代理对象直接获取属性和方法的等信息的时候都会来调用get方法
+    get(target,key){
+        if(key === &#39;fun&#39;){
+            console.log(&quot;代理对象调用目标对象的fun&quot;);
+        }
+        return target[key];
+    },
+    //当给对象的属性和方法赋值的时候调用set方法
+    //target 就是目标的对象
+    //key 就是目标对象中的每一个属性和方法
+    //value 属性值
+    set(target,key,value){
+    //如果key为type的时候就不给目标对象赋值
+        if(key === &#39;type&#39;){
+            return target[type];
+        }
+        else{
+            target[key] = value;
+        }
+    },
+    //当通过 xx in obj 的时候调用has方法
+    has(target,key){
+        if(key === &#39;type&#39;){
+            return false;
+        }
+        else{
+            return true;
+        }
+    },
+    //当删除对象的属性时 调用此方法
+    deleteProperty(target,key){
+        if(key === &#39;age&#39;){
+            delete target[key];
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+});
+p.fun(); //代理对象调用目标对象的fun     目标对象的fun
+p.name = &#39;temp&#39;; //修改无效  当使用点的方式来访问属性时 会调用set函数  而set函数中设置了对name的修改权限
+console.log(p);  //{ name: &#39;target&#39;, type: &#39;object&#39;, fun: [Function: fun] }
+p.type = &#39;temp&#39;; //修改成功  set中没有对type的权限要求
+console.log(p); //{ name: &#39;target&#39;, type: &#39;temp&#39;, fun: [Function: fun] }
+
+console.log(&#39;type&#39; in p); //true  当使用in判断对象中是否有某属性时 会调用has函数 而我们在has中对type设置了权限 则无法访问
+console.log(&#39;name&#39; in p); //true  未对name设置  则访问成功
+
+delete p.name;  //删除失败   当使用点的方式来删除某属性时会默认调用deleteProperty方法 而我们在deleteProperty中限制了对name的删除权限 则删除失败
+delete p.type;  //删除成功   
+console.log(p); //{ name: &#39;target&#39;, fun: [Function: fun] }</code></pre><h3 id="反射Reflect"><a href="#反射Reflect" class="headerlink" title="反射Reflect"></a>反射Reflect</h3><p> 反射机制是指程序在运行的时候访问、检测和修改它本身状态或行为的一种能力，例如一个对象能够在运行时知道自己有哪些方法和属性。</p>
+<p> 反射的概念在编译型的编程语言中比较明显，比如java、C#、Object-c等。对于 <code>JavaScript</code>来说，反射就是获取对象的内部结构的信息，所以JS中的反射随处可见，比如for…in方式遍历对象。</p>
+<p> 从ECMAScript6开始，JS引入Reflect这个API专门用于操作反射。</p>
+<p> ES6中的反射，将抛出异常，异常捕获简化为返回一个boolean值来表示其是否正常运行</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "ES6的语法学习&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

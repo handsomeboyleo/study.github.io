@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>webpack的基本使用心得 ~ Hexo</title>
+  <title>归档 ~ Hexo</title>
 
   <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -94,8 +94,8 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" false
-         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png')no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask rgba-black-light flex-center">
@@ -104,41 +104,6 @@
               
             </span>
 
-            
-              <br>
-              
-                <p class="mt-3">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期三, 二月 19日 2020, 8:25 晚上
-                </p>
-              
-
-              <p>
-                
-                  
-                  &nbsp;<i class="far fa-chart-bar"></i>
-                  <span class="post-count">
-                    0 字
-                  </span>&nbsp;
-                
-
-                
-                  
-                  &nbsp;<i class="far fa-clock"></i>
-                  <span class="post-count">
-                      已阅读 1 分钟
-                  </span>&nbsp;
-                
-
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
-                  <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv"></span> 次
-                  </span>&nbsp;
-                
-              </p>
             
           </div>
 
@@ -150,57 +115,53 @@
 
   <main>
     
-      
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="py-5 z-depth-3" id="board">
-        <div class="post-content mx-auto" id="post">
-          <div class="markdown-body">
-            
-            <hr>
-          </div>
-          <br>
-          <div>
-            <p>
-            
-            
-            </p>
-            
-              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
-            
+<div class="list-group">
+  <p class="h4">共计 16 篇文章</p>
+  <hr>
+  
+    
+      
+      <p class="h5">2018</p>
+    
+    <a href="/study.github.io/2018/08/21/ES6%E7%9A%84%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">ES6的语法学习</span>
+      <span style="float: right;">08-21</span>
+    </a>
+  
+    
+    <a href="/study.github.io/2018/08/20/cookie-session/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">cookie session</span>
+      <span style="float: right;">08-20</span>
+    </a>
+  
+    
+    <a href="/study.github.io/2018/08/19/Nuxt%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Nuxt基本使用心得</span>
+      <span style="float: right;">08-19</span>
+    </a>
+  
+    
+    <a href="/study.github.io/2018/08/12/Get%E4%B8%8EPost%E7%9A%84%E5%8C%BA%E5%88%AB%E5%8F%8A%E8%81%94%E7%B3%BB/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Get与Post的区别及联系</span>
+      <span style="float: right;">08-12</span>
+    </a>
+  
+</div>
+
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="d-none d-lg-block col-lg-2 toc-container">
-      
-  <div id="toc">
-    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
-    <div id="tocbot"></div>
-  </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- custom -->
-
-
-<!-- Comments -->
-<div class="col-lg-7 mx-auto nopadding-md">
-  <div class="container comments mx-auto" id="comments">
-    
-      <br><br>
-      
-      
-
-    
-  </div>
-</div>
-
     
   </main>
 
@@ -279,26 +240,6 @@
 
 
 
-  <script src="/study.github.io/js/post.js" ></script>
-  
-    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
-    <script>
-      $(document).ready(function () {
-        tocbot.init({
-          tocSelector: '#tocbot',
-          contentSelector: '.post-content',
-          headingSelector: 'h1,h2,h3,h4,h5,h6',
-          linkClass: 'tocbot-link',
-          activeLinkClass: 'tocbot-active-link',
-          listClass: 'tocbot-list',
-          isCollapsedClass: 'tocbot-is-collapsed',
-          collapsibleClass: 'tocbot-is-collapsible',
-          scrollSmooth: true,
-        });
-      });
-    </script>
-  
-
 
 
   <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
@@ -327,7 +268,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "webpack的基本使用心得&nbsp;",
+        "归档&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

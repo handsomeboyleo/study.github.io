@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>云服务器的搭建 ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期六, 七月 28日 2018, 11:11 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.7k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 6 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="云服务器的搭建"><a href="#云服务器的搭建" class="headerlink" title="云服务器的搭建"></a>云服务器的搭建</h1><h2 id="一、搭建Https本地服务器"><a href="#一、搭建Https本地服务器" class="headerlink" title="一、搭建Https本地服务器"></a>一、搭建Https本地服务器</h2><h3 id="1-新建项目"><a href="#1-新建项目" class="headerlink" title="1.新建项目"></a>1.新建项目</h3><p>在本地磁盘上新建一个HttpsTest文件夹,用来存放测试文件</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/24.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<h3 id="2-初始化以及express安装"><a href="#2-初始化以及express安装" class="headerlink" title="2.初始化以及express安装"></a>2.初始化以及express安装</h3><p>接下来用以下命令初始化文件夹以及安装express矿建</p>
+<pre><code>npm init -y
+npm install express --save</code></pre><p>之后会生成以下三个文件</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/25.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<h3 id="3-建立https-js文件"><a href="#3-建立https-js文件" class="headerlink" title="3.建立https.js文件"></a>3.建立https.js文件</h3><p>新建一个https.js文件,该文件后续会写入服务器测试代码</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/26.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<h3 id="4-安装openssl"><a href="#4-安装openssl" class="headerlink" title="4.安装openssl"></a>4.安装openssl</h3><p>openssl 用于生成自签名证书(免费，本地测试使用)</p>
+<h4 id="4-1安装"><a href="#4-1安装" class="headerlink" title="4.1安装"></a>4.1安装</h4><p>如果电脑中已有git,直接右键<code>git bush here</code>即可,忽略以下安装步骤</p>
+<p>若没有,可以安装openssl安装包,下载地址<a href="http://slproweb.com/products/Win32OpenSSL.html" target="_blank" rel="noopener">http://slproweb.com/products/Win32OpenSSL.html</a></p>
+<p>找到对应的exe文件下载安装即可</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/27.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>安装完成后配置环境变量,把openssl安装路径bin的路径（例如 C:\OpenSSL-Win64\bin）加入到操作系统的系统环境变量Path中</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/28.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<blockquote>
+<p>重启电脑!!!切记,是个好习惯</p>
+</blockquote>
+<h4 id="4-2验证"><a href="#4-2验证" class="headerlink" title="4.2验证"></a>4.2验证</h4><p>验证openssl是否生效,打开cmd,输入<code>openssl</code>若能跳转,则安装完成</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/29.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<h3 id="5-生成证书"><a href="#5-生成证书" class="headerlink" title="5.生成证书"></a>5.生成证书</h3><p>cmd进入openssl后,输入命令生成Private Key 和 CSR</p>
+<pre><code>req -new -newkey rsa:2048 -nodes -out mydomain.csr -keyout private.key</code></pre><p>ps:若用git则需要加openssl,下同</p>
+<pre><code>openssl req -new -newkey rsa:2048 -nodes -out mydomain.csr -keyout private.key</code></pre><p>生成自签名证书</p>
+<p>使用上一步的private.key和mydomain.csr生成自签名证书,输入以下命令</p>
+<pre><code>x509 -req -days 365 -in mydomain.csr -signkey private.key -out mydomain.crt</code></pre><p>完成后会得到以下几个文件</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/30.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<h3 id="6-完善https-js以及测试"><a href="#6-完善https-js以及测试" class="headerlink" title="6.完善https.js以及测试"></a>6.完善https.js以及测试</h3><p>在http.js中输入以下代码搭建服务器</p>
+<pre><code>var express = require(&quot;express&quot;);
+var app = express();
+var fs = require(&#39;fs&#39;);
+
+var key = fs.readFileSync(&#39;./private.key&#39;);
+var cert = fs.readFileSync(&#39;./mydomain.crt&#39;);
+
+var options = {
+    key: key,
+    cert: cert
+};
+// Run static server
+var https = require(&#39;https&#39;);
+https.createServer(options, app.get(&#39;/&#39;, function (req, reb) {
+    reb.send(&#39;Success!&#39;)
+})).listen(3000, function () {
+    console.log(&#39;Running...&#39;)
+});</code></pre><p>到此基本处理完成,下面开始测试</p>
+<p>运行https.js</p>
+<p>在浏览器中输入<a href="https://www.javascriptcn.com/go/?target=https%3A%2F%2Flocalhost">https://localhost</a>:3000</p>
+<p>浏览器会显示<code>您的连接是不是私密连接</code></p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/31.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>点击<code>高级</code>选项,再点击<code>继续前往</code></p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/32.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>当看到页面返回<code>Success!</code>时,即表示https服务搭建成功</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/33.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>可以通过点击网站信息,点击证书查看证书信息</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/34.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/35.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<h5 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h5><blockquote>
+<p>由于我们证书是自己创建的，没有经过第三方机构的验证，因此会出现警告的提示。大家可以去有资质的网络运营商，去申请自己的证书。比如：<a href="http://www.godaddy.com/ssl/ssl-certificates.aspx" target="_blank" rel="noopener">godaddy SSL Certificates</a>，优惠码：<strong>WOWfensme</strong></p>
+</blockquote>
+<h2 id="二、搭建腾讯云Https网络服务器"><a href="#二、搭建腾讯云Https网络服务器" class="headerlink" title="二、搭建腾讯云Https网络服务器"></a>二、搭建腾讯云Https网络服务器</h2><h3 id="1-购买域名"><a href="#1-购买域名" class="headerlink" title="1.购买域名"></a>1.购买域名</h3><p>进入腾讯云官网,用微信登录账号(若提示是否创建新账号,点击创建新账号)往下翻,找到<code>域名与网站</code>功能菜单,点击</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/1.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>点击域名注册</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/2.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>点击<code>域名1元抢</code></p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/3.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>进入页面后<code>.club</code>和<code>.xyz</code>域名都是一年一元,按喜好任选即可</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/4.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>点击之后,再输入框中输入自己的想要创建的域名,点击查询,如果不可以购买,说明已被抢注,需要换其他名称</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/5.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>购买完成之后,点击页面右上角控制台,即可进入管理中心,看到自己购买的域名</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/6.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/7.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/8.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>之后,在该页面点击实名认证,域名都要通过实名认证才可以使用,填写相关信息即可</p>
+<h3 id="2-购买服务器"><a href="#2-购买服务器" class="headerlink" title="2.购买服务器"></a>2.购买服务器</h3><p>接下来准备购买服务器,在腾讯云官网有15天免费体验,可以先进行试用</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/9.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>这一部分都可以免费试用,我们主要需要<code>云服务器</code></p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/10.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>点击领取之后会有默认配置可以选择,操作系统的话,如果熟悉Linux可以使用Cent OS,否则选择windows server即可</p>
+<p>接下来免费付款即可</p>
+<p>完成之后,右上角会有消息提示,点击查看消息,即可看到购买的服务器的登录密码和相关信息</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/11.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<h3 id="3-服务器配置"><a href="#3-服务器配置" class="headerlink" title="3.服务器配置"></a>3.服务器配置</h3><p>接下来需要配置服务器</p>
+<p>1.首先登录云服务器控制台</p>
+<p>2.在实例列表中可以看到自己的服务器,点击登录</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/12.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>3.在弹出的【登录Windows实例】窗口中，选择【使用 RDP 文件登录】，单击【下载 RDP 文件】到本地。</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/13.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>4.双击下载到本地的 RDP 文件，远程连接到 Windows 云服务器。</p>
+<p>到此服务器基本设置完成,接下来需要在服务器中安装node,sublime等等(强烈推荐vscode)</p>
+<h3 id="4-域名配置"><a href="#4-域名配置" class="headerlink" title="4.域名配置"></a>4.域名配置</h3><p>在完成实名认证后,点击控制台,进入域名管理,点击解析</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/14.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>点击添加记录,基本格式按以下图片内容写</p>
+<p><strong>注意:其中记录值换成你自己购买的服务器的公网ip</strong></p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/15.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>这样域名已经与服务器进行绑定</p>
+<h3 id="5-https连接测试"><a href="#5-https连接测试" class="headerlink" title="5.https连接测试"></a>5.https连接测试</h3><p>以下都是在云服务器中操作</p>
+<p>1.要搭建https的连接,先要下载ssl证书管理,在腾讯云官网中,点击控制台,云产品,ssl证书</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/16.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>2.点开之后会看到如下</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/17.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>3、点击申请证书，默认选择即可</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/18.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>4、填写信息完毕后，选择“自动DNS验证”，将自动为域名添加DNS记录，如下图：</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/19.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>5、等候证书通过，通过后点击下载</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/20.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>6、然后把这两个文件放到服务器磁盘中(新建一个usr文件夹,放入其中,记住他的绝对路径)</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/21.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>7.在服务器中安装Nginx,进行反向代理,这是Nginx的官网</p>
+<p><a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">http://nginx.org/en/download.html</a></p>
+<p>下载解压即可</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/22.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>7、修改Nginx下面的conf文件夹下nginx.conf文件添加如下代码,删去中文</p>
+<pre><code>server {
+    listen              443 ssl;
+    server_name         gw2.vsgames.cn;
+    ssl_certificate     /Users/wucao/Desktop/gw2.vsgames.cn/Nginx/1_gw2.vsgames.cn_bundle.crt;  # 证书文件地址
+    ssl_certificate_key /Users/wucao/Desktop/gw2.vsgames.cn/Nginx/2_gw2.vsgames.cn.key; # 私钥文件地址
+    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
+    location / {
+        root /usr/share/nginx/html;
+    }
+}</code></pre><p>配置好点击nginx.exe重启Nginx</p>
+<p>8.接下来在node中编写代码,将秘钥和证书地址改为自己的</p>
+<pre><code>const https = require(&#39;https&#39;);
+const fs = require(&#39;fs&#39;);
+
+const options = {
+  key: fs.readFileSync(&#39;/Users/wucao/Desktop/gw2.vsgames.cn/Nginx/2_gw2.vsgames.cn.key&#39;),//秘钥地址
+  cert: fs.readFileSync(&#39;/Users/wucao/Desktop/gw2.vsgames.cn/Nginx/1_gw2.vsgames.cn_bundle.crt&#39;)//证书地址
+};
+
+https.createServer(options, function(req, res) {
+  res.statusCode = 200;
+  res.setHeader(&#39;Content-Type&#39;, &#39;text/plain&#39;);
+  res.end(&#39;Hello World\n&#39;);
+}).listen(8000);</code></pre><p>开启服务器</p>
+<p>输入你的域名地址加端口号,例如<code>https://howlcn.cn:8000</code></p>
+<p>出现<code>hello world</code>说明搭建成功</p>
+<p><img src="https://howlcn1997.github.io/2018/04/03/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/23.png" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p>若直接域名访问,则将监听端口设为80即可</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "云服务器的搭建&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

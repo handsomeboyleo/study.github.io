@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Express服务器的搭建 ~ Hexo</title>
+  <title>Less的使用 ~ Hexo</title>
 
   <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
@@ -109,7 +109,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期三, 二月 19日 2020, 8:25 晚上
+                  星期五, 七月 6日 2018, 8:24 晚上
                 </p>
               
 
@@ -118,7 +118,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    0 字
+                    517 字
                   </span>&nbsp;
                 
 
@@ -126,7 +126,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      已阅读 1 分钟
+                      已阅读 2 分钟
                   </span>&nbsp;
                 
 
@@ -159,7 +159,66 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            
+            <h1 id="Less"><a href="#Less" class="headerlink" title="Less"></a>Less</h1><p>less是动态的样式表<strong>语言</strong>，通过简明的语法定义，使编写cs’s的工作变得非常简单，本质上，less包含一套自定义的语法以及i一个解析器。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>1、安装Nodejs环境</p>
+<p>2、cmd中执行</p>
+<pre><code>npm install -g less</code></pre><p>3、验证</p>
+<pre><code>lessc -v    //若正确出现less版本号则安装成功</code></pre><h2 id="使用less编译"><a href="#使用less编译" class="headerlink" title="使用less编译"></a>使用less编译</h2><p> 先创建一个less文件 demo.less</p>
+<pre><code>@color: #ccc;
+div {
+    color: @color;
+}</code></pre><p> 在当前目录下运行cmd，输入</p>
+<pre><code>lessc demo.less demo.css</code></pre><p>运行之后会在当前目录下生成一个demo.css文件，内容为</p>
+<pre><code>div {
+  color: #ccc;
+}</code></pre><h2 id="VsCode中使用less"><a href="#VsCode中使用less" class="headerlink" title="VsCode中使用less"></a>VsCode中使用less</h2><p> 1、添加 Easy Less 扩展插件，安装，安装完后最好重启一次VSCode；</p>
+<p> 2、在需要生成css文件的地方，新建一个<code>.less</code>文件；</p>
+<p> 3、保存后，会在同级目录下自动生成一个同名css文件</p>
+<h2 id="less的基本语法"><a href="#less的基本语法" class="headerlink" title="less的基本语法"></a>less的基本语法</h2><h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><pre><code>/*注释*/        这种注释方式会也会编译到css中
+//              这种注释方式在编译时会被去除</code></pre><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p> @变量名: 值</p>
+<pre><code>@baseColor: #eee;     //申明一个变量并赋值
+a {
+    color: @@baseColor;   //使用变量
+}</code></pre><h3 id="混入"><a href="#混入" class="headerlink" title="混入"></a>混入</h3><p> 可以将一个定义好的变量引入到另一个样式中 类似于函数的调用</p>
+<pre><code>//先写好一个样式  @r 类似于函数的形参
+.addRadius(@r:10px){  //也可以设置默认值
+    border-radius: @r;
+    -wekit-border-radius: @r;
+    -moz-border-radius: @r;
+}
+
+//使用样式
+div {
+    width: 200px;
+    height: 200px;
+    .addRadius(5px);
+}</code></pre><h3 id="嵌套"><a href="#嵌套" class="headerlink" title="嵌套"></a>嵌套</h3><p> 可以实现选择器的继承，可以减少代码量，同时使代码结构更加清晰</p>
+<pre><code>.jd_hearder {}
+.jd_hearder &gt; div {}
+.jd_hearder &gt; div &gt; h3 {}
+.jd_hearder &gt; div &gt; h3::before {}
+.jd_hearder    &gt; div &gt; a:hover {}</code></pre><p>上面是我们之前常用的写样式的方式，代码是非常冗余的，并且结构不清晰；</p>
+<p>可以用less来解决这类问题，并且编译后的css文件，与上面的代码的效果是一样的</p>
+<pre><code>.jd_header {
+    width: 100%；
+        height: 200px;
+    .addRadius();
+    //嵌套一个元素
+    div {
+        width: 100%;
+        h3 {
+            height: 200px;
+            ::before    //相当于 h3 ::before
+            $::before {}//相当于 h3::before     注意区别
+        }
+        a {
+            color: @baseColor;
+            $:hover {   //相当于 a:hover
+                text-decoration: none;
+            }
+        }
+    }    
+}</code></pre>
             <hr>
           </div>
           <br>
@@ -327,7 +386,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Express服务器的搭建&nbsp;",
+        "Less的使用&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

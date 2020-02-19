@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>wamp环境的搭建 ~ Hexo</title>
+  <title>Express服务器的搭建 ~ Hexo</title>
 
   <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
@@ -109,7 +109,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期三, 二月 19日 2020, 8:24 晚上
+                  星期六, 七月 14日 2018, 2:40 下午
                 </p>
               
 
@@ -118,7 +118,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    0 字
+                    1.6k 字
                   </span>&nbsp;
                 
 
@@ -126,7 +126,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      已阅读 1 分钟
+                      已阅读 7 分钟
                   </span>&nbsp;
                 
 
@@ -159,7 +159,200 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            
+            <h1 id="Express"><a href="#Express" class="headerlink" title="Express"></a>Express</h1><p>是基于Node.js平台，快速、开放极简的web开发框架</p>
+<p>初始化</p>
+<pre><code>npm init -y  //加-y时 会以默认参数创建package.json文件   若不加 可以自定义package.json参数信息</code></pre><p>安装</p>
+<pre><code>npm install express -save</code></pre><p>自动重启服务器工具</p>
+<pre><code>npm install nodemon  //若要使用该工具  在启动服务器时要使用nodemon命令 如 nodemon ./server.js</code></pre><p>路径的匹配</p>
+<pre><code>//匹配student开头，而且后面跟了学号   http://localhost:8000/student/1234
+app.get(&quot;/student/:id/:name&quot;,function(req,res){
+    var id = req.params[&quot;id&quot;];
+    var name = req.params[&quot;name&quot;];
+    res.send(id+name);
+});</code></pre><h2 id="中间件的另一种使用方式"><a href="#中间件的另一种使用方式" class="headerlink" title="中间件的另一种使用方式"></a>中间件的另一种使用方式</h2><pre><code>const express = require(&#39;express&#39;);
+const app = express();
+
+var f1 = (req,res,next)=&gt;{
+    console.log(1);
+    next();
+}
+var f2 = (req,res,next)=&gt;{
+    console.log(2);
+    next();
+}
+var f3 = (req,res,next)=&gt;{
+    console.log(3);
+    res.send();
+}
+app.use(&#39;/user&#39;,[f1,f2,f3]);
+app.listen(3000,()=&gt;{
+    console.log(&#39;running...&#39;);
+})</code></pre><h2 id="next注意点"><a href="#next注意点" class="headerlink" title="next注意点"></a>next注意点</h2><p>有如下代码：</p>
+<pre><code>const express = require(&#39;express&#39;);
+const app = express();
+
+//无门槛进入  只要是localhost:3000就会响应
+app.use((req,res,next)=&gt;{
+    console.log(&#39;有用户进入...函数一&#39;);
+    next(); //通关文牒
+},(req,res,next)=&gt;{  
+       console.log(&#39;有用户进入...函数二&#39;);
+    next();
+});
+app.use(&#39;/user&#39;,(req,res,next)=&gt;{
+    console.log(&#39;访问结束&#39;);
+    res.send(&#39;用户页面&#39;+total);
+});
+app.listen(3000,()=&gt;{
+    console.log(&#39;running...&#39;);
+})</code></pre><p><strong>next() 不加参数时会指向下一个执行函数，即函数一中的next()会指向函数二</strong></p>
+<pre><code>const express = require(&#39;express&#39;);
+const app = express();
+
+//无门槛进入  只要是localhost:3000就会响应
+app.use((req,res,next)=&gt;{
+    console.log(&#39;有用户进入...函数一&#39;);
+    next(&#39;/user&#39;); //通关文牒
+},(req,res,next)=&gt;{  
+       console.log(&#39;有用户进入...函数二&#39;);
+    next();
+});
+app.use(&#39;/user&#39;,(req,res,next)=&gt;{
+    console.log(&#39;访问结束&#39;);
+    res.send(&#39;用户页面&#39;+total);
+});
+app.listen(3000,()=&gt;{
+    console.log(&#39;running...&#39;);
+})</code></pre><p><strong>next(‘/user’) 加参数时，会跳转至下一个路径为/user的use函数，即跳过函数二直接来到下一个use函数</strong></p>
+<h2 id="body-parser的使用"><a href="#body-parser的使用" class="headerlink" title="body-parser的使用"></a>body-parser的使用</h2><p><strong>作用：可以获取post请求中信息</strong></p>
+<p>安装</p>
+<pre><code>npm install body-parser --save</code></pre><p>使用</p>
+<pre><code>const express = require(&#39;express&#39;);
+const app = express();
+const bodyParser = require(&#39;body-parser&#39;);
+
+//若要获取post中的参数 则必须以此挂载bodyparser中间件
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(express.static(&#39;views&#39;));
+
+app.post(&#39;/login&#39;,(req,res)=&gt;{
+    res.send(&#39;name:&#39;+req.body.username);
+});
+app.listen(3000,()=&gt;{
+    console.log(&#39;running...&#39;);
+});</code></pre><h2 id="错误处理中间件"><a href="#错误处理中间件" class="headerlink" title="错误处理中间件"></a>错误处理中间件</h2><pre><code>const express = require(&#39;express&#39;);
+const app = express();
+
+app.get(&#39;/index&#39;,(req,res,next)=&gt;{
+    try{
+        let a = null;
+        console.log(a.toString()); //null不能调用toString()  此处故意制造错误
+        next();
+    }catch(e){
+        next(e); //转至错误处理中间件
+    }
+});
+
+//错误处理中间件（注意。错误处理中间件 要用use）
+app.use((err,req,res,next)=&gt;{
+    // res.send(err); 无法打印
+    res.send(err.toString());
+});
+
+app.listen(3000,()=&gt;{
+    console.log(&#39;running...&#39;);
+});</code></pre><h2 id="指定静态资源"><a href="#指定静态资源" class="headerlink" title="指定静态资源"></a>指定静态资源</h2><pre><code>const express = require(&#39;express&#39;);
+const app = express();
+
+app.use(express.static(&#39;views&#39;));//指定views文件夹为静态资源文件夹  若该文件夹中存在login.html 则可以通过http:localhost:3000/login.html来直接访问该页面</code></pre><h2 id="Router类的使用"><a href="#Router类的使用" class="headerlink" title="Router类的使用"></a>Router类的使用</h2><p>1、先创建一个需要js文件，每一个js文件就是一个类</p>
+<p>每一个js文件中的写法</p>
+<pre><code>const express = require(&#39;express&#39;);
+const router = express.Router(); //创建router类
+
+
+router.get(&#39;/c1&#39;,(req,res)=&gt;{  //设置请求响应函数  /c1为访问路径
+    res.send(&#39;/c1&#39;);
+});
+router.post(&#39;/c2&#39;,(req,res)=&gt;{//设置请求响应函数
+    res.send(&#39;/c2&#39;);
+});
+
+module.exports = router;  //将router暴露出去</code></pre><p>2、当创建若干js文件（类）之后，用一个js文件进行汇总使用，相当于入口文件 此处创建server.js</p>
+<p>写法</p>
+<pre><code>const express = require(&#39;express&#39;);
+const app = express();
+
+const chang = require(&#39;./chang&#39;); //引入自定义的类
+//...
+
+app.use(&#39;/chang&#39;,chang);  //访问方式 localhost:3000/chang/c1     //此处用use指定的/chang只是虚拟路径 并不存在真实的物理路径
+//app.use(chang);   //访问方式 localhost:3000/c1 
+//...
+//app.use(.....)
+
+app.listen(3000,()=&gt;{
+    console.log(&#39;running...&#39;);
+});</code></pre><p>这种使用方式相当于自定义了中间件后，再在server中使用。</p>
+<h2 id="art-template的使用"><a href="#art-template的使用" class="headerlink" title="art-template的使用"></a>art-template的使用</h2><h3 id="art-template在前台的使用"><a href="#art-template在前台的使用" class="headerlink" title="art-template在前台的使用"></a>art-template在前台的使用</h3><p><strong>下载</strong><a href="http://aui.github.io/art-template/docs/installation.html" target="_blank" rel="noopener">art-template-web</a></p>
+<p>1、将art-template-web.js引入到页面</p>
+<pre><code>&lt;script src=&quot;./template-web.js&quot;&gt;&lt;/script&gt;</code></pre><p>2、在页面中定义一个模板</p>
+<pre><code>&lt;/body&gt;
+//此script标签相当于一个容器
+&lt;script id=&quot;test&quot; type=&quot;text/html&quot;&gt; //注意 此处一定要加上  type=&quot;text/html&quot;
+    {{each users}}
+        &lt;h1&gt;{{$value.name}}&lt;/h1&gt;
+        &lt;li&gt;{{$value.age}}&lt;/li&gt;
+        &lt;li&gt;{{$value.gender}}&lt;/li&gt;
+        &lt;li&gt;{{$value.love}}&lt;/li&gt;
+    {{/each}}
+&lt;/script&gt;
+&lt;script&gt;
+    var data = {
+        users:[{name: &#39;张三&#39;, age: 12, gender: &#39;女&#39;, love: &#39;唱&#39;},
+               {name: &#39;李四&#39;, age: 13, gender: &#39;男&#39;, love: &#39;跳&#39;},
+               {name: &#39;王五&#39;, age: 14, gender: &#39;女&#39;, love: &#39;rap&#39;},
+               {name: &#39;蔡徐坤&#39;, age: 15, gender: &#39;女&#39;, love: &#39;篮球&#39;}]
+    }
+
+    //如果数组中都是对象，且要访问对象内的值时要使用$value.xxx  value代表当前遍历到的数组元素
+    var html = template(&#39;test&#39;,data);
+    var box = document.getElementById(&#39;box&#39;);
+    box.innerHTML = html;
+&lt;/script&gt;
+&lt;/html&gt;</code></pre><p>另一种实现方式</p>
+<pre><code>&lt;script&gt;
+    //当使用此法时 模板字符串拼接时  每一个标签要单独用 &quot;&quot; 括起来
+    var artt = &quot;{{each users}}&quot;+
+        &quot;&lt;h1&gt;{{$value.name}}&lt;/h1&gt;&quot;+
+        &quot;&lt;li&gt;{{$value.age}}&lt;/li&gt;&quot;+
+        &quot;&lt;li&gt;{{$value.gender}}&lt;/li&gt;&quot;+
+        &quot;&lt;li&gt;{{$value.love}}&lt;/li&gt;&quot;+
+    &quot;{{/each}}&quot;;
+
+    var render = template.compile(artt);
+    var data = {
+        users:[{name: &#39;张三&#39;, age: 12, gender: &#39;女&#39;, love: &#39;唱&#39;},
+                {name: &#39;李四&#39;, age: 13, gender: &#39;男&#39;, love: &#39;跳&#39;},
+                {name: &#39;王五&#39;, age: 14, gender: &#39;女&#39;, love: &#39;rap&#39;},
+                {name: &#39;蔡徐坤&#39;, age: 15, gender: &#39;女&#39;, love: &#39;篮球&#39;}]
+    }
+
+    //如果数组中都是对象，且要访问对象内的值时要使用$value.xxx  value代表当前遍历到的数组元素
+    var html = render(data);
+    var box = document.getElementById(&#39;box&#39;);
+    box.innerHTML = html;
+&lt;/script&gt;</code></pre><h3 id="art-template在后台中的使用"><a href="#art-template在后台中的使用" class="headerlink" title="art-template在后台中的使用"></a>art-template在后台中的使用</h3><p>初始化</p>
+<pre><code>npm init -y</code></pre><p>安装</p>
+<pre><code>npm install art-template --save
+npm install express-art-template --save</code></pre><p>使用</p>
+<pre><code>const express = require(&#39;express&#39;);
+const app = express();
+
+//指定art-template渲染的文件后缀是html
+app.engine(&#39;html&#39;,require(&#39;express-art-template&#39;));
+//指定静态资源目录
+app.use(express.static(&#39;views&#39;));</code></pre>
             <hr>
           </div>
           <br>
@@ -327,7 +520,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "wamp环境的搭建&nbsp;",
+        "Express服务器的搭建&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

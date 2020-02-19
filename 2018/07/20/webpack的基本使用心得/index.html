@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>webpack的基本使用心得 ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期五, 七月 20日 2018, 11:31 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    2.6k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 11 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="webpack的基本使用"><a href="#webpack的基本使用" class="headerlink" title="webpack的基本使用"></a>webpack的基本使用</h1><p>1、webpack能够处理JS文件之间相互依赖的关系</p>
+<p>2、webpack能够处理JS的兼容性问题，将高级的、浏览器无法识别的语法转为低级的浏览器能识别的语法</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>全局安装webpack</p>
+<pre><code>npm install -g webpack
+npm install webpack@3.0.0 -g  //安装指定版本</code></pre><p>全局安装脚手架()</p>
+<pre><code>npm i webpack-cli -g</code></pre><h2 id="初体验"><a href="#初体验" class="headerlink" title="初体验"></a>初体验</h2><p>这里以隔行换色为例：</p>
+<p>先构建文件目录如下：</p>
+<p><img src="https://howlcn1997.github.io/2018/04/02/webpack%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/%E7%9B%AE%E5%BD%95.png" srcset="/study.github.io/img/loading.gif" alt="目录"></p>
+<p>其中node_modules文件夹是安装其他包自动构建的</p>
+<p>安装我们要用到的包，这里使用了jquery</p>
+<pre><code>npm i jquery</code></pre><p>index.html中写入代码</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+
+    &lt;!-- 不推荐在这里直接引用任何css script --&gt;
+    &lt;!-- 所有的引用都在main.js中写 --&gt;
+
+    &lt;!-- 因为main.js中用了ES6的语法，浏览器不兼容，此时就需要webpack来预处理 --&gt;
+    &lt;!-- &lt;script src=&quot;./main.js&quot;&gt;&lt;/script&gt; --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;ul&gt;
+        &lt;li&gt;这是第1个li&lt;/li&gt;
+        &lt;li&gt;这是第2个li&lt;/li&gt;
+        &lt;li&gt;这是第3个li&lt;/li&gt;
+        &lt;li&gt;这是第4个li&lt;/li&gt;
+        &lt;li&gt;这是第5个li&lt;/li&gt;
+        &lt;li&gt;这是第6个li&lt;/li&gt;
+        &lt;li&gt;这是第7个li&lt;/li&gt;
+        &lt;li&gt;这是第8个li&lt;/li&gt;
+        &lt;li&gt;这是第9个li&lt;/li&gt;
+        &lt;li&gt;这是第10个li&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><p>在main中写入代码</p>
+<pre><code>//这是入口js文件
+
+//导入jquery
+import $ from &#39;jquery&#39;
+
+$(function(){
+    $(&#39;li:odd&#39;).css(&#39;backgroundColor&#39;,&#39;skyblue&#39;);
+    $(&#39;li:even&#39;).css(&#39;backgroundColor&#39;,&#39;pink&#39;)
+})</code></pre><p>用webpack处理mian.js</p>
+<p>命令行中键入</p>
+<pre><code>webpack ./src/main.js ./dist/bundle.js</code></pre><p><code>./src/main.js</code>是要处理的文件路径</p>
+<p><code>./dist/bundle.js</code>是处理之后需要保存到的路径</p>
+<p>此时将<code>main.js</code>处理成<code>bundle.js</code>,此时我们就可以在html页面中直接引入<code>bundle.js</code>了</p>
+<pre><code>&lt;script src=&quot;../dist/bundle.js&quot;&gt;&lt;/script&gt;</code></pre><p>完成效果</p>
+<p><img src="https://howlcn1997.github.io/2018/04/02/webpack%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/%E6%95%88%E6%9E%9C.png" srcset="/study.github.io/img/loading.gif" alt="1561981889615"></p>
+<h2 id="基本配置文件的使用"><a href="#基本配置文件的使用" class="headerlink" title="基本配置文件的使用"></a>基本配置文件的使用</h2><p>每当我们将<code>mian.js</code>中的内容做出变化时，都要手动输入 <code>webpack ./src/main.js ./dist/bundle.js</code>命令来重新生成<code>bundle.js</code>,过于麻烦，这里可以设置配置文件以达到，只需要输入<code>webpack</code>就可以达到重新生成bundle.js的目的</p>
+<p>在项目根目录下创建<code>webpack.config.js</code>文件，进行配置</p>
+<pre><code>const path = require(&#39;path&#39;);
+
+//这个配置文件，其实就是一个js文件，通过Node中的模块操作，向外暴露了一个对象
+module.exports = {
+    //手动指定入口 和 出口
+
+    //入口，表示要使用webpack打包哪个文件
+    entry: path.join(__dirname,&#39;./src/main.js&#39;),
+    //输入文件相关属性
+    output: {
+        path: path.join(__dirname,&#39;./dist&#39;),//指定打包好的文件，输出到哪个目录中去
+        filename: &#39;bundle.js&#39; //指定 输出文件名称
+    }
+}</code></pre><h2 id="使用webpack-dev-server"><a href="#使用webpack-dev-server" class="headerlink" title="使用webpack-dev-server"></a>使用webpack-dev-server</h2><p>之前代码每做一次改变都要在命令行键入<code>webpack</code>，过于麻烦，为了进一步偷懒，我们可以利用<code>webpack-dev-server</code>工具来实现。</p>
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>命令行键入</p>
+<pre><code>npm i webpack-dev-server -D  //将此工具安装到项目的本地开发依赖
+npm i webpack -D   //项目中安装webpack
+npm i webpack-cli -D   //项目中安装webpack-cli</code></pre><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p><code>webpack-dev-server</code>的使用方式同<code>webpack</code>一样，（这让我想到了<code>node</code> 与 nodemon`的关系）</p>
+<pre><code>webpack-dev-server   //暂不可用</code></pre><p>注意：1、由于我们是在项目本地中安装的，无法在powershell中直接使用，我们可以在package.json中，在scripts中添加<code>&quot;dev&quot;: &quot;webpack-dev-server&quot;</code>，配置如下</p>
+<pre><code>{
+    &quot;name&quot;: &quot;01-webpack&quot;,
+    &quot;version&quot;: &quot;1.0.0&quot;,
+    &quot;description&quot;: &quot;&quot;,
+    &quot;main&quot;: &quot;index.js&quot;,
+    &quot;scripts&quot;: {
+        &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
+        &quot;dev&quot;: &quot;webpack-dev-server&quot;
+    },
+    &quot;keywords&quot;: [],
+    &quot;author&quot;: &quot;&quot;,
+    &quot;license&quot;: &quot;ISC&quot;,
+    &quot;dependencies&quot;: {
+        &quot;jquery&quot;: &quot;^3.4.1&quot;
+    },
+    &quot;devDependencies&quot;: {
+        &quot;webpack-dev-server&quot;: &quot;^3.7.2&quot;
+    }
+}</code></pre><p>2、由于webpack-dev-server是依赖于webpack的，所以我们呢必须要在项目中本地安装webpack和脚手架</p>
+<p>3、由于webpack-dev-server打包的文件并没有存放在磁盘上，而是暂存在内存中，导致我们的改变<code>main.js</code>时没有效果，它相当于在项目根目录生成了一个看不见的文件，</p>
+<p>所以我们在script引入时，应直接应用根目录下</p>
+<pre><code>&lt;script src=&quot;/bundle.js&quot;&gt;&lt;/script&gt;</code></pre><h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><pre><code>npm run dev</code></pre><h2 id="使用html-webpack-plugin"><a href="#使用html-webpack-plugin" class="headerlink" title="使用html-webpack-plugin"></a>使用html-webpack-plugin</h2><p>使得html页面也可以被加载到内存中，提高代码开发效率</p>
+<h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><pre><code>npm i html-webpack-plugin -D</code></pre><h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><p>在main.js中引入</p>
+<pre><code>const htmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);</code></pre><p>在plugins中配置</p>
+<pre><code>plugins: [
+    //配置插件的节点
+    new webpack.HashedModuleIdsPlugin(), //new 一个热更新的 模块对象 
+    new htmlWebpackPlugin({  //创建一个 在内存中生成HTML 页面的插件
+        //指定 模板页面，将来会根据指定的页面的路径，去生成内存中的 页面
+        template: path.join(__dirname,&#39;./src/index.html&#39;),
+        // 指定 生成的页面的名称
+        filename: &#39;index.html&#39;
+    })
+]</code></pre><h2 id="webpack-处理第三方不是文件类型的过程"><a href="#webpack-处理第三方不是文件类型的过程" class="headerlink" title="webpack 处理第三方不是文件类型的过程"></a>webpack 处理第三方不是文件类型的过程</h2><ol>
+<li>当发现要处理的文件不是js文件时，回去配置文件中查找有无对应的第三方loader规则；</li>
+<li>如查找到对应规则，会调用对应的一系列loader处理此文件类型；</li>
+<li>调用use中一系列的loader时，会从后向前调用，第一个loader的处理结果会返回给下一个；loader，直到当前loader为最后一个loader；</li>
+<li>当最后一个loader处理完毕时，会将执行结构返回给webpack进行打包合并处理，并输出到bundle.js中去。</li>
+</ol>
+<h2 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h2><p><strong>由于webpack默认只能处理js文件，非js文件要使用loader加载器</strong></p>
+<h3 id="loader处理css"><a href="#loader处理css" class="headerlink" title="loader处理css"></a>loader处理css</h3><p>在index.html中不推荐直接引入css，这样可能会导致客户端项服务器发送第二次请求，这里使用第三方loader，利用webpack将css打包到bundle.js中去。</p>
+<p>处理css需要两个loader加载器</p>
+<ul>
+<li>style-loader</li>
+<li>css-loader</li>
+</ul>
+<h4 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h4><pre><code>npm install style-loader css-loader -D</code></pre><h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>在webpack.config.js中新增一个配置节点module，他是一个对象；在这个module对象上有一个rules属性，这个属性是一个数组，存放了所有第三方的 匹配 和 处理规则。</p>
+<pre><code>module: {
+    rules: [
+        {test: /\.css$/, use: [&#39;style-loader&#39;,&#39;css-loader&#39;]}
+    ]
+}</code></pre><h4 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h4><p>在main.js中引入css</p>
+<pre><code>import &#39;./css/index.css&#39;</code></pre><h3 id="loader处理less"><a href="#loader处理less" class="headerlink" title="loader处理less"></a>loader处理less</h3><p>处理less需要三个个loader加载器</p>
+<ul>
+<li>style-loader</li>
+<li>css-loader</li>
+<li>less-loader</li>
+</ul>
+<h4 id="安装-4"><a href="#安装-4" class="headerlink" title="安装"></a>安装</h4><pre><code>npm install style-loader css-loader less-loader -D</code></pre><p>注意：若之前已经安装了<code>style-loader</code> <code>css-loader</code>，仅需要安装<code>less-loader</code> 即可</p>
+<pre><code>npm install less-loader -D</code></pre><p>若要正常使用less-loader，还需要一个less依赖项，安装less</p>
+<pre><code>npm install less -D</code></pre><p>注意：此处的less是内部依赖于less-loader的，则无需再main.js中引入</p>
+<h4 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h4><p>在module中的rules中添加配置</p>
+<pre><code>{test: /\.less$/, use: [&#39;style-loader&#39;,&#39;css-loader&#39;,&#39;less-loader&#39;]}</code></pre><h4 id="使用-3"><a href="#使用-3" class="headerlink" title="使用"></a>使用</h4><pre><code>main.js`中引入`index.less
+import &#39;./css/index.less&#39;</code></pre><h3 id="loader处理scss"><a href="#loader处理scss" class="headerlink" title="loader处理scss"></a>loader处理scss</h3><p>处理less需要三个个loader加载器</p>
+<ul>
+<li>style-loader</li>
+<li>css-loader</li>
+<li>sass-loader (坑：这里是sass 而文件名是.scss)</li>
+</ul>
+<h4 id="安装-5"><a href="#安装-5" class="headerlink" title="安装"></a>安装</h4><pre><code>npm install sass-loader -D</code></pre><p>安装内部依赖项</p>
+<pre><code>npm install node-sass -D</code></pre><p>注意此处安装node-sass若失败，请切换cnpm进行安装</p>
+<pre><code>npm install cnpm -g
+cnpm install node-sass -D</code></pre><h4 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h4><pre><code>{test: /\.scss$/, use: [&#39;style-loader&#39;,&#39;css-loader&#39;,&#39;sass-loader&#39;]}</code></pre><h4 id="使用-4"><a href="#使用-4" class="headerlink" title="使用"></a>使用</h4><pre><code>main.js`中引入`index.scss
+import &#39;./css/index.scss&#39;</code></pre><h3 id="loader处理css中的图片"><a href="#loader处理css中的图片" class="headerlink" title="loader处理css中的图片"></a>loader处理css中的图片</h3><p>当css中出现引用图片时，webpack会解码出错，如</p>
+<pre><code>body {
+    background: url(./images/temp.jpg);
+}</code></pre><p>之所以出错，是由于对url的解析出错，这里需要用到url-loader；</p>
+<p>处理图片需要两个loader加载器</p>
+<ul>
+<li>url-loader</li>
+<li>file-loader</li>
+</ul>
+<h4 id="安装-6"><a href="#安装-6" class="headerlink" title="安装"></a>安装</h4><pre><code>npm install url-loader file-loader -D</code></pre><h4 id="配置-3"><a href="#配置-3" class="headerlink" title="配置"></a>配置</h4><pre><code>{test: /\.(png|jpg|gif|bmp|jpeg)$/, use: &#39;url-loader?limit=1024$name=[hash:8]-[name].[ext]&#39;}</code></pre><p>该loader会默认将要加载的图片转码为base64的字符串替换url原本的位置，使其可以直接加载在页面上；</p>
+<p>其中：</p>
+<ul>
+<li>limit 当图片大小超过此属性对应的值时，不将其转码为base64，否则转为base64</li>
+<li>name 设置由url-loader处理之后的文件名<ul>
+<li>[hash: 8] 设置文件名开头为随机的8位哈希值</li>
+<li>[name] 设置文件名结束为文件的原本名字</li>
+<li>[ext] 设置后缀名为文件原本的后缀名</li>
+</ul>
+</li>
+</ul>
+<p>示例：当文件<code>test.png</code>大小大于limit时，文件被处理为<code>3hu4ye89-test.png</code></p>
+<h4 id="使用-5"><a href="#使用-5" class="headerlink" title="使用"></a>使用</h4><p>在css中使用</p>
+<pre><code>body {
+  background: url(../images/test.png);
+}</code></pre><p>并将此css文件引入main.js中</p>
+<h3 id="loader处理字体图标的问题"><a href="#loader处理字体图标的问题" class="headerlink" title="loader处理字体图标的问题"></a>loader处理字体图标的问题</h3><p>当我们使用第三方字体图标时（如bootstrap.css）时，若文件声明某种字体时而利用url去引用其他文件时，在webpack打包时便会报错。</p>
+<p>处理图片需要一个loader加载器</p>
+<ul>
+<li>url-loader</li>
+</ul>
+<h4 id="安装-7"><a href="#安装-7" class="headerlink" title="安装"></a>安装</h4><pre><code>npm install url-loader -D</code></pre><p>其实上一步已经安装，无需再次安装。</p>
+<h4 id="配置-4"><a href="#配置-4" class="headerlink" title="配置"></a>配置</h4><pre><code>{test: /\.(ttf|eot|svg|woff|woff2)$/, use: &#39;url-loader&#39;}</code></pre><h4 id="使用-6"><a href="#使用-6" class="headerlink" title="使用"></a>使用</h4><p>这里以<code>bootstrap</code>为例：</p>
+<p>安装<code>bootstrap</code></p>
+<pre><code>npm install bootstrap@3.3.5 --save</code></pre><p><code>index.html</code>中输入</p>
+<pre><code>&lt;span class=&quot;glyphicon glyphicon-heart&quot;&gt;&lt;/span&gt;</code></pre><p><code>main.js</code>中引入</p>
+<pre><code>import &#39;bootstrap/dist/css/bootstrap.css&#39;</code></pre><p>注意：这里不能直接引入<code>import &#39;bootstrap&#39;</code></p>
+<h2 id="babel的使用"><a href="#babel的使用" class="headerlink" title="babel的使用"></a>babel的使用</h2><p>由于webpack只能处理部分ES6的代码，所以为了更好的兼容ES6我们需要引入babel来达到目的。将ES6以上的语法自动转换成当前浏览器可以识别的ES最高版本的语法。</p>
+<h3 id="安装-8"><a href="#安装-8" class="headerlink" title="安装"></a>安装</h3><h4 id="安装babel的转码工具"><a href="#安装babel的转码工具" class="headerlink" title="安装babel的转码工具"></a>安装babel的转码工具</h4><pre><code>npm i babel-core@6.26.3 babel-loader@7.1.5 babel-plugin-transform-runtime --save-dev</code></pre><h4 id="安装babel转换的语法"><a href="#安装babel转换的语法" class="headerlink" title="安装babel转换的语法"></a>安装babel转换的语法</h4><pre><code>npm i babel-preset-env babel-preset-stage-0 --save-dev</code></pre><h3 id="配置-5"><a href="#配置-5" class="headerlink" title="配置"></a>配置</h3><p> 1、在webpack.config.js中配置</p>
+<pre><code>{test: /\.js$/, use: &#39;babel-loader&#39;, exclude: /node_modules/}</code></pre><p> 2、在项目根目录下新建一个名为 <code>.babelrc</code>的babel配置文件,文件中键入内容</p>
+<pre><code>{
+    &quot;presets&quot;: [&quot;env&quot;, &quot;stage-0&quot;],
+    &quot;plugins&quot;: [&quot;transform-runtime&quot;]
+}</code></pre><p>注意：该文件是严格遵从<code>json</code>格式的。</p>
+<p>其中:</p>
+<ul>
+<li>presets 中配置语法插件 (相当于高级语法翻译成低级语法的字典)</li>
+<li>plugins中配置属于babel的插件（相当于翻译器）</li>
+</ul>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "webpack的基本使用心得&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

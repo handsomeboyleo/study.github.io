@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>wamp环境的搭建 ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期二, 七月 10日 2018, 6:24 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    891 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 3 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="wamp环境搭建"><a href="#wamp环境搭建" class="headerlink" title="wamp环境搭建"></a>wamp环境搭建</h1><h2 id="一、wamp简介"><a href="#一、wamp简介" class="headerlink" title="一、wamp简介"></a>一、wamp简介</h2><p>wamp是Windows Apache MySQL PHP的简称</p>
+<p>Windows 操作系统</p>
+<p>Apache 提供网页服务(html js css img)</p>
+<p>MySQL 数据库</p>
+<p>PHP 编程语言，可以用来开发动态网站</p>
+<h2 id="二、下载与安装"><a href="#二、下载与安装" class="headerlink" title="二、下载与安装"></a>二、下载与安装</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>根据电脑系统下载 <a href="https://pan.baidu.com/s/1b_8fp8Qsj9laXzxIeO5XCQ" target="_blank" rel="noopener">wampServer2.4 x86 x64</a> 提取码:i3ti.</p>
+<p>（推荐安装32位）</p>
+<h3 id="安装前须知"><a href="#安装前须知" class="headerlink" title="安装前须知"></a>安装前须知</h3><p>1 确保电脑安装了<a href="https://pan.baidu.com/s/1OfOwL8Qd6MCV8kSppBn6yA" target="_blank" rel="noopener">Microsoft Visual C++ 2012 Redistributable</a>提取码:0u1t;</p>
+<p>2 更新了<a href="https://pan.baidu.com/s/1_COl7-dFJZI-sjH3NzQ5Vg" target="_blank" rel="noopener">KB2999226</a> 提取码:s6w7;</p>
+<p>3 已卸载原有的数据库和Apache.</p>
+<p>安装wamp，傻瓜式安装即可.</p>
+<h3 id="检测"><a href="#检测" class="headerlink" title="检测"></a>检测</h3><p>打开wamp 当任务栏中的W变为绿色，且再浏览器中输入localhost回车后出现wamp界面则本地服务器运行成功</p>
+<p><img src="https://howlcn1997.github.io/2018/03/12/wamp%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E5%AE%89%E8%A3%85%E6%A3%80%E6%B5%8B.png" srcset="/study.github.io/img/loading.gif" alt="安装检测"></p>
+<h2 id="三、配置访问权限"><a href="#三、配置访问权限" class="headerlink" title="三、配置访问权限"></a>三、配置访问权限</h2><h3 id="更改权限"><a href="#更改权限" class="headerlink" title="更改权限"></a>更改权限</h3><p>想要其他设备访问到你的本地服务器需要进行如下操作</p>
+<p>打开 wamp –&gt; bin –&gt; apache –&gt; Apache2.4.4 –&gt; conf –&gt; httpd.conf文件，搜索关键词 Order</p>
+<p><img src="https://howlcn1997.github.io/2018/03/12/wamp%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E9%85%8D%E7%BD%AE%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90.png" srcset="/study.github.io/img/loading.gif" alt="配置访问权限"></p>
+<p>将此行修改为</p>
+<pre><code>Allow from all      //允许所有ip访问</code></pre><p>右击wamp任务栏图片重启服务器（刷新失效时，请重启wamp）</p>
+<p><img src="https://howlcn1997.github.io/2018/03/12/wamp%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1%E5%99%A8.png" srcset="/study.github.io/img/loading.gif" alt="重启服务器"></p>
+<p>PS：你当然也可以不将Deny from all 改为Allow from all，你可以在下方指定只有那些ip可以访问，如只允许192.168.32.222访问</p>
+<p>在下方添加</p>
+<pre><code>Allow from 192.168.32.222</code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>查询本机ip地址，cmd中键入</p>
+<pre><code>ipconfig</code></pre><p>其中IPV4 后便是本机ip地址，如（192.168.32.2）</p>
+<p>在另一台设备中输入192.168.32.2，回车后访问成功（若显示访问被拒绝请确认配置正确，重启wamp，关闭防火墙后重试）</p>
+<h2 id="四、更改wamp默认服务器根目录"><a href="#四、更改wamp默认服务器根目录" class="headerlink" title="四、更改wamp默认服务器根目录"></a>四、更改wamp默认服务器根目录</h2><p>本地服务器的默认根目录是安装根目录下的www文件夹。</p>
+<p>可在该文件夹中新建一个index.html文件，再在浏览器中输入localhost/index.html访问该页面。</p>
+<p>更改默认目录</p>
+<p>打开 wamp –&gt; bin –&gt; apache –&gt; Apache2.4.4 –&gt; conf –&gt; httpd.conf文件，搜索关键词 DocumentRoot</p>
+<p><img src="https://howlcn1997.github.io/2018/03/12/wamp%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E6%A0%B9%E7%9B%AE%E5%BD%95.png" srcset="/study.github.io/img/loading.gif" alt="修改默认根目录"></p>
+<p>将此两行的路径同时修改为你所创建的文件夹所在路径：</p>
+<p>我在桌面的ClassPC文件夹下创建了www文件夹，以此作为根目录，则DocumentRoot改为C:/Users/student/Desktop/ClassPC/www</p>
+<p><img src="https://howlcn1997.github.io/2018/03/12/wamp%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%9B%B4%E6%94%B9%E9%BB%98%E8%AE%A4%E6%A0%B9%E7%9B%AE%E5%BD%952.png" srcset="/study.github.io/img/loading.gif" alt="更改默认根目录2"></p>
+<p>重启wamp</p>
+<h2 id="五、虚拟主机配置"><a href="#五、虚拟主机配置" class="headerlink" title="五、虚拟主机配置"></a>五、虚拟主机配置</h2><p>配置虚拟主机，以支持多站点</p>
+<p>我们先在之前所设置好的服务器根目录(C:/Users/student/Desktop/ClassPC/www)下，新建三个文件夹 server1 server2 server3 (一个文件夹代表一个站点)</p>
+<h3 id="配置httpd-vhosts-conf"><a href="#配置httpd-vhosts-conf" class="headerlink" title="配置httpd-vhosts.conf"></a>配置httpd-vhosts.conf</h3><p>打开 wamp –&gt; bin –&gt; apache –&gt; Apache2.4.4 –&gt; conf –&gt; extra –&gt; httpd-vhosts.conf</p>
+<p><img src="https://howlcn1997.github.io/2018/03/12/wamp%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E9%85%8D%E7%BD%AE1.png" srcset="/study.github.io/img/loading.gif" alt="虚拟主机配置1"></p>
+<p>一个表示一个站点</p>
+<p>将已有标签复制三份，并分别设置其DocumentRoot ServerName ServerAlias，如下图所示</p>
+<p><img src="https://howlcn1997.github.io/2018/03/12/wamp%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E9%85%8D%E7%BD%AE2.png" srcset="/study.github.io/img/loading.gif" alt="虚拟主机配置2"></p>
+<h3 id="配置计算机映射关系"><a href="#配置计算机映射关系" class="headerlink" title="配置计算机映射关系"></a>配置计算机映射关系</h3><p>打开 计算机 –&gt; C: –&gt;windows –&gt; System32 –&gt; drivers –&gt; etc –&gt; host</p>
+<p>在最下方添加映射关系，如图</p>
+<p><img src="https://howlcn1997.github.io/2018/03/12/wamp%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E9%85%8D%E7%BD%AE%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB.png" srcset="/study.github.io/img/loading.gif" alt="配置映射关系"></p>
+<p>重启wamp</p>
+<p>浏览器输入localhost/server1,显示index of/server1,访问成功！</p>
+<p>其他机器浏览器输入192.168.32.2/server1,显示index of/server1,访问成功！</p>
+<hr>
+<p>更新：若有购买腾讯云等云端服务器，在将Wamp部署到服务器时，请手动关闭Wamp自带的MySQL，MySQL的运行出错可能导致Apache的假死现象。</p>
+<p>更新：关于Apache服务器<code>(OS 64)指定的网络名不再可用。 : AH00341: winnt_accept: Asynchronous AcceptEx failed.</code>错误而导致的Apache假死现象的解决：</p>
+<ol>
+<li>apache版本为APAche2.0.49及以上版本，增加<code>Win32DisableAcceptEx</code>配置项</li>
+<li>apache版本为APAche2.4及以上版本，在<code>wamp\bin\apache\Apache2.4.4\conf\httpd.conf</code>增加<code>AcceptFilter http None AcceptFilter https None</code>配置项替代<code>Win32DisableAcceptEx</code></li>
+</ol>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "wamp环境的搭建&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

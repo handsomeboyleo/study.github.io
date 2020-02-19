@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Nuxt基本使用心得 ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期日, 八月 19日 2018, 1:32 凌晨
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    3.4k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 14 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="Nuxt"><a href="#Nuxt" class="headerlink" title="Nuxt"></a>Nuxt</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p> Nuxt 是一个基于 Vue 生态的更高层的框架，为开发服务端渲染(SSR)的 Vue 应用提供了极其便利的开发体验。</p>
+<p> Vue.js是开发SPA单页面应用的，传统的SPA应用是将bundle.js从服务端获取，然后在客户端解析并挂载到dom。</p>
+<p> Nuxt这个框架是用Vue开发多页应用，并在服务端渲染。我们可以将组件渲染为服务器端的 HTML 字符串，将它们直接发送到浏览器，最后将这些静态标记”激活”为客户端上完全可交互的应用程序。</p>
+<p> Nuxt适合做新闻、博客、电影、咨询这样的需要搜索引擎提供流量的项目。如果你要做到是移动端项目，就没有必要用nuxt这个框架了。</p>
+<p>Nuxt是基于Vue.js的服务端渲染框架，可以很好的解决SPA应用程序的首次加载问题。</p>
+<pre><code>Nuxt.js有如下特点：
+Vue 2 ： nuxt是基于Vue2开发的
+Vue Router  ： nuxt整合了路由功能，配置非常简单
+VueX  ： 支持vuex
+Vue Server Renderer  ： 支持服务端渲染
+Vue-meta  ： 支持meta标签配置</code></pre><p>Nuxt机制图示</p>
+<p>未使用Nuxt：</p>
+<p><img src="https://howlcn1997.github.io/2018/06/07/Nuxt/noNuxt.png" srcset="/study.github.io/img/loading.gif" alt="noNuxt"></p>
+<p>使用Nuxt：</p>
+<p><img src="https://howlcn1997.github.io/2018/06/07/Nuxt/nuxt.png" srcset="/study.github.io/img/loading.gif" alt="nuxt"></p>
+<h2 id="二、创建Nuxt项目"><a href="#二、创建Nuxt项目" class="headerlink" title="二、创建Nuxt项目"></a>二、创建Nuxt项目</h2><p><a href="https://zh.nuxtjs.org/guide/installation/#新手模板" target="_blank" rel="noopener">新手模板</a></p>
+<p>确保安装了npx（npx在NPM版本5.2.0默认安装了）</p>
+<pre><code>$ npx create-nuxt-app &lt;项目名&gt;</code></pre><p>或者使用yarn:</p>
+<pre><code>$ yarn create nuxt-app &lt;项目名&gt;</code></pre><p>配置：</p>
+<p>启动</p>
+<pre><code>npm run dev</code></pre><p>访问</p>
+<pre><code>http://localhost:3000</code></pre><h2 id="三、Nuxt基本使用"><a href="#三、Nuxt基本使用" class="headerlink" title="三、Nuxt基本使用"></a>三、Nuxt基本使用</h2><h3 id="3-1-路由"><a href="#3-1-路由" class="headerlink" title="3.1 路由"></a>3.1 路由</h3><pre><code>//pages文件夹下面，文件名即路由
+
+#1.pages下新建search.vue
+&lt;template&gt;
+  &lt;div&gt;
+    这是search页面
+  &lt;/div&gt;
+&lt;/template&gt;
+
+
+//2.index.vue使用路由 此处的search就是所创建的search.vue的文件名
+&lt;nuxt-link to=&quot;/search&quot;&gt;到search页面&lt;/nuxt-link&gt;</code></pre><h3 id="3-2-嵌套子模版"><a href="#3-2-嵌套子模版" class="headerlink" title="3.2 嵌套子模版"></a>3.2 嵌套子模版</h3><pre><code>#index.vue
+
+&lt;template&gt;
+      &lt;section class=&quot;container&quot;&gt;
+            &lt;div&gt;
+              &lt;logo/&gt;
+             &lt;/div&gt;
+      &lt;/section&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import Logo from &#39;~/components/Logo.vue&#39;
+
+export default {
+  components: {
+    Logo
+  }
+}
+&lt;/script&gt;</code></pre><h3 id="3-3-layouts布局文件"><a href="#3-3-layouts布局文件" class="headerlink" title="3.3 layouts布局文件"></a>3.3 layouts布局文件</h3><p> 默认情况下所有的页面都会默认使用layouts下面default.vue这个布局文件</p>
+<pre><code>#default.vue
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;头部&lt;/h1&gt;
+    &lt;!--nuxt就相当于 router-view--&gt;
+    &lt;nuxt/&gt;                     
+    &lt;h1&gt;尾巴&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre><p>当然也可以创建自定义的布局文件</p>
+<pre><code>//自定义布局文件
+//1.layouts下新建一个user.vue
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;用户页面头部&lt;/h1&gt;
+    &lt;nuxt/&gt;
+    &lt;h1&gt;用户页面底部&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  export default{
+
+  }
+&lt;/script&gt;
+
+&lt;style lang=&quot;css&quot; scoped&gt;
+  h1{
+    color:green
+  }
+&lt;/style&gt;
+
+//2.pages下的search.vue指定使用哪个布局文件
+&lt;script&gt;
+  export default{
+    layout:&quot;user&quot;
+  }
+&lt;/script&gt;</code></pre><h3 id="3-4-全局CSS文件"><a href="#3-4-全局CSS文件" class="headerlink" title="3.4 全局CSS文件"></a>3.4 全局CSS文件</h3><p> 此css 文件将在所有组件中自动生效</p>
+<pre><code>#1.在assets下新建css/main.css
+
+#2.修改nuxt.config.css配置文件后
+/*
+** global css
+*/
+css: [
+    &#39;element-ui/lib/theme-chalk/index.css&#39;,
+    &#39;~assets/css/main.css&#39;
+],
+
+#3.重启服务(配置文件的修改，重启后才能生效)</code></pre><h3 id="3-5-Vuex的使用"><a href="#3-5-Vuex的使用" class="headerlink" title="3.5 Vuex的使用"></a>3.5 Vuex的使用</h3><p> 在nuxt中使用vuex的时候无需new Vue.Store实例，nuxt会帮我们自动创建。默认情况下，会使用index.js这个store。</p>
+<p> 每次修改增加Vuex时要重启服务</p>
+<pre><code>#1.store/index.js
+//state存放数据
+export const state = () =&gt; ({
+  list: [&#39;a&#39;,&#39;b&#39;],
+  user:{}
+})
+//修改state
+export const mutations = {
+  increment (state,text) {
+    state.list.push(text);
+  },
+}
+//异步提交mutations
+export const actions = {
+
+}
+#2.store/city.js
+export const state = () =&gt; ({
+  list: [&#39;c&#39;,&#39;d&#39;]
+})
+
+export const mutations = {
+  increment (state,text) {
+    state.list.push(text);
+  }
+}</code></pre><p>在vue文件中使用vuex</p>
+<ol>
+<li>使用store/index.js中的state时 <code>$store.state.list</code></li>
+<li>使用store/city.js中的state时 <code>$store.state.city.list</code></li>
+</ol>
+<pre><code>#3.pages/city.vue
+&lt;template&gt;
+  &lt;div&gt;
+    Page is city
+    &lt;ul&gt;
+      &lt;li
+        v-for=&quot;(item,idx) in $store.state.list&quot;
+        :key=&quot;idx&quot;&gt; {{ item }} 
+       &lt;/li&gt;
+
+      &lt;input
+        type=&quot;button&quot;
+        value=&quot;增加信息index&quot;
+        @click=&quot;addIndex&quot;&gt;
+
+      &lt;li
+        v-for=&quot;(item,idx) in $store.state.city.list&quot;
+        :key=&quot;idx&quot;&gt; {{ item }} 
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;input
+      type=&quot;button&quot;
+      value=&quot;增加信息city&quot;
+      @click=&quot;addCity&quot;&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import axios from &quot;axios&quot;
+  export default{
+    data(){
+      return {
+        list:[]
+      }
+    },
+    methods: {
+      addIndex(){
+        this.$store.commit(&#39;increment&#39;, &quot;kk&quot;)
+      },
+      addCity(){
+        this.$store.commit(&#39;city/increment&#39;, &quot;jj&quot;)
+      }
+    }
+  }
+&lt;/script&gt;</code></pre><h2 id="四、SPA-SEO-SSR"><a href="#四、SPA-SEO-SSR" class="headerlink" title="四、SPA\SEO\SSR"></a>四、SPA\SEO\SSR</h2><h3 id="4-1-SPA-单页面应用"><a href="#4-1-SPA-单页面应用" class="headerlink" title="4.1 SPA:单页面应用"></a>4.1 SPA:单页面应用</h3><blockquote>
+<p>SPA 时代，主要是在客户端端使用了<code>history</code>或<code>hash</code>（主要是为了低版本浏览器的兼容）API，在首次请求经服务端路由输出整个应用程序后，接下来的路由都由前端掌控了，前端通过路由作为中心枢纽控制一系列页面（组件）的渲染(DOM的生成)加载和数据交互。</p>
+</blockquote>
+<p>优点：</p>
+<ol>
+<li>页面之间的切换非常快</li>
+<li>一定程度减少了后端服务器的压力</li>
+<li>实现前后端分离，后端程序只需要提供api，不需要客户端到底是web端还是手机等</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>首屏打开速度很慢</li>
+<li>不利于SEO搜索引擎优化</li>
+</ol>
+<h3 id="4-2-SEO-搜索引擎优化"><a href="#4-2-SEO-搜索引擎优化" class="headerlink" title="4.2 SEO:搜索引擎优化"></a>4.2 SEO:搜索引擎优化</h3><blockquote>
+<p>SEO是一种通过了解搜索引擎的运作规则（如何抓取网站页面，如何索引以及如何根据特定的关键字展现搜索结果排序等）来调整网站，以提高该网站在搜索引擎中某些关键词的搜索结果排名。</p>
+<p>由于SPA使用Ajax动态获取数据，很难保证搜索引擎的正常爬取，并且有些搜索引擎不支持js和Ajax获取的数据，因此SSR诞生</p>
+</blockquote>
+<h3 id="4-3-SSR-服务器端渲染"><a href="#4-3-SSR-服务器端渲染" class="headerlink" title="4.3 SSR:服务器端渲染"></a>4.3 SSR:服务器端渲染</h3><blockquote>
+<p>为了解决SPA不支持SEO的问题，我们也可以将同一个组件渲染为服务器端的 HTML 字符串，将它们直接发送到浏览器，但是这样的HTML页面还不具备交互能力，所以还需要与SPA框架配合，在浏览器上“混合”成可交互的应用程序。</p>
+</blockquote>
+<p>基本流程：当客户端向服务器发送请求后，web服务器根据路由拿到对应数据渲染并输出，且输出部分中包含两部分：</p>
+<ol>
+<li>路由页对应的页面及已渲染好的数据（解决首屏加载）</li>
+<li>完整的SPA程序代码 （本地路由跳转，而不请求服务器）</li>
+</ol>
+<p>优点：</p>
+<ol>
+<li>更好的 SEO（搜索引擎爬虫抓取工具可以直接查看完全渲染的页面）</li>
+<li>更快的内容到达时间 （不用等待所有的JS都下载完成，浏览器便能显示比较完整的页面了）</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>占用更多的cpu和内存资源</li>
+<li>一些常用的浏览器的api可能无法正常使用 （如：window，document，alert）</li>
+<li>开发调试会有一些麻烦 （因为涉及到了浏览器及服务器，对于SPA的一些组件的声明周期的管理会变得复杂）</li>
+</ol>
+<h3 id="4-4-Nuxt对SSR支持"><a href="#4-4-Nuxt对SSR支持" class="headerlink" title="4.4 Nuxt对SSR支持"></a>4.4 Nuxt对SSR支持</h3><blockquote>
+<p>从头搭建一个服务端渲染的应用是相当复杂的。幸运的是，我们有一个优秀的社区项目 <a href="https://nuxtjs.org/" target="_blank" rel="noopener">Nuxt.js</a> 让这一切变得非常简单。Nuxt 是一个基于 Vue 生态的更高层的框架，为开发服务端渲染的 Vue 应用提供了极其便利的开发体验。</p>
+<p>Nuxt.js 是使用 Webpack 和 Node.js 进行封装的基于Vue的SSR框架，预设了利用Vue.js开发<strong>服务端渲染</strong>的应用所需要的各种配置，使用它你可以不需要自己搭建一套 SSR 程序，而是通过其约定好的文件结构和API就可以实现一个首屏渲染的 Web 应用。</p>
+<p>Nuxt.js 主要关注的是应用的 UI渲染。</p>
+</blockquote>
+<p><a href="https://juejin.im/post/58ff960ba22b9d0065b722cd" target="_blank" rel="noopener">实现基于 Nuxt.js 的 SSR 应用</a></p>
+<h2 id="五、数据预取"><a href="#五、数据预取" class="headerlink" title="五、数据预取"></a>五、数据预取</h2><h3 id="5-1-准备服务器接口"><a href="#5-1-准备服务器接口" class="headerlink" title="5.1 准备服务器接口"></a>5.1 准备服务器接口</h3><pre><code>#1.server/interface/city.js
+var express = require(&#39;express&#39;)
+var router = express.Router()
+router.get(&#39;/info&#39;, function (req, res) {
+    return res.status(200).json([&#39;北京&#39;,&#39;天津&#39;])
+})
+module.exports = router
+
+#2.server/index.js
+const cityInterface = require(&quot;./interface/city&quot;)
+//在app.use(nuxt.render)上面添加app.use(&quot;/city&quot;,cityInterface)
+app.use(&quot;/city&quot;,cityInterface);
+app.use(nuxt.render)
+
+#.重启服务
+localhost:3000/city/info  测试接口</code></pre><h3 id="5-2-不适用数据预取"><a href="#5-2-不适用数据预取" class="headerlink" title="5.2 不适用数据预取"></a>5.2 不适用数据预取</h3><pre><code>#1.客户端pages下新建city.vue
+&lt;template&gt;
+  &lt;div&gt;
+    Page is city
+    &lt;ul&gt;
+      &lt;li
+        v-for=&quot;(item,idx) in list&quot;
+        :key=&quot;idx&quot;&gt; {{ item }} &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import axios from &quot;axios&quot;
+  export default{
+    data(){
+      return {
+        list:[]
+      }
+    },
+    //async表示方法返回一个Promise
+    //await 同步等待
+    async mounted(){
+      let {status,data} = await axios.get(&quot;/city/info&quot;);
+      this.list = data;
+      console.log(this.list);
+    }
+  }
+&lt;/script&gt;</code></pre><h3 id="5-3-Nuxt-js的工作流"><a href="#5-3-Nuxt-js的工作流" class="headerlink" title="5.3 Nuxt.js的工作流"></a>5.3 Nuxt.js的工作流</h3><p><img src="https://howlcn1997.github.io/2018/06/07/Nuxt/1546049173524.png" srcset="/study.github.io/img/loading.gif" alt="1546049173524"></p>
+<ul>
+<li>nuxtServerInit：如果在状态树(store)中指定了 <code>nuxtServerInit</code> 方法，Nuxt.js 调用它的时候会将页面的上下文对象作为第2个参数传给它（仅在服务端调用）。当我们想将服务端的一些数据传到客户端时，这个方法是非常好用的</li>
+<li>middleware：中间件允许您定义一个自定义函数运行在一个页面或一组页面渲染之前，服务端首屏渲染和路由跳转前均执行对应中间件。可以用作页面跳转时验证用户信息操作(登陆拦截)。</li>
+<li>asyncData会在组件加载前（限于页面组件）调用，可以在<strong>服务端首屏渲染或者在路由跳转时执行</strong>，专门用来请求数据，Nuxt.js 会将 <code>asyncData</code> 返回的数据融合组件 <code>data</code> 方法返回的数据一并返回给当前组件。asyncData应该是用于影响SEO的内容，也就是需要让爬虫读取的内容。</li>
+</ul>
+<h3 id="5-4-服务端数据预取"><a href="#5-4-服务端数据预取" class="headerlink" title="5.4 服务端数据预取"></a>5.4 服务端数据预取</h3><h4 id="nuxtServerInit"><a href="#nuxtServerInit" class="headerlink" title="nuxtServerInit"></a>nuxtServerInit</h4><blockquote>
+<p>nuxtServerInit可以将服务端的数据通过vuex同步到客户端，该方法仅会在服务端首屏渲染时执行</p>
+</blockquote>
+<pre><code>#store/index.js
+export const state = () =&gt; ({
+  list: [],
+})
+
+export const mutations = {
+  setlist (state,text) {
+    text.forEach(item=&gt;{
+      state.list.push(item)
+    })
+  },
+}
+
+export const actions = {
+  //将菜单信息写入到vuex实例中
+  async nuxtServerInit ({ commit }, { req ,app }) {
+    {
+      let {status, data} = await app.$axios.get(&quot;/city/info&quot;);
+      commit(&#39;setlist&#39;, data)
+    }
+  }
+}
+
+#2.pages/city.vue
+&lt;template&gt;
+  &lt;div&gt;
+    Page is city
+    &lt;ul&gt;
+      &lt;li
+        v-for=&quot;(item,idx) in $store.state.list&quot;
+        :key=&quot;idx&quot;&gt; {{ item }} &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre><h4 id="asyncData和fetch方法"><a href="#asyncData和fetch方法" class="headerlink" title="asyncData和fetch方法"></a>asyncData和fetch方法</h4><pre><code>//使用asyncData进行ssr渲染
+async asyncData(){
+    //给data取别名，请求网址写全，因为在刷新浏览器的时候需要全路径请求服务器
+    let {status,data:list} = await axios.get(&quot;http://127.0.0.1:3000/city/info&quot;);
+    if(status == 200) {
+        //这边不能使用this.list = list,因为获取不到this
+        //通过return给页面返回数据
+        return {
+            list
+        }
+    }
+}
+
+async fetch ({ store, params }){
+      //当页面加载时触发可以执行请求来触发action来修改state
+      //不可以return数据给页面
+      //页面可以从this.$store中获取action修改的state
+      let {status,data:list} = await axios.get(&quot;http://127.0.0.1:3000/city/info&quot;);
+      store.commit(&#39;setlist&#39;, list)
+}</code></pre><p>注意点：asyncData 和 fetch都只能够在页面组件中使用，如果想要在页面组件的子组件中使用ssr，可以使用nuxtServerInit<br>#注意点：由于 asyncData方法是在组件初始化前被调用的，所以在方法内是没有办法通过this来引用组件的实例。<br>#注意点：当用户请求页面时候服务端会先使用SSR来生成对应的页面文档结构，而在用户切换路由则是使用了SPA的模式。这意味着如果用户刷新页面，asyncData方法会在服务端执行；如果用户通过nuxt-link路由导航到当前页面，asyncData会在客户端执行</p>
+<h3 id="5-5客户端数据预取"><a href="#5-5客户端数据预取" class="headerlink" title="5.5客户端数据预取"></a>5.5客户端数据预取</h3><blockquote>
+<p>当asyncData方法是由路由跳转触发的时候，则使用客户端数据预取，asyncData方法会在客户端执行。可以通过控制台打印来查看是在浏览器执行还是在node执行就可以验证了。</p>
+</blockquote>
+<pre><code>async asyncData(context){
+    //给data取别名，请求网址写全
+    let {status,data:list} = await axios.get(&quot;http://127.0.0.1:3000/city/info&quot;);
+    //如果是客户端执行，则可以使用window对象
+    //如果是服务端执行，则没有window对象
+    if(process.client){
+        console.log(window)
+    }
+
+    if(status == 200) {
+        //这边不能使用this.list = list,因为获取不到this
+        //通过return给页面返回数据
+        return {
+            list
+        }
+    }
+}</code></pre><h2 id="六、SSR原理"><a href="#六、SSR原理" class="headerlink" title="六、SSR原理"></a>六、SSR原理</h2><p><img src="http://5b0988e595225.cdn.sohucs.com/images/20180524/92672015b4914784ae5a800c4a655e25.jpeg" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<p><a href="https://ssr.vuejs.org/zh/" target="_blank" rel="noopener">官方文档</a></p>
+<p>如上图所示：webpack将 Source 打包出两个bundle文件。</p>
+<ul>
+<li><p>服务端渲染：Server Bundle用于服务端渲染，主要是获取异步数据，同步到组件中，并将组件渲染成HTML返回到前端，但是<strong>vue-ssr不能绑定javascript事件</strong>，也就是说服务器端使用vue-ssr渲染出来的返回到浏览器的也只能是HTML+CSS。</p>
+</li>
+<li><p>客户端渲染：Client Bundle 用于客户端渲染，之前说过服务器不能增加事件，那只能前端增加。所以我们看到SSR渲染的网页源码中有</p>
+<pre><code>window.__NUXT__=...</code></pre><p>代码，这是后端和前端在使用vuex共享数据。后端从vuex里面取到数据之后渲染成真正的HTML和css返回。客户端也是从vuex里面取到数据，客户端的渲染主要做2件事：</p>
+<ul>
+<li>拿到数据，使用 virtual-dom进行预渲染，然后和服务端渲染出来的进行比对，比对两边渲染的内容是不是一致的</li>
+<li>对DOM元素的事件进行绑定，也就是回答的问题，事件在这块进行的处理</li>
+</ul>
+</li>
+</ul>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Nuxt基本使用心得&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>
