@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>React+sockt.io实现简易聊天室 ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期日, 十一月 24日 2019, 11:10 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.7k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 8 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="Websocket"><a href="#Websocket" class="headerlink" title="Websocket"></a>Websocket</h1><blockquote>
+<p>省略一万字</p>
+</blockquote>
+<h1 id="Socket-io"><a href="#Socket-io" class="headerlink" title="Socket.io"></a>Socket.io</h1><p><a href="https://socket.io/docs/server-api/" target="_blank" rel="noopener">服务器端</a></p>
+<p><a href="https://socket.io/docs/client-api/" target="_blank" rel="noopener">客户端</a></p>
+<h1 id="React-socket-io-实现简易聊天室"><a href="#React-socket-io-实现简易聊天室" class="headerlink" title="React + socket.io 实现简易聊天室"></a>React + socket.io 实现简易聊天室</h1><blockquote>
+<p>我们由浅入深，先实现基础功能，再一步一步添加功能</p>
+</blockquote>
+<h2 id="第一步、React前端-与-服务器端建立链接"><a href="#第一步、React前端-与-服务器端建立链接" class="headerlink" title="第一步、React前端 与 服务器端建立链接"></a>第一步、React前端 与 服务器端建立链接</h2><blockquote>
+<p>前言：</p>
+<ul>
+<li>简单理解socket.io中的<code>on</code>和 <code>emit</code>，相当于中央事件总线的<code>on</code>和<code>emit</code>；<code>on</code>表示接受对应事件，<code>emit</code>表示派发事件，两者是对应关系。</li>
+<li>服务端和客户端的链接是一对多的关系</li>
+<li>客户端 <code>emit</code>的事件只能被服务端的<code>on</code>接受，服务端的<code>emit</code>会被所有客户端的<code>on</code>接受</li>
+<li>socket.io中的 <code>connect</code>与 <code>disconnect</code>事件是默认<code>emit</code>的</li>
+</ul>
+</blockquote>
+<p><strong>服务端</strong></p>
+<p>首先使用<code>npm</code>初始化一个项目，并在项目内安装 <code>socket.io</code></p>
+<pre><code>// 服务端代码
+const io = require(&#39;socket.io&#39;)(4000, {
+  // 对应客户端的path
+  path: &#39;/socket.chat&#39;,
+  // serveClient 是否相应客户端请求
+  serveClient: true,
+  // transports 数组的前后顺序关系到socket创建实例，此处优先创建 ws    默认值为 [&#39;polling&#39;, &#39;websocket&#39;]
+  transports: [&#39;websocket&#39;, &#39;polling&#39;]
+});
+
+const connections = [];
+
+io.sockets.on(&#39;connect&#39;, function (socket) {
+  connections.push(socket);
+  io.sockets.emit(&#39;userCount&#39;, { msg: connections.length })
+  console.log(&#39;connected &gt;&gt;&gt; [ %s ] online, [ %s ]&#39;, connections.length, new Date())
+
+  socket.on(&#39;disconnect&#39;, function (data) {
+    connections.splice(connections.indexOf(socket), 1);
+    console.log(&#39;disconnect &gt;&gt;&gt; [ %s ] online&#39;, connections.length);
+    delete socket;
+  })
+})
+
+console.log(`Server running on prot ${process.env.PORT || 4000}`);
+// 启动
+$ nodemon App.js</code></pre><p><strong>客户端</strong></p>
+<p>使用 <code>create-react-app</code>创建项目，并安装 <code>socket.io</code></p>
+<pre><code>// 客户端代码
+import React, { useMemo, useEffect } from &#39;react&#39;
+import styles from &#39;./index.module.scss&#39;
+import io from &#39;socket.io-client&#39;;
+export default props =&gt; {
+    // 注意此处必须要使用useMemo来创建socket对象，
+    // 否则组件的State每改变一次，都会创建一个新的socket对象，而导致连接数不断增加
+    const socket = useMemo(() =&gt; {
+        // http://localhost:4000 对应的是服务器地址
+        return io(&#39;http://localhost:4000&#39;, {
+            // 对应服务器的path
+            path: &#39;/socket.chat&#39;,
+            // 默认值为 [ &#39;polling&#39; ]
+            transports: [&#39;websocket&#39;]
+        });
+    }, [])
+
+    useEffect(() =&gt; {
+        socket.on(&#39;connect&#39;, () =&gt; {
+            socket.connected ? console.log(&#39;已连接...&#39;) : console.error(&#39;连接失败&#39;);
+        });
+    }, [socket])
+    return &lt;div&gt;&lt;/div&gt;
+}
+// 启动项目
+$ npm start
+// 输入localhost:3000</code></pre><p>若连接成功，则显示</p>
+<p><img src="https://howlcn1997.github.io/2019/11/12/React%20+%20socket.io%20%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E8%81%8A%E5%A4%A9%E5%AE%A4/%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5.png" srcset="/study.github.io/img/loading.gif" alt="建立连接"></p>
+<p>浏览器新开一个标签页，后再输入 <code>localhost:3000</code></p>
+<p><img src="https://howlcn1997.github.io/2019/11/12/React%20+%20socket.io%20%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E8%81%8A%E5%A4%A9%E5%AE%A4/%E5%BB%BA%E7%AB%8B%E9%93%BE%E6%8E%A52.png" srcset="/study.github.io/img/loading.gif" alt="建立链接2"></p>
+<p>若其他设备与本机在同一局域网下时，输入本机对应局域网 ip 地址加端口号，也可以连接到服务器而建立链接。</p>
+<h2 id="第二步、发送消息并在各设备间同步"><a href="#第二步、发送消息并在各设备间同步" class="headerlink" title="第二步、发送消息并在各设备间同步"></a>第二步、发送消息并在各设备间同步</h2><p><strong>服务端</strong></p>
+<pre><code>const io = require(&#39;socket.io&#39;)(4000, {
+    path: &#39;/socket.chat&#39;,
+    serveClient: true,
+    transports: [&#39;websocket&#39;, &#39;polling&#39;]
+});
+const connections = [];
+
+io.sockets.on(&#39;connect&#39;, function (socket) {
+    connections.push(socket);
+    console.log(&#39;connected &gt;&gt;&gt; [ %s ] online, [ %s ]&#39;, connections.length, new Date())
+
+    socket.on(&#39;disconnect&#39;, function (data) 
+              connections.splice(connections.indexOf(socket), 1);
+              console.log(&#39;disconnect &gt;&gt;&gt; [ %s ] online&#39;, connections.length);
+    delete socket;
+})
+
+// 设置接收器
+socket.on(&#39;sendMessage&#39;, function (data) {
+    console.log(data)
+    // 接收到消息后，再广播到各个设备
+    io.sockets.emit(&#39;newMessage&#39;, { msg: data })
+})
+})
+
+console.log(`Server running on prot ${process.env.PORT || 4000}`);</code></pre><p><strong>客户端</strong></p>
+<pre><code>import React, { useState, useMemo, useCallback, useEffect } from &#39;react&#39;
+import styles from &#39;./index.module.scss&#39;
+import io from &#39;socket.io-client&#39;;
+export default props =&gt; {
+    const [sendMessage, setSendMessage] = useState(&#39;&#39;);
+    const [receiveMessage, setReceiveMessage] = useState([]);
+
+    const socket = useMemo(() =&gt; {
+        return io(&#39;http://localhost:4000&#39;, {
+            path: &#39;/socket.chat&#39;,
+            transports: [&#39;websocket&#39;]
+        });
+    }, [])
+
+    useEffect(() =&gt; {
+        socket.on(&#39;connect&#39;, () =&gt; {
+            socket.connected ? console.log(&#39;已连接...&#39;) : console.error(&#39;连接失败&#39;);
+        });
+
+
+        socket.on(&#39;disconnect&#39;, () =&gt; {
+            socket.disconnected ? console.log(&#39;已断开链接...&#39;) : console.error(&#39;断开失败&#39;);
+        });
+
+        socket.on(&#39;newMessage&#39;, ({ msg }) =&gt; {
+            setReceiveMessage(state =&gt; ([
+                ...state,
+                msg
+            ]))
+        });
+    }, [socket])
+
+    // 
+    const sendMsg = useCallback((msg) =&gt; {
+        socket.emit(&#39;sendMessage&#39;, { data: msg });
+    }, [socket])
+
+
+    return &lt;div className={styles.wrap}&gt;
+        &lt;div className={styles.chatBox}&gt;
+            {receiveMessage.length &gt; 0 &amp;&amp; receiveMessage.map(item =&gt; &lt;p key={String(Date() + Math.random())}&gt;{item.data}&lt;/p&gt;)}
+        &lt;/div&gt;
+        &lt;div className={styles.chatInput}&gt;
+            &lt;div className={styles.chatInputLeft}&gt;&lt;/div&gt;
+            &lt;div className={styles.chatInputMid}&gt;
+                {/* 将原生 `input`改造成受控组件 */}
+                &lt;input type=&quot;text&quot; className={styles.inputText} value={sendMessage} onChange={(e) =&gt; { setSendMessage(e.target.value) }} placeholder=&quot;请输入...&quot; /&gt;
+            &lt;/div&gt;
+            &lt;button className={styles.chatInputRight} onClick={() =&gt; { sendMsg(sendMessage); setSendMessage(&#39;&#39;); }}&gt;发送&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div &gt;
+}
+// style
+.wrap {
+    height: 100%;
+    background-color: skyblue;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    font-size: 14px;
+    .chatBox {
+        background-color: skyblue;
+    }
+    .chatInput {
+        width: 100%;
+        height: 35px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        &amp;Left {
+            width: 50px;
+            height: 100%;
+        }
+        &amp;Mid {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            .inputText {
+                width: 100%;
+                height: 90%;
+                border: 1px solid #eee;
+                padding: 0px 10px;
+                line-height: 35px;
+            }
+        }
+        &amp;Right {
+            width: 50px;
+            height: 100%;
+            text-align: center;
+            line-height: 35px;
+            background-color: rgb(62, 139, 253);
+            border-radius: 10px;
+            color: #fff;
+        }
+    }
+}</code></pre><h2 id="第三步、添加断开连接功能，各设备之间同步链接数"><a href="#第三步、添加断开连接功能，各设备之间同步链接数" class="headerlink" title="第三步、添加断开连接功能，各设备之间同步链接数"></a>第三步、添加断开连接功能，各设备之间同步链接数</h2><p><strong>服务端</strong></p>
+<pre><code>const io = require(&#39;socket.io&#39;)(4000, {
+    path: &#39;/socket.chat&#39;,
+    serveClient: true,
+    transports: [&#39;websocket&#39;, &#39;polling&#39;]
+});
+
+const connections = [];
+
+io.sockets.on(&#39;connect&#39;, function (socket) {
+    connections.push(socket);
+    io.sockets.emit(&#39;userCount&#39;, { msg: connections.length })
+    console.log(&#39;connected &gt;&gt;&gt; [ %s ] online, [ %s ]&#39;, connections.length, new Date())
+
+    socket.on(&#39;disconnect&#39;, function (data) {
+        connections.splice(connections.indexOf(socket), 1);
+        io.sockets.emit(&#39;userCount&#39;, { msg: connections.length});
+        console.log(connections.length)
+        console.log(&#39;disconnect &gt;&gt;&gt; [ %s ] online&#39;, connections.length);
+        delete socket;
+    })
+
+    socket.on(&#39;sendMessage&#39;, function (data) {
+        console.log(data)
+        io.sockets.emit(&#39;newMessage&#39;, { msg: data })
+    })
+})
+
+
+console.log(`Server running on prot ${process.env.PORT || 4000}`);</code></pre><p><strong>客户端</strong></p>
+<pre><code>import React, { useState, useMemo, useCallback, useEffect } from &#39;react&#39;
+import styles from &#39;./index.module.scss&#39;
+import io from &#39;socket.io-client&#39;;
+import { Link } from &#39;react-router-dom&#39;
+export default props =&gt; {
+
+    const [userCount, setUserCount] = useState(0)
+    const [sendMessage, setSendMessage] = useState(&#39;&#39;);
+    const [receiveMessage, setReceiveMessage] = useState([]);
+
+    const socket = useMemo(() =&gt; {
+        return io(&#39;http://localhost:4000&#39;, {
+            path: &#39;/socket.chat&#39;,
+            // 默认值为 [ &#39;polling&#39; ]
+            transports: [&#39;websocket&#39;]
+        });
+    }, [])
+
+    useEffect(() =&gt; {
+        socket.on(&#39;connect&#39;, () =&gt; {
+            socket.connected ? console.log(&#39;已连接...&#39;) : console.error(&#39;连接失败&#39;);
+        });
+
+
+        socket.on(&#39;disconnect&#39;, () =&gt; {
+            socket.disconnected ? console.log(&#39;已断开链接...&#39;) : console.error(&#39;断开失败&#39;);
+        });
+
+        socket.on(&#39;userCount&#39;, ({ msg }) =&gt; {
+            console.log(&quot;%s 人在线&quot;, msg); // true
+            setUserCount(msg)
+        });
+
+        socket.on(&#39;newMessage&#39;, ({ msg }) =&gt; {
+            setReceiveMessage(state =&gt; ([
+                ...state,
+                msg
+            ]))
+        });
+    }, [socket])
+
+
+    // 断开链接申请
+    const emitDisconnect = useCallback((msg) =&gt; {
+        console.log(&#39;提交断开连接申请&#39;)
+        socket.close();
+    }, [socket])
+
+
+    const sendMsg = useCallback((msg) =&gt; {
+        socket.emit(&#39;sendMessage&#39;, { data: msg });
+    }, [socket])
+
+
+    return &lt;div className={styles.wrap}&gt;
+        &lt;div className={styles.chatBox}&gt;
+            &lt;Link to=&quot;/home&quot; &gt;chat&lt;/Link&gt;
+            &lt;div&gt;{userCount} 人在线&lt;/div&gt;
+            {receiveMessage.length &gt; 0 &amp;&amp; receiveMessage.map(item =&gt; &lt;p key={String(Date() + Math.random())}&gt;{item.data}&lt;/p&gt;)}
+        &lt;/div&gt;
+        &lt;button onClick={() =&gt; { emitDisconnect(&#39;wwww&#39;) }}&gt;注销&lt;/button&gt;
+        &lt;div className={styles.chatInput}&gt;
+            &lt;div className={styles.chatInputLeft}&gt;&lt;/div&gt;
+            &lt;div className={styles.chatInputMid}&gt;
+                &lt;input type=&quot;text&quot; className={styles.inputText} value={sendMessage} onChange={(e) =&gt; { setSendMessage(e.target.value) }} placeholder=&quot;请输入...&quot; /&gt;
+            &lt;/div&gt;
+            &lt;button className={styles.chatInputRight} onClick={() =&gt; { sendMsg(sendMessage); setSendMessage(&#39;&#39;); }}&gt;发送&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div &gt;
+}</code></pre><p>以上三步的完成，可以基本实现一个聊天室的功能了，但是这远远不够。</p>
+<p>接下来会增加更高级的功能，但为了文章简洁，将只会贴出关键性代码。</p>
+<h1 id="待更新"><a href="#待更新" class="headerlink" title="待更新"></a>待更新</h1><ol>
+<li>用户登陆校验</li>
+<li>客户端分组</li>
+</ol>
+<h1 id="思维扩展"><a href="#思维扩展" class="headerlink" title="思维扩展"></a>思维扩展</h1><p>除了可以实现聊天室，也可以实现在线下棋对战等实时对战游戏。</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "React+sockt.io实现简易聊天室&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

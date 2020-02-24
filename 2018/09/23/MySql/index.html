@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>MySql ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期日, 九月 23日 2018, 8:23 早上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    844 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 3 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="1、确保已安装wamp并且启动成功"><a href="#1、确保已安装wamp并且启动成功" class="headerlink" title="1、确保已安装wamp并且启动成功"></a>1、确保已安装wamp并且启动成功</h2><p>详情请见<a href="https://howlcn.github.io/2019/05/12/wamp环境搭建/" target="_blank" rel="noopener">wamp环境搭建</a></p>
+<h2 id="2、下载navicat-premium"><a href="#2、下载navicat-premium" class="headerlink" title="2、下载navicat premium"></a>2、下载navicat premium</h2><p>文件 -&gt; 新建连接</p>
+<p>点击自己新建的链接，新建数据库 字符集uft8 排序规则utf8_bin</p>
+<h2 id="3、在项目文件夹中安装mySQL"><a href="#3、在项目文件夹中安装mySQL" class="headerlink" title="3、在项目文件夹中安装mySQL"></a>3、在项目文件夹中安装mySQL</h2><pre><code>npm init -y
+npm install mysqljs/mysql</code></pre><h2 id="4、在服务器js文件中使用mysql包"><a href="#4、在服务器js文件中使用mysql包" class="headerlink" title="4、在服务器js文件中使用mysql包"></a>4、在服务器js文件中使用mysql包</h2><h3 id="引入mysql包"><a href="#引入mysql包" class="headerlink" title="引入mysql包"></a>引入mysql包</h3><pre><code>const mysql = require(&#39;mysql&#39;);</code></pre><h3 id="创建数据库链接"><a href="#创建数据库链接" class="headerlink" title="创建数据库链接"></a>创建数据库链接</h3><pre><code>const connection = mysql.createConnection({
+    host: &#39;localhost&#39;, //数据库所在的服务器的域名（或ip地址）
+    user: &#39;me&#39;, //登录数据库的账号
+    password: &#39;secret&#39;, //登陆数据库的密码
+    database: &#39;book&#39; //数据库的名称
+});</code></pre><h3 id="执行链接操作"><a href="#执行链接操作" class="headerlink" title="执行链接操作"></a>执行链接操作</h3><pre><code>connection.connect();</code></pre><h3 id="操作数据库"><a href="#操作数据库" class="headerlink" title="操作数据库"></a>操作数据库</h3><p>数据库的操作是异步的</p>
+<pre><code>connection.query(&#39;数据库操作语句&#39;,function(error,results,fields){ //results 数据库语句执行完后的结果
+    if(error) throw error;
+    console.log(&#39;The solution is:&#39;,results[0].solution);
+})</code></pre><h3 id="关闭数据库"><a href="#关闭数据库" class="headerlink" title="关闭数据库"></a>关闭数据库</h3><pre><code>connection.end();</code></pre><h2 id="数据库常用语句"><a href="#数据库常用语句" class="headerlink" title="数据库常用语句"></a>数据库常用语句</h2><p>先给出代码大概框架</p>
+<pre><code>const mysql = require(&#39;mysql&#39;);
+
+const connection = mysql.createConnection({
+    host: &#39;localhost&#39;, //数据库所在的服务器的域名（或ip地址）
+    user: &#39;root&#39;, //登录数据库的账号
+    password: &#39;&#39;, //登陆数据库的密码
+    database: &#39;book&#39; //数据库的名称
+});
+
+connection.connect();
+
+//此处开始进行数据库数据操作**********************之后的代码只有此处不同
+// ？ 是为了给后面的数据进行填充
+let sql = &#39;insert into book set ?&#39;;
+let data = {
+    name: &#39;百年孤独&#39;,
+    author: &#39;加西亚·马尔克斯&#39;
+};
+
+connection.query(sql,data,function(error,results,fields){ //results 数据库语句执行完后的结果 是个对象
+    if(error) throw error;
+    if(results.affectedRows == 1){
+        console.log(&#39;数据插入成功！&#39;);
+    }
+});
+
+//此处结束数据库数据操作************************
+connection.end();</code></pre><h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><pre><code>// ？ 是为了给后面的数据进行填充
+let sql = &#39;insert into book set ?&#39;;
+let data = {
+    name: &#39;百年孤独&#39;,
+    author: &#39;加西亚·马尔克斯&#39;
+};
+connection.query(sql,data,function(error,results,fields){ //results 数据库语句执行完后的结果
+    if(error) throw error;
+    if(results.affectedRows == 1){
+        console.log(&#39;数据插入成功！&#39;);
+    }
+});</code></pre><h3 id="删"><a href="#删" class="headerlink" title="删"></a>删</h3><pre><code>let sql = &#39;delete from book where id=?&#39;;
+let data = [2];
+
+connection.query(sql,data,function(error,results,fields){ //results 数据库语句执行完后的结果
+    if(error) throw error;
+    if(results.affectedRows == 1){
+        console.log(&#39;数据删除成功！&#39;);
+    }
+});</code></pre><h3 id="改"><a href="#改" class="headerlink" title="改"></a>改</h3><pre><code>let sql = &#39;update book set name=?,author=? where id=?&#39;;
+let data = [&#39;红楼梦&#39;,&#39;曹雪芹&#39;,2];
+
+connection.query(sql,data,function(error,results,fields){ //results 数据库语句执行完后的结果
+    if(error) throw error;
+    if(results.affectedRows == 1){
+        console.log(&#39;数据更新成功！&#39;);
+    }
+})</code></pre><h3 id="查"><a href="#查" class="headerlink" title="查"></a>查</h3><pre><code>//let sql = &#39;select * from book&#39;; // * 查询范围是全部数据
+//let data = null;
+
+let sql = &#39;select * from book where id = ?&#39;;  //从所有数据中查询id为？的数据
+let data = [1];
+
+connection.query(sql,data,function(error,results,fields){ //results 数据库语句执行完后的结果
+    if(error) throw error;
+    console.log(results[0].name);
+});</code></pre><p>不难发现对数据的增删改查在代码层面是类似的。</p>
+<h3 id="封装对数据库的操作"><a href="#封装对数据库的操作" class="headerlink" title="封装对数据库的操作"></a>封装对数据库的操作</h3><p>新建一个db.js文件，此js中的代码如下</p>
+<pre><code>const mysql = require(&#39;mysql&#39;);
+
+//当sql是插入操作时，data需要是一个对象
+//当sql是删改查时，data是一个数组数组中的数据与表中的字段顺序要一一对应
+exports.base = (sql,data,callback)=&gt;{
+    const connection = mysql.createConnection({
+        host: &#39;localhost&#39;,
+        user: &#39;root&#39;,
+        password: &#39;&#39;,
+        database: &#39;book&#39;
+    });
+    connection.connect();
+    connection.query(sql,data,function(error,results,fields){
+        if(error) throw error;
+        callback(results);
+    });
+    connection.end();
+}</code></pre>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "MySql&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

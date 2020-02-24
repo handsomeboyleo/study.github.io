@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>MongoDB ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期日, 九月 30日 2018, 10:25 上午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    3.6k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 14 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h1><pre><code>//缓存---&gt;文件---&gt;关系型数据库
+//1.数据保存到内存：
+优点：
+1）读写非常快
+缺点：
+1）程序关闭导致数据丢失
+
+//2.数据保存到文件：
+优点：
+1）数据可以永久保存
+缺点：
+1）频繁地IO操作，效率不高！
+2）数据管理不方便。例如查询某个数据需要全部读取出来，再匹配。
+
+//3.数据保存到数据库软件：
+优点：
+1）数据永久保存下来
+2）数据管理非常方便。（例如查询非常快速和方便）</code></pre><h3 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h3><pre><code>关系型数据库（Mysql和Oracle） ： 表和表、表和字段、数据和数据存在着关系
+
+优点:
+1.数据之间有关系，进行数据的增删改查的时候是非常方便的
+2.关系型数据库是有事务操作的，保证数据的完整性和一致性。
+
+缺点：
+1.因为数据和数据是有关系的，底层是运行了大量的算法。大量算法会降低系统的效率，会降低性能
+2.数据存在硬盘中，面对海量数据的增删改查的时候会显的无能为力，面对海量数据对数据进行维护变得非常的无力
+3.限制字段：比如现在数据库中已经有10万条数据了（在今天10万条都不算大数据），如果想从下一条数据开始增加一些字段，此时之前的10万条数据都需要一同被更改。SQL中，表的字段是不能自由更改的，不能某一个条目有一些字段，另外的条目的没有。
+
+适合处理一般量级的数据（银行转账和钱）
+
+
+Oracle，甲骨文公司的产品。 当前最流行应用最广泛的数据库软件。适合中大型，中大应用。
+SQL Server: 是微软公司的产品。window平台应用非常广泛。和c#，net平台兼容非常好。
+DB2： IBM公司的产品。
+MySQL: 开源组织的产品。甲骨文公司的产品。免费</code></pre><h3 id="非关系型数据库"><a href="#非关系型数据库" class="headerlink" title="非关系型数据库"></a>非关系型数据库</h3><pre><code>非关系数据库的（redis和MangDB）。
+为了处理海量数据，非关系数据库设计之初就是为了替代关系型数据库的
+
+优点：
+1.数据维护在缓存中，海量数据的增删改查和维护和处理非常轻松
+2.非关系型数据库简单易部署，基本都是开源软件
+3.非关系型数据库存储格式是key,value形式、文档形式、图片形式等等，所以可以存储基础类型以及对象或者是集合等各种格式，非常灵活
+
+缺点：
+1.数据和数据没有关系，他们之间就是单独存在的
+2.数据维护在内存中，当有海量数据的时候会非常占内存，而内存的价格会比较高
+
+适合处理海量数据，保证效率，不一定安全（统计数据，例如微博数据）
+
+
+MongoDB
+Redis</code></pre><h3 id="非关系型数据库的分类"><a href="#非关系型数据库的分类" class="headerlink" title="非关系型数据库的分类"></a>非关系型数据库的分类</h3><pre><code>键值类数据库 ： Redis
+
+列存储数据库  :  HBase
+
+文档类数据库  : MongoDB
+
+图形数据库  : Graph</code></pre><h3 id="mongoDB的介绍"><a href="#mongoDB的介绍" class="headerlink" title="mongoDB的介绍"></a>mongoDB的介绍</h3><pre><code>MongoDB是一个高性能、开源、无模式的文档型数据库，设计用于提供高性能、水平可扩性、高可用性和高级可查询性，为Web应用提供可扩展的高性能数据存储解决方案。
+
+MongoDB的名称取自单词”humogous”中间的几个字符，是很大、巨大的意思。该数据库由10gen公司开发并提供技术支持，它属于NoSQL数据库家族中的一员，在许多场景下可以用来替代传统关系型数据库或key/value存储方式。
+MongoDB的设计目标是高性能、可扩展、易部署、易使用，存储数据非常方便。其主要功能特性如下： 
+(1) 面向集合存储，容易存储对象类型的数据。在MongoDB中数据被分组存储在集合中，集合类似RDBMS中的表，一个集合可以存储无限多的文档。 
+(2) 模式自由，采用无模式结构存储。在MongoDB里的集合中，存储的是无模式的文档，采用无模式存储数据是集合(Collection)区别于RDBMS中的表(Table)的一个重要特征。 
+(3) 支持完全索引，可以在任意属性上建立索引，包含内部对象。MongoDB的索引和RDBMS的索引基本一样，可以在指定属性、内部对象上创建索引以提高查询的速度。除此之外，MongoDB还可以提供创建基于地理空间的索引的能力。 
+(4) 支持查询。MongoDB支持丰富的查询操作，MongoDB几乎支持SQL中的大部分查询。 
+(5) 强大的聚合工具。MongoDB除了提供丰富的查询功能外，还提供强大的聚合工具，如count、group等，支持使用MapReduce完成复杂的聚合任务。 
+(6) 支持复制和数据恢复。MongoDB支持主从复制机制，可以实现数据备份、故障恢复、读扩展等功能。而基于副本集的复制机制提供了自动故障恢复的功能，确保了集群数据不会丢失。 
+(7) 使用高效的二进制数据存储，包括大型对象(如视频)。使用二进制格式存储，可以保存任何类型的数据对象。 
+(8) 自动处理分片，以支持云计算层次的扩展。MongoDB支持集群自动切分数据，对数据进行分片可以使集群存储更多的数据，实现更大的负载，也能保证存储的负载均衡。
+      https://cloud.tencent.com/developer/article/1138683
+(9) 支持Perl、PHP、Java、C# 、JavaScript、Ruby、C和C++语言的驱动程序，Mon提供了当前所有主流开发语言的数据库驱动包，开发人员使用任何一种主流开发语言都可以轻松编程，实现访问MongoDB数据库。 
+(10) 文件存储格式为BSON(JSON的一种拓展)。BSON是二进制格式JSON的简称，BSON支持文档和数组的嵌套。 
+(11) 可以通过网络远程访问MongoDB数据库。</code></pre><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>1、安装mongodb数据库 下载链接</p>
+<p> 注意 安装时不要勾选安装图形化界面。</p>
+<p>2、安装NoSQLBooster for MongoDB</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>1、将mongodb安装目录下的bin路径，添加至系统环境变量path中</p>
+<p>2、在c盘根目录下新建data文件夹，在data文件夹中新建db文件夹</p>
+<h2 id="检测"><a href="#检测" class="headerlink" title="检测"></a>检测</h2><p>在cmd下键入</p>
+<pre><code>mongod --version</code></pre><p>若正确显示版本号，则安装配置成功</p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>1.启动MongoDB数据库 会默认使用C:/data/db作为数据存储目录，所以在使用mongod命令之前需要先在c盘中新建一个data目录，在data目录下新建db目录，才能启动成功</p>
+<p>在cmd下键入</p>
+<pre><code>mongod //启动数据库</code></pre><p>在cmd下键入</p>
+<pre><code>mongod --datapath=数据存储目录    //修改mongoDB默认数据存储目录
+mongod –dbpath 数据存储目录  //启动</code></pre><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>在cmd下键入</p>
+<pre><code>mongo   //链接数据库
+exit    //断开链接</code></pre><h2 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h2><p>在cmd下按下</p>
+<pre><code>ctrl + c</code></pre><h2 id="mongo数据库操作"><a href="#mongo数据库操作" class="headerlink" title="mongo数据库操作"></a>mongo数据库操作</h2><h3 id="NoSQLBooster中mongode使用"><a href="#NoSQLBooster中mongode使用" class="headerlink" title="NoSQLBooster中mongode使用"></a>NoSQLBooster中mongode使用</h3><p>才使用mongo之前先给出常用命令</p>
+<pre><code>show dbs        //显示所有的数据库
+use library       //使用某个数据库
+db                 //显示当前使用的数据库
+//向library中的books集合中插入一条数据 (虽然一开始没有library仓库和books集合，但是不妨碍我们使用)
+db.books.insertOne({&quot;name&quot;:&quot;tom&quot;})    
+show  collections    //显示当前library仓库下的所有集合
+db.books.find()   //显示igeek仓库下的books集合中的所有数据
+
+//再插入一条数据
+db.books.insertOne({&quot;name&quot;:&quot;kitty&quot;,&quot;age&quot;:18})
+db.books.find()  
+
+//删除数据库
+db.dropDatabase()
+
+//在当前数据库下创建集合
+db.createCollection(&quot;igeek&quot;)
+
+//删除当前仓库下的igeek集合
+db.igeek.drop()
+
+//插入文档
+db.igeek.insert({name:&quot;hello&quot;})
+
+//删除指定的文档数据
+db.igeek.remove({&#39;name&#39;:&#39;hello&#39;})
+
+//更新文档数据
+db.igeek.update(
+    {name:&quot;hello&quot;},
+    {$set:{name:&quot;xxx&quot;}},
+    {
+        //upsert:true 如果要更新的文档不存在会插入一条新的记录
+        upsert:true,
+        multi:true
+    }
+)
+
+//根据id更新数据
+//save方法有更新和插入两种功能，到底是插入还是更新文档取决于save的参数。
+db.igeek.save({
+    &quot;_id&quot; : ObjectId(&quot;5c09f5deaf853bfb8a003425&quot;),
+    &quot;name&quot; : &quot;kkk&quot;,
+    &quot;tags&quot; : [
+            &quot;mongodb&quot;,
+            &quot;NoSQL&quot;
+    ],
+    &quot;likes&quot; : 110
+})</code></pre><p> <strong>新建链接</strong></p>
+<pre><code>打开NoSQLBooster for MongoDB --&gt; connect --&gt; create --&gt; save &amp; connect</code></pre><p><img src="https://howlcn1997.github.io/2019/03/16/MongoDB/%E5%BB%BA%E7%AB%8B%E9%93%BE%E6%8E%A5.png" srcset="/study.github.io/img/loading.gif" alt="建立链接"></p>
+<p><strong>创建一个数据库并写入一条文件</strong></p>
+<pre><code>use library  //指定使用library数据库  此时db关键字就代表library了
+db.books.insertOne({&quot;name&quot;:&quot;红楼梦&quot;})  //向library数据库中的books集合新增一条数据</code></pre><p><strong>通过NoSQLBooster for MongoDB将文件内容写入数据库</strong></p>
+<pre><code>//1.在桌面创建这个文件，JSON和JSON之间没有逗号：
+{&quot;uname&quot;:&quot;李灵黛&quot;,&quot;age&quot;:12,&quot;sex&quot;:&quot;男&quot;,&quot;provice&quot;:&quot;上海&quot;}
+{&quot;uname&quot;:&quot;柳辰飞&quot;,&quot;age&quot;:13,&quot;sex&quot;:&quot;女&quot;,&quot;provice&quot;:&quot;北京&quot;}
+{&quot;uname&quot;:&quot;江城子&quot;,&quot;age&quot;:17,&quot;sex&quot;:&quot;男&quot;,&quot;provice&quot;:&quot;广东&quot;}
+{&quot;uname&quot;:&quot;萧合凰&quot;,&quot;age&quot;:37,&quot;sex&quot;:&quot;女&quot;,&quot;provice&quot;:&quot;河北&quot;}
+{&quot;uname&quot;:&quot;西粼宿&quot;,&quot;age&quot;:16,&quot;sex&quot;:&quot;男&quot;,&quot;provice&quot;:&quot;广东&quot;}
+{&quot;uname&quot;:&quot;千湄&quot;,&quot;age&quot;:13,&quot;sex&quot;:&quot;女&quot;,&quot;provice&quot;:&quot;广东&quot;}
+{&quot;uname&quot;:&quot;林墨瞳&quot;,&quot;age&quot;:13,&quot;sex&quot;:&quot;女&quot;,&quot;provice&quot;:&quot;吉林&quot;}
+{&quot;uname&quot;:&quot;柳婵诗&quot;,&quot;age&quot;:14,&quot;sex&quot;:&quot;女&quot;,&quot;provice&quot;:&quot;河北&quot;}
+{&quot;uname&quot;:&quot;李念儿&quot;,&quot;age&quot;:19,&quot;sex&quot;:&quot;女&quot;,&quot;provice&quot;:&quot;广东&quot;}
+
+
+//2.运行命令导入数据
+$ mongoimport -d 仓库名 -c 集合名 C:\Users\Danny\Desktop\1.txt
+
+-d参数表示需要往哪个数据库中导入数据
+-c 参数表示需要往哪个集合(表)中导入数据</code></pre><p>在NoSQLBooster for MongoDB中输入命令可以对数据库进行操作，此处不加赘述，仅介绍通过node如何对数据库进行增删改查操作</p>
+<h3 id="node中mongo的使用"><a href="#node中mongo的使用" class="headerlink" title="node中mongo的使用"></a>node中mongo的使用</h3><p> node中对mongo数据库的操作需要用到 mongoose包</p>
+<p> mongoose关于Model给出的关于操作数据的常用API</p>
+<p>首先要创建Model对象，如obb,具体创建过程，下文有述</p>
+<pre><code>///////////////////////////////
+//增 将obb数据对象添加到集合中
+obb.save().then(function(data){
+    //回调刚刚保存的数据对象
+})
+
+//当一个页面发出post保存表单数据到数据库中时的操作
+router.post(&#39;/add&#39;,(req,res)=&gt;{
+    //添加id
+    req.body._id = mongoose.Types.ObjectId();
+    //声明一个Student Model
+    let stu = new Student();
+    //将表单数据浅拷贝到stu Model对象中
+    Object.assign(stu,req.body);
+    //保存
+    stu.save().then(function(){
+        res.redirect(&#39;/student/studentList&#39;);
+    },function(err){
+        res.render(&#39;studentAdd.html&#39;,{err_msg:err.message})
+    });
+});
+
+///////////////////////////////
+//删
+Book.remove({name:&quot;红楼梦&quot;}).then(function(msg){
+    //回调刚刚删除的数据对象
+})
+
+///////////////////////////////
+//改
+//new 默认为false 返回修改之前的数据     true返回修改之后的数据
+Book.findByIdAndUpdata(_id,{要加入数据库的对象},{new:true}).then(function(data){});
+
+///////////////////////////////
+//查
+Book.find();//查询所有数据
+//Book.find().then(function(data){});//中返回的data是封装过的对象，我们要的数据其实是data._doc
+Book.find({ name: &#39;红楼梦&#39;, price: { $gte: 20 }}); //加入查询条件  与
+Book.find({$or:[{name:&#39;三国演义&#39;},{price:{$gte:20}}]); //加入查询条件  或
+Book.findOne(条件);          
+Book.findById();</code></pre><h4 id="1、新建node项目（文件夹）"><a href="#1、新建node项目（文件夹）" class="headerlink" title="1、新建node项目（文件夹）"></a>1、新建node项目（文件夹）</h4><h4 id="2、在项目中安装第三方包-mongoose"><a href="#2、在项目中安装第三方包-mongoose" class="headerlink" title="2、在项目中安装第三方包 mongoose"></a>2、在项目中安装第三方包 mongoose</h4><pre><code>npm init -y
+npm install mongoose</code></pre><h4 id="3-新建js文件（如server-js）"><a href="#3-新建js文件（如server-js）" class="headerlink" title="3.新建js文件（如server.js）"></a>3.新建js文件（如server.js）</h4><h5 id="1）引入mongoose"><a href="#1）引入mongoose" class="headerlink" title="1）引入mongoose"></a>1）引入mongoose</h5><pre><code>const mongoose = require(&#39;mongoose&#39;)；</code></pre><h5 id="2）建立连接"><a href="#2）建立连接" class="headerlink" title="2）建立连接"></a>2）建立连接</h5><pre><code>//mongoose.connect(&#39;mongodb://域名/数据库名&#39;, {useNewUrlParser: true});
+mongoose.connect(&#39;mongodb://localhost:27017/library&#39;, {useNewUrlParser: true});</code></pre><h5 id="3）连接对象的回调"><a href="#3）连接对象的回调" class="headerlink" title="3）连接对象的回调"></a>3）连接对象的回调</h5><pre><code>var db = mongoose.connection;//拿到链接对象
+db.on(&#39;error&#39;, console.error.bind(console, &#39;connection error:&#39;));//
+db.once(&#39;open&#39;, function() {
+  // we&#39;re connected!
+});</code></pre><h5 id="4-创建一个schema"><a href="#4-创建一个schema" class="headerlink" title="4)创建一个schema"></a>4)创建一个schema</h5><p>这个schema是与数据库中表的schema是一一对应的</p>
+<p><strong>这种机制是ORM object relational model 对象关系映射模型</strong></p>
+<pre><code>var bookSchema = new mongoose.Schema({
+  name: String
+  //是否全部借出
+   isLendAll: Boolean
+});</code></pre><p>schema数据类型除了String类型 还有以下几种</p>
+<pre><code>• String
+• Number
+• Date
+• Boolean
+• Buffer   //流，音频 视频等文件可以由此保存
+• ObjectId  // 使用  mongoose.Schema.Types.ObjectId
+• Mixed   //混合数据格式  使用  mongoose.Schema.Types.Mixed
+• Array</code></pre><p>schema数据字段中还可以更细化的限制其取值，例：</p>
+<pre><code>var bookSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        minlength: 1,//规定字符串最小长度
+        maxlenght:10 //规定字符串最大长度
+        match:   //限定字符串格式，正则表达式
+    }String
+    price: {
+    type: Number,
+    min: 0, //限定最小值
+    max: 100 //限定最大值
+}
+    //是否全部借出
+    isLendAll:{
+    type: Boolean,
+    enum: [0,1],  //枚举 用数据限定isLendAll可以取到的值
+    default: 0   //默认值
+}
+});</code></pre><h5 id="5-新建一个model对象"><a href="#5-新建一个model对象" class="headerlink" title="5)新建一个model对象"></a>5)新建一个model对象</h5><p>此时 Book对象 与 数据库中books集合形成一一对应关系，对Book的操作，便是对集合books的操作，接下来的操作都是建立在此基础上的。</p>
+<pre><code>var Book = mongoose.model(&#39;book&#39;, bookSchema); //注意此处创建对象时，model中入参 &#39;book&#39; 时，那么数据库中对应的集合应该以 books 命名，不然无法对响应表进行操作</code></pre><h5 id="查询一条数据"><a href="#查询一条数据" class="headerlink" title="查询一条数据"></a>查询一条数据</h5><pre><code>Book.find({name: &#39;红楼梦&#39;},function(err,arr){  
+    if(err){
+        return;
+    }else{
+        console.log(arr);
+    }
+});
+//打印结果 [ { _id: 5cf3c3f19cad171ee8e202ca, name: &#39;红楼梦&#39; } ]
+//是一个数组  就算只有一条数据 最后得到的数据也是数组</code></pre><h5 id="新增数据"><a href="#新增数据" class="headerlink" title="新增数据"></a>新增数据</h5><pre><code></code></pre><p>最后更新： 2019年09月02日 11:07</p>
+<p>原始链接： <a href="https://howlcn1997.github.io/2019/03/16/MongoDB/" target="_blank" rel="noopener">https://HowlCN1997.github.io/2019/03/16/MongoDB/</a></p>
+<p><a href="https://howlcn1997.github.io/" target="_blank" rel="noopener"><img src="https://howlcn1997.github.io/images/logo.png" srcset="/study.github.io/img/loading.gif" alt="HowlCN">HowlCN</a></p>
+<p><a href="javascript:;">赏</a></p>
+<p><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#MongoDB" target="_blank" rel="noopener">MongoDB</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#关系型数据库" target="_blank" rel="noopener">关系型数据库</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#非关系型数据库" target="_blank" rel="noopener">非关系型数据库</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#非关系型数据库的分类" target="_blank" rel="noopener">非关系型数据库的分类</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#mongoDB的介绍" target="_blank" rel="noopener">mongoDB的介绍</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#安装" target="_blank" rel="noopener">安装</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#配置" target="_blank" rel="noopener">配置</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#检测" target="_blank" rel="noopener">检测</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#启动" target="_blank" rel="noopener">启动</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#链接" target="_blank" rel="noopener">链接</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#关闭" target="_blank" rel="noopener">关闭</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#mongo数据库操作" target="_blank" rel="noopener">mongo数据库操作</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#NoSQLBooster中mongode使用" target="_blank" rel="noopener">NoSQLBooster中mongode使用</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#node中mongo的使用" target="_blank" rel="noopener">node中mongo的使用</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#1、新建node项目（文件夹）" target="_blank" rel="noopener">1、新建node项目（文件夹）</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#2、在项目中安装第三方包-mongoose" target="_blank" rel="noopener">2、在项目中安装第三方包 mongoose</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#3-新建js文件（如server-js）" target="_blank" rel="noopener">3.新建js文件（如server.js）</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#1）引入mongoose" target="_blank" rel="noopener">1）引入mongoose</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#2）建立连接" target="_blank" rel="noopener">2）建立连接</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#3）连接对象的回调" target="_blank" rel="noopener">3）连接对象的回调</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#4-创建一个schema" target="_blank" rel="noopener">4)创建一个schema</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#5-新建一个model对象" target="_blank" rel="noopener">5)新建一个model对象</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#查询一条数据" target="_blank" rel="noopener">查询一条数据</a><a href="https://howlcn1997.github.io/2019/03/16/MongoDB/#新增数据" target="_blank" rel="noopener">新增数据</a></p>
+<p>[vue中路由跳转view却不更新的问题与解决办法](<a href="https://howlcn1997.github.io/2019/05/05/vue中路由跳转" target="_blank" rel="noopener">https://howlcn1997.github.io/2019/05/05/vue中路由跳转</a> view不发生更新的问题/)<a href="https://howlcn1997.github.io/2019/03/15/MySQL/" target="_blank" rel="noopener">MySQL</a></p>
+<p>总访客数：117 总访问量：717</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "MongoDB&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

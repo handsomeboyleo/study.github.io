@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>正则表达式 ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期日, 一月 20日 2019, 9:29 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    2.4k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 10 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p>正则就是对字符串进行查找、匹配、替换等操作的一串“规则字符串”</p>
+<p>使用方法：在一对斜杠之间添加正则表达式 如：<strong>/</strong> 正则表达式 <strong>/</strong></p>
+<h2 id="正则表达式的组成"><a href="#正则表达式的组成" class="headerlink" title="正则表达式的组成"></a>正则表达式的组成</h2><ul>
+<li>普通字符</li>
+<li>特殊字符（元字符）：正则表达式中具有特殊意义的字符</li>
+</ul>
+<h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><table>
+<thead>
+<tr>
+<th align="center"><strong>\d</strong></th>
+<th align="center"><strong>表示数字</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>\D</strong></td>
+<td align="center"><strong>非数字</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>\s</strong></td>
+<td align="center"><strong>空格符</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>\S</strong></td>
+<td align="center"><strong>非空格符</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>\w</strong></td>
+<td align="center"><strong>字母或数字或下划线</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>\W</strong></td>
+<td align="center"><strong>非字母、数字、下划线</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>.</strong></td>
+<td align="center"><strong>任意字符（不包含换行符）</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>\b</strong></td>
+<td align="center"><strong>单词边界</strong></td>
+</tr>
+</tbody></table>
+<p>实例1:</p>
+<pre><code>var reg = /\d/; //新建一个正则对象
+ var str = &#39;1&#39;;
+console.log(reg.test(str)); //true  str中含有数字
+//test()是正则对象中的一个方法，它会判断str是否满足正则表达式，返回boolean</code></pre><h2 id="限定符"><a href="#限定符" class="headerlink" title="限定符"></a>限定符</h2><p>限定之前表达式出现的次数</p>
+<table>
+<thead>
+<tr>
+<th align="center">*****</th>
+<th align="center"><strong>重复0次或多次</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>+</strong></td>
+<td align="center"><strong>重复1次或多次</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>？</strong></td>
+<td align="center"><strong>重复0次或1次</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>{n}</strong></td>
+<td align="center"><strong>重复n次 (连续)</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>{n,}</strong></td>
+<td align="center"><strong>重复至少n次 (连续)</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>{n,m}</strong></td>
+<td align="center"><strong>重复n到m次 (连续)</strong></td>
+</tr>
+</tbody></table>
+<pre><code>var reg = /\d*/;
+console.log(reg.test(&#39;w&#39;));//true
+console.log(reg.test(&#39;12&#39;));//true
+var reg = /\d+/;
+console.log(reg.test(&#39;w&#39;));//false
+console.log(reg.test(&#39;12&#39;));//true
+var reg = /\d?/;
+console.log(reg.test(&#39;w&#39;));//true
+console.log(reg.test(&#39;12&#39;));//true
+console.log(reg.test(&#39;w12&#39;));//true
+
+//这里12出现了两次，不满足“重复0次或1次”的条件为什么显示为true呢？
+//当执行test()时，只要字符串中有部分满足条件则返回true）
+//解决办法var reg = /^\d?$/;  加上开始结束符（后面会介绍）
+var reg = /\d{2}/;//{n}
+console.log(reg.test(&#39;2&#39;));//false
+console.log(reg.test(&#39;23&#39;));//true
+console.log(reg.test(&#39;2w3&#39;));//false  不连续时匹配失败
+console.log(reg.test(&#39;234&#39;));//true  (理应为false)原因同上
+console.log(reg.test(&#39;ab234&#39;));//true  (理应为false)原因同上  解决办法同上
+var reg = /\d{2,}/;//{n,}  //同样存在以上问题
+var reg = /\d{2,6}/;//{n,m}  //同样存在以上问题</code></pre><h2 id="范围符"><a href="#范围符" class="headerlink" title="范围符[ ]"></a>范围符[ ]</h2><p>1、[a-z]、[A-Z]、[0-9],也可以综合写成[a-zA-Z0-9]；当然这范围是自己定义的，比如[a-b]，范围是a到b。</p>
+<p>2、[\u4e00-\u9fa5] 匹配汉字的范围 其中\u4e00，\u9fa5是中日韩汉字Unicode表中对应的编码 4e00对应“一” 9fa5对应“龥”</p>
+<p><a href="http://www.chi2ko.com/tool/CJK.htm" target="_blank" rel="noopener">中日韩汉字Unicode表</a></p>
+<p>3、[ab5&amp;@],仅匹配 a 或 b 或 5 或 &amp; 或 @</p>
+<p>4、<strong>[^ab5&amp;@]</strong> 匹配除 a 或 b 或 5 或 &amp; 或 @之外的内容 （注意此处^是在[ ]内的，<strong>区别于开始符^</strong>,两者所处位置不同）</p>
+<p>5、3 | a 匹配3或者a字符</p>
+<h2 id="开始结束符号"><a href="#开始结束符号" class="headerlink" title="开始结束符号"></a>开始结束符号</h2><table>
+<thead>
+<tr>
+<th align="center"><strong>^</strong></th>
+<th align="center"><strong>开始符（强制规定匹配开始的地方）</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>$</strong></td>
+<td align="center"><strong>结束符（强制规定匹配结束的地方）</strong></td>
+</tr>
+</tbody></table>
+<p>实例：</p>
+<pre><code>^\d 字符串要以数字开始，数字只能出现一次
+\d$  字符串要以数字结束，数字只能出现一次
+^\d$  字符串要以数字开始和结束，数字只能出现一次
+
+\d+$  字符串要以数字开始，以数字结束，数字只能出现一次
+
+^\d?$  字符串要以数字开头和结束，数字出现0次或1次</code></pre><p>我们来解释 <strong>var reg = /\d?/;</strong> 例子中出现的问题</p>
+<pre><code>var reg = /\d?/;
+console.log(reg.test(&#39;w&#39;));//true
+console.log(reg.test(&#39;12&#39;));//开始检测，当检测到 1 时，因为满足了数字出现0次，匹配成功，返回true，此时结束位置在1和2之间
+
+//加入开始结束符
+var reg = /^\d?$/;
+console.log(reg.test(&#39;w&#39;));//true
+console.log(reg.test(&#39;12&#39;));//当加入开始结束字符后，开始匹配位置强制从1开始 2结束
+//则12是由两个数字的  不符合“重复0次或1次”的条件，则为false</code></pre><p>我们来解释 <strong>var reg = /\d{2}/;</strong> 例子中出现的问题</p>
+<pre><code>var reg = /\d{2}/;//{n}
+console.log(reg.test(&#39;2&#39;));//false
+console.log(reg.test(&#39;23&#39;));//true
+console.log(reg.test(&#39;234&#39;));//true  开始字符为2  结束字符为3
+console.log(reg.test(&#39;ww234&#39;));//true 开始字符为2  结束字符为3
+
+var reg = /^\d{2}$/;//{n}
+console.log(reg.test(&#39;2&#39;));//false
+console.log(reg.test(&#39;23&#39;));//true
+console.log(reg.test(&#39;234&#39;));//false  开始字符为2  结束字符为4
+console.log(reg.test(&#39;ab234&#39;));//false 开始字符为a  结束字符为4</code></pre><h2 id="正则对象的创建方式"><a href="#正则对象的创建方式" class="headerlink" title="正则对象的创建方式"></a>正则对象的创建方式</h2><h3 id="1、new-RegExp"><a href="#1、new-RegExp" class="headerlink" title="1、new RegExp()"></a>1、new RegExp()</h3><p>RegExp(reg,msg) 参数一：正则表达式</p>
+<p> 参数二：附加条件（如：i 忽略大小写，g 全局匹配）</p>
+<p>实例：</p>
+<pre><code>var reg = new RegExp(&#39;\\w+&#39;,&#39;ig&#39;);  //注意，此处第一个\是转义字符，因为参数一不能直接传入正则表达式
+var reg = new RegExp(&#39;[a-z]&#39;,&#39;ig&#39;);
+var str = &quot;AaaC2_&quot;;
+console.log(reg.test(str));//true</code></pre><h3 id="2、简写"><a href="#2、简写" class="headerlink" title="2、简写"></a>2、简写</h3><pre><code>var reg = /[a-z]/ig;
+var str = &quot;AaaC2_&quot;;
+console.log(reg.test(str));//true</code></pre><h2 id="正则对象的方法"><a href="#正则对象的方法" class="headerlink" title="正则对象的方法"></a>正则对象的方法</h2><p>RegExp.test(‘字符串’); 判断字符串知否满足正则表达式 返回布尔值</p>
+<p>RegExp.exec(‘字符串’); 判断字符串知否满足正则表达式 将找到的内容以数组的形式返回</p>
+<p>1、不使用 “<code>g</code>“ 标志时,每次都返回第一个找的内容 而不继续向后查找</p>
+<p>2、当正则表达式使用 “<code>g</code>“ 标志时，可以多次执行 <code>exec</code> 方法来查找同一个字符串中的成功匹配。当你这样做时，查找将从正则表达式的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastIndex" target="_blank" rel="noopener"><code>lastIndex</code></a> 属性指定的位置开始</p>
+<p><strong>lastIndex</strong>:</p>
+<p>只有正则表达式使用了表示全局检索的 “<code>g</code>“ 标志时，该属性才会起作用。此时应用下面的规则：</p>
+<ul>
+<li>如果 <code>lastIndex</code> 大于字符串的长度，则 <code>regexp.test</code> 和 <code>regexp.exec</code> 将会匹配失败，然后 <code>lastIndex</code> 被设置为 0。</li>
+<li>如果 <code>lastIndex</code> 等于字符串的长度，且该正则表达式匹配空字符串，则该正则表达式匹配从 <code>lastIndex</code> 开始的字符串。（then the regular expression matches input starting at <code>lastIndex</code>.）</li>
+<li>如果 <code>lastIndex</code> 等于字符串的长度，且该正则表达式不匹配空字符串 ，则该正则表达式不匹配字符串，<code>lastIndex</code> 被设置为 0.。</li>
+<li>否则，<code>lastIndex</code> 被设置为紧随最近一次成功匹配的下一个位置。</li>
+</ul>
+<p>实例：</p>
+<pre><code>//找出所有三个英文字母组成的  并且以A开头的单词
+var str = &#39;Asd Asss wes sgetgs x Adv Wdf&#39;;
+var reg = /\bA[A-Za-z]{2}\b/g;
+console.log(reg.lastIndex);//初始值为0
+var word = reg.exec(str);//￥1￥
+console.log(reg.lastIndex);//3
+while(word){
+    console.log(word);
+    word = reg.exec(str);//￥2￥
+    console.log(reg.lastIndex);
+}
+onsole.log(word);//null
+console.log(reg.lastIndex);//0</code></pre><p>该函数运行的实质：exec每一次执行都有开始位置，而这个开始位置是由RegExp对象的lastIndex属性值所决定的；</p>
+<p>以下为该段代码的执行顺序与解析：</p>
+<pre><code>1、reg.lastIndex 的初始值为0
+
+2、执行￥1￥处的exec时，当前的lastIndex数值为0，则exec从字符串的0位置（即A字符）开始。执行结束，将**所找的字符串**（Asd）以数组的形式返回给word，并修改reg.lastIndex的值为&quot; **所找到的字符串最后一个的位置的下一个位置** &quot;（也就是d下标加一，为3），
+
+3、执行while循环，word此时为[Asd]数组，while语句判断成功
+
+4、执行￥2￥处的exec，此时reg.lastIndex为3，则从字符串中下标为3的字符开始执行，找到 &quot;Adv&quot;,  v的下标为24，则reg.lastIndex的值被设置为25，word此时为[Adv]数组
+
+5、判断while 成功
+
+6、执行￥2￥处的exec，此时reg.lastIndex为25，则从字符串中下标为25的字符开始执行，未找到满足条件的内容，则返回null给word，并将reg.lastIndex设为0；
+
+7、判断while,此时word为null，判断失败，则跳出循环
+
+8、程序结束</code></pre><h2 id="懒惰模式与贪婪模式"><a href="#懒惰模式与贪婪模式" class="headerlink" title="懒惰模式与贪婪模式"></a>懒惰模式与贪婪模式</h2><p>懒惰模式：在满足条件的前提下，尽可能<strong>少</strong>的匹配字符</p>
+<p>贪婪模式：在满足条件的前提下，尽可能<strong>多</strong>的匹配字符</p>
+<p>正则表达式的量词有：* + ？ {}</p>
+<p>量词默认是贪婪模式，当在量词之后加上?时，将贪婪模式转换为懒惰模式。</p>
+<h2 id="分组提取"><a href="#分组提取" class="headerlink" title="分组提取"></a>分组提取</h2><p>正则中（）表示分组</p>
+<p>若存在</p>
+<pre><code>((((a))((b)))(c))</code></pre><p>则第一组；(((a))((b)))(c)</p>
+<p>第二组：((a))</p>
+<p>第三组：(a)</p>
+<p>第四组：(b)</p>
+<p>第五组：(c)</p>
+<p>找法：从左往右找左括号(</p>
+<p>实例：</p>
+<pre><code>var reg = /((\d+)(\w+))/;
+var str = &quot;123abc_c&quot;
+if(reg.test(str)){
+    //$后的数字 类似数组的下标
+    console.log(RegExp.$1);//获得第一组(\d+)(\w+)的内容  则是123abc_c
+    console.log(RegExp.$2);//获得第二组(\d+)的内容  则是123
+    console.log(RegExp.$3);//获得第二组(\w+)的内容  则是abc_c
+}</code></pre><h2 id="字符串中正则的使用"><a href="#字符串中正则的使用" class="headerlink" title="字符串中正则的使用"></a>字符串中正则的使用</h2><p>方法：</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>String.match(正则对象)</strong></th>
+<th align="center"><strong>返回符合正则条件的集合</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>String.replace(正则对象,”替换的字符串”)</strong></td>
+<td align="center"><strong>替换字符串，若要全局替换，正则对象要加g</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>String.search(正则对象)</strong></td>
+<td align="center"><strong>查找字符串，返回查找内容的第一次出现的位置</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>String.split(正则对象)</strong></td>
+<td align="center"><strong>切割字符串，返回切割后的数组</strong></td>
+</tr>
+</tbody></table>
+<pre><code>//match
+var str=&quot;abc123ee23f90&quot;;
+//将字符串中所有出现的每一个数字提取出来
+var arr =  str.match(/\d/g);
+console.log(arr);
+//将字符串中所有出现的连续的数字提取出来
+var arr =  str.match(/\d+/g);
+console.log(arr);
+//replace
+//替换所有 - +
+var str = &quot;a-b-+b-c&quot;;
+console.log(str.replace(/-|\+/g,&quot;*&quot;));//结果a*b**b*c
+//若不加g  则结果为a*b-+b-c
+//search
+//忽略大小写  找到第一个b的下标
+var str = &quot;a-b-b-c&quot;;
+console.log(str.search(/B/i));//结果2
+//split
+var str=&quot;a|b|c|&quot;;
+console.log(str.split(/\|/));//结果  &quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;&quot;</code></pre>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "正则表达式&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

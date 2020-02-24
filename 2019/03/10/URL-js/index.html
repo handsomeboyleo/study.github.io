@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>URL.js ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期日, 三月 10日 2019, 10:17 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    2.4k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 13 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="URI-js"><a href="#URI-js" class="headerlink" title="URI.js"></a>URI.js</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>URI.js是一个用于处理URL的JavaScript库。可以对URI进行解析， 它提供了一个 jQuery风格 API（Fluent Interface，Method Chaining）来读写所有常规组件和一些方便的方法，如.directory（）和.authority（）。</p>
+<p>URI.js提供了简单但强大的查询字符串处理方式，具有许多URI规范化函数并转换相对/绝对路径。</p>
+<p>而URI.js提供了一个jQuery插件。 URI.js本身不依赖于 jQuery 。 您不需要jQuery来使用URI.js</p>
+</blockquote>
+<h2 id="API示例"><a href="#API示例" class="headerlink" title="API示例"></a>API示例</h2><pre><code>URI(&quot;http://example.org/foo.html?hello=world&quot;)
+    .username(&quot;rodneyrehm&quot;)
+// -&gt; http://rodneyrehm@example.org/foo.html?hello=world
+    .username(&quot;&quot;)
+// -&gt; http://example.org/foo.html?hello=world
+    .directory(&quot;bar&quot;)
+// -&gt; http://example.org/bar/foo.html?hello=world   添加路径
+    .suffix(&quot;xml&quot;)
+// -&gt; http://example.org/bar/foo.xml?hello=world    添加后缀
+    .query(&quot;&quot;)
+// -&gt; http://example.org/bar/foo.xml                添加查询条件
+    .tld(&quot;com&quot;)
+// -&gt; http://example.com/bar/foo.xml                修改域名后缀
+    .query({ foo: &quot;bar&quot;, hello: [&quot;world&quot;, &quot;mars&quot;] });
+// -&gt; http://example.com/bar/foo.xml?foo=bar&amp;hello=world&amp;hello=mars
+
+// 简化
+URI(&quot;?&amp;foo=bar&amp;&amp;foo=bar&amp;foo=baz&amp;&quot;)
+    .normalizeQuery();
+// -&gt; ?foo=bar&amp;foo=baz
+
+// 获取相对路径
+URI(&quot;/foo/bar/baz.html&quot;)
+    .relativeTo(&quot;/foo/bar/world.html&quot;);
+// -&gt; ./baz.html
+
+// 获取绝对路径
+URI(&quot;/foo/bar/baz.html&quot;)
+    .relativeTo(&quot;/foo/bar/sub/world.html&quot;)
+// -&gt; ../baz.html
+    .absoluteTo(&quot;/foo/bar/sub/world.html&quot;);
+// -&gt; /foo/bar/baz.html
+
+// uri模板
+URI.expand(&quot;/foo/{dir}/{file}&quot;, {
+    dir: &quot;bar&quot;,
+    file: &quot;world.html&quot;
+});
+// -&gt; /foo/bar/world.html</code></pre><h2 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h2><h3 id="新建"><a href="#新建" class="headerlink" title="新建"></a>新建</h3><pre><code>var uri = new URI(); //相当于 new URI(location.href)
+var uri = new URI(&quot;http://example.org&quot;); //新建一个uri
+var uri = new URI(new URI(&quot;http://example.org&quot;)); //clone一个uri
+var uri = new URI(&quot;http://example.org&quot;).clone(); //clone一个uri
+var uri = new URI({
+    protocol: &quot;http&quot;, // no trailing :
+    username: &quot;user&quot;,
+    password: &quot;pass&quot;,
+    hostname: &quot;example.org&quot;,
+    port: &quot;80&quot;, // 这里是string，不是数字
+    path: &quot;/foo/bar.html&quot;,  
+    query: &quot;foo=bar&amp;bar=baz&quot;, // 注意，是&quot;query&quot;，不是&quot;search&quot;，而且，不要在前面加&quot;?&quot;
+    fragment: &quot;frag&quot; // 注意，是&quot;fragment&quot;，不是&quot;hash&quot;，而且，不要在前面加&quot;#&quot;
+}); //用对象方式新建uri
+
+var parts = {
+    protocol: &quot;http&quot;,
+    username: null,
+    password: null,
+    hostname: &quot;example.org&quot;,
+    port: null,
+    path: &quot;/foo.html&quot;,
+    query: null,
+    fragment: null
+};
+URI.build(parts) === &quot;http://example.org/foo.html&quot;;
+
+var parts = {
+    username: &quot;user&quot;,
+    password: &quot;pass&quot;,
+    hostname: &quot;example.org&quot;,
+    port: &quot;8080&quot;
+};
+URI.buildAuthority(parts) === &quot;user:pass@example.org:8080&quot;;
+
+var parts = {
+    username: &quot;user&quot;,
+    password: &quot;pass&quot;
+};
+URI.buildUserinfo(parts) === &quot;user:pass@&quot;;
+
+var parts = {
+    hostname: &quot;example.org&quot;,
+    port: &quot;8080&quot;
+};
+URI.buildHost(parts) === &quot;example.org:8080&quot;;
+
+var data = {
+    foo: &quot;bar&quot;,
+    hello: [&quot;world&quot;, &quot;mars&quot;, &quot;mars&quot;],
+    bam: &quot;&quot;,
+    yup: null,
+    removed: undefined
+};
+// 注意，默认情况下，同一个键相同的值会被合并
+URI.buildQuery(data) === &quot;foo=bar&amp;hello=world&amp;hello=mars&amp;bam=&amp;yup&quot;;
+// 调用时传入true则会保留相同的值
+URI.buildQuery(data, true) === &quot;foo=bar&amp;hello=world&amp;hello=mars&amp;hello=mars&amp;bam=&amp;yup&quot;;</code></pre><h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><pre><code>var uri = new URI(&quot;http://user:pass@example.org:80/foo/hello.html&quot;);
+uri.href() === &quot;http://user:pass@example.org:80/foo/hello.html&quot;;
+uri.toString() === &quot;http://user:pass@example.org:80/foo/hello.html&quot;;
+uri.protocol(); // &quot;http&quot;，protocol()别名为scheme()
+uri.username(); // &quot;user&quot;
+uri.password(); // &quot;pass&quot;
+uri.hostname(); // &quot;example.org&quot;，注意，hostname()返回的hostname不包含port
+uri.port(); // &quot;80&quot;
+uri.host(); // &quot;example.org:80&quot;
+uri.userinfo(); // &quot;user:pass&quot;，即username+password
+uri.authority(); // &quot;user:pass@example.org:80&quot;，即username+password+hostname+port
+uri.origin(); // &quot;http://user:pass@example.org:80&quot;，即protocol+authority
+uri.domain(); // &quot;example.org&quot;。如果url是“www.example.org”，那么hostname为“www.example.org”，而domain为“example.org”
+uri.subdomain(); // &quot;&quot;，如果url是“www.example.org”，那么返回&quot;www&quot;
+uri.tld(); // &quot;org&quot;
+uri.pathname(); // &quot;/foo/hello.html&quot;，pathname()别名为path()
+uri.directory(); // &quot;/foo&quot; 结尾没斜杠
+//关于特殊字符有以下情况
+//uri.directory(&quot;/hello world/&quot;);
+//uri.directory() === &quot;/hello%20world&quot;;
+//uri.directory(true) === &quot;/hello world&quot;;
+uri.filename(); // &quot;hello.html&quot; 开头没斜杠
+//关于特殊字符有以下情况
+//uri.filename(&quot;hello world.html&quot;);
+//uri.filename() === &quot;hello%20world.html&quot;;
+//uri.filename(true) === &quot;hello world.html&quot;;
+uri.suffix(); // &quot;html&quot; 开头没“.”
+//关于特殊字符有以下情况
+//uri.suffix(&quot;würgh&quot;);
+//uri.suffix() === &quot;w%C3%BCrgh&quot;;
+//uri.suffix(true) === &quot;würgh&quot;;
+uri.segment(); // 返回[&quot;foo&quot;, &quot;hello.html&quot;]，表示路径的directory
+//uri.segment([&quot;foo&quot;, &quot;bar&quot;, &quot;foobar.html&quot;]); // 将路径设置为http://user:pass@example.org:80/foo/bar/foobar.html
+uri.segment(0); // 返回&quot;foo&quot;
+uri.segmentCoded(); // 返回[&quot;foo&quot;, &quot;hello.html&quot;]，功能与segment相同，只是会在返回结果时自动解码
+
+var result = URI.parse(&quot;http://example.org/foo.html&quot;);
+result === {
+    protocol: &quot;http&quot;,
+    username: null,
+    password: null,
+    hostname: &quot;example.org&quot;,
+    port: null,
+    path: &quot;/foo.html&quot;,
+    query: null,
+    fragment: null
+};
+
+var parts = {};
+var result = URI.parseAuthority(&quot;user:pass@example.org:8080/foo.html&quot;, parts);
+result === &quot;/foo.html&quot;;
+parts === {
+    username: &quot;user&quot;,
+    password: &quot;pass&quot;,
+    hostname: &quot;example.org&quot;,
+    port: &quot;8080&quot;
+};
+
+var parts = {};
+var result = URI.parseUserinfo(&quot;user:pass@example.org:8080/foo.html&quot;, parts);
+result === &quot;example.org:8080/foo.html&quot;;
+parts === {
+    username: &quot;user&quot;,
+    password: &quot;pass&quot;
+};
+
+var parts = {};
+var result = URI.parseHost(&quot;example.org:8080/foo.html&quot;, parts);
+result === &quot;/foo.html&quot;;
+parts === {
+    hostname: &quot;example.org&quot;,
+    port: &quot;8080&quot;
+};
+
+var result = URI.parseQuery(&quot;?foo=bar&amp;hello=world&amp;hello=mars&amp;bam=&amp;yup&quot;);
+result === {
+    foo: &quot;bar&quot;,
+    hello: [&quot;world&quot;, &quot;mars&quot;],
+    bam: &quot;&quot;,
+    yup: null
+};</code></pre><h3 id="参数解析"><a href="#参数解析" class="headerlink" title="参数解析"></a>参数解析</h3><h4 id="附带参数解析"><a href="#附带参数解析" class="headerlink" title="? 附带参数解析"></a><code>?</code> 附带参数解析</h4><pre><code>var uri = new URI(&quot;http://example.org/foo/hello.html?foo=bar&amp;bar=baz&quot;);
+uri.search(); // 返回&quot;?foo=bar&amp;bar=baz&quot;，以&quot;?&quot;开头
+uri.query(); // 返回&quot;foo=bar&amp;bar=baz&quot;
+uri.search(true); // 返回{ foo: &quot;bar&quot;, bar : &quot;baz&quot; }</code></pre><h4 id="附带参数"><a href="#附带参数" class="headerlink" title="#附带参数"></a><code>#</code>附带参数</h4><pre><code>var uri = new URI(&quot;http://example.org/foo/hello.html#world&quot;);
+uri.hash(); // 返回&quot;#world&quot;，以&quot;#&quot;开头
+uri.fragment(); // 返回&quot;world&quot;</code></pre><h4 id="附带参数地修改"><a href="#附带参数地修改" class="headerlink" title="?附带参数地修改"></a><code>?</code>附带参数地修改</h4><blockquote>
+<p>setSearch 是 setQuery 的别称</p>
+</blockquote>
+<pre><code>var uri = new URI(&quot;?hello=world&quot;);
+uri.setSearch(&quot;hello&quot;, &quot;mars&quot;); // 返回一个uri，uri内容为&quot;?hello=mars&quot;
+uri.setSearch({ foo: &quot;bar&quot;, goodbye : [&quot;world&quot;, &quot;mars&quot;] });
+// 返回一个uri，uri内容为&quot;?hello=mars&amp;foo=bar&amp;goodbye=world&amp;goodbye=mars&quot;
+uri.setSearch(&quot;goodbye&quot;, &quot;sun&quot;);// 返回一个uri，uri内容为&quot;?hello=mars&amp;foo=bar&amp;goodbye=sun&quot;
+
+uri = new URI(&quot;?hello=world&quot;);
+uri.addSearch(&quot;hello&quot;, &quot;mars&quot;); // 返回一个uri，uri内容为&quot;?hello=world&amp;hello=mars&quot;
+uri.addSearch({ foo: &quot;bar&quot;, goodbye : [&quot;world&quot;, &quot;mars&quot;] });
+// 返回一个uri，uri内容为&quot;?hello=world&amp;hello=mars&amp;foo=bar&amp;goodbye=world&amp;goodbye=mars&quot;
+uri.addSearch(&quot;no-value&quot;);
+//返回一个uri，uri内容为&quot;?hello=world&amp;hello=mars&amp;foo=bar&amp;goodbye=world&amp;goodbye=mars&amp;no-value&quot;
+
+uri = new URI(&quot;?hello=world&amp;hello=mars&amp;foo=bar&quot;);
+uri.removeSearch(&quot;hello&quot;); // 返回一个uri，uri内容为&quot;?foo=bar&quot;
+uri.search(&quot;?hello=world&amp;hello=mars&amp;foo=bar&quot;);
+uri.removeSearch(&quot;hello&quot;, &quot;world&quot;); // 返回一个uri，uri内容为&quot;?hello=mars&amp;foo=bar&quot;
+
+uri.search(&quot;?hello=world&amp;hello=mars&amp;foo=bar&amp;mine=true&quot;);
+uri.removeSearch([&quot;hello&quot;, &quot;foo&quot;]); // 返回一个uri，uri内容为&quot;?mine=true&quot;
+
+uri.search(&quot;?hello=world&amp;hello=mars&amp;foo=bar&amp;mine=true&amp;a=1&amp;a=2&amp;a=3&quot;);
+uri.removeSearch({hello: &quot;world&quot;, foo: undefined, a: [&quot;1&quot;, &quot;3&quot;]});
+// 返回一个uri，uri内容为&quot;?hello=mars&amp;mine=true&amp;a=2&quot;
+
+uri.search(&quot;?foo=bar&amp;foo=baz&amp;foo=bam&amp;obj=bam&amp;bar=bar&amp;bar=baz&amp;bar=bam&quot;);
+uri.removeSearch(&#39;foo&#39;, /[rz]$/);
+// 返回一个uri，uri内容为&quot;?foo=bam&amp;obj=bam&amp;bar=bar&amp;bar=baz&amp;bar=bam&quot;</code></pre><h4 id="附带参数地判断"><a href="#附带参数地判断" class="headerlink" title="?附带参数地判断"></a><code>?</code>附带参数地判断</h4><pre><code>var uri = URI(&quot;?string=bar&amp;list=one&amp;list=two&amp;number=123&amp;null&amp;empty=&quot;);
+
+// 检查参数是否存在（不管此参数是否有值）
+uri.hasQuery(&quot;string&quot;) === true;
+uri.hasQuery(&quot;nono&quot;) === false;
+
+// 检查参数的值bool化后为true还是false
+uri.hasQuery(&quot;string&quot;, true) === true;
+uri.hasQuery(&quot;string&quot;, false) === false;
+uri.hasQuery(&quot;empty&quot;, true) === false;
+uri.hasQuery(&quot;empty&quot;, false) === true;
+
+// 检查参数的值是否为指定值
+uri.hasQuery(&quot;string&quot;, &quot;bar&quot;) === true;
+uri.hasQuery(&quot;number&quot;, 123) === true;
+
+// 检查参数的值是否在给定的列表中
+uri.hasQuery(&quot;list&quot;, &quot;two&quot;, true) === true;
+uri.hasQuery(&quot;list&quot;, [&quot;two&quot;], true) === true;
+uri.hasQuery(&quot;list&quot;, &quot;three&quot;, true) === false;
+uri.hasQuery(&quot;list&quot;, [&quot;two&quot;, &quot;three&quot;], true) === false;
+uri.hasQuery(&quot;list&quot;, /ne$/, true) === true;
+
+// 检查参数的值是否符合正则表达式
+uri.hasQuery(&quot;string&quot;, /ar$/) === true;
+
+// 检查是否有参数的名称符合正则表达式
+uri.hasQuery(/^str/) === true;
+// 检查符合正则表达式的参数的值是否为指定值
+uri.hasQuery(/^li/, &quot;two&quot;) === false;
+
+// 通过传入方法判断
+uri.hasQuery(&quot;string&quot;, function(value, name, data) {
+    // value === &quot;bar&quot;;
+    // name === &quot;string&quot;;
+    // data === uri.query(true);
+    return true;
+}) === true;</code></pre><h3 id="路径转换"><a href="#路径转换" class="headerlink" title="路径转换"></a>路径转换</h3><blockquote>
+<p>relativeTo()和absoluteTo()可以将路径转换为相对路径/绝对路径。</p>
+</blockquote>
+<pre><code>var uri = new URI(&quot;/relative/path&quot;);
+// make path relative
+var relUri = uri.relativeTo(&quot;/relative/sub/foo/sub/file&quot;); // 返回一个uri，uri内容为&quot;../../../path&quot;
+
+var anotherUri = relUri.absoluteTo(&quot;/relative/sub/foo/sub/file&quot;); // 返回一个uri，uri内容为&quot;/relative/path&quot;</code></pre><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><pre><code>URI.commonPath(&quot;/foo/bar/baz.html&quot;, &quot;/foo/bar/world.html&quot;);// 返回&quot;/foo/bar/&quot;
+URI.joinPaths(&#39;/a/b&#39;, &#39;/c&#39;, &#39;d&#39;, &#39;/e&#39;);// 返回URI(&quot;/a/b/c/d/e&quot;)
+
+var data = {};
+
+URI.addQuery(data, &quot;hello&quot;, &quot;mars&quot;);
+data === {hello: &quot;mars&quot;};
+
+URI.addQuery(data, &quot;hello&quot;, &quot;world&quot;);
+data === {hello: [&quot;mars&quot;, &quot;world&quot;]};
+
+URI.addQuery(data, {foo: &quot;bar&quot;, goodbye : [&quot;world&quot;, &quot;mars&quot;]});
+data === {hello: [&quot;mars&quot;, &quot;world&quot;], foo: &quot;bar&quot;, goodbye : [&quot;world&quot;, &quot;mars&quot;]};
+
+URI.removeQuery(data, &quot;hello&quot;);
+data === {foo: &quot;bar&quot;, goodbye : [&quot;world&quot;, &quot;mars&quot;]};
+
+// 移除指定值
+data = {hello: [&quot;world&quot;, &quot;mars&quot;], foo: &quot;bar&quot;};
+URI.removeQuery(data, &quot;hello&quot;, &quot;world&quot;);
+data === {hello: [&quot;mars&quot;], foo: &quot;bar&quot;} // yes, still an array
+
+// 移除多个键
+data = {hello: [&quot;world&quot;, &quot;mars&quot;], foo: &quot;bar&quot;, mine: &quot;true&quot;}
+URI.removeQuery(data, [&quot;hello&quot;, &quot;foo&quot;]);
+data === {mine: &quot;true&quot;};
+
+// 移除多个键的指定值
+data = {hello: [&quot;world&quot;, &quot;mars&quot;], foo: &quot;bar&quot;, mine: &quot;true&quot;, a: [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]}
+URI.removeQuery(data, {hello: &quot;world&quot;, foo: undefined, a: [&quot;1&quot;, &quot;3&quot;]});
+data === {hello: [&quot;mars&quot;], mine: &quot;true&quot;, a: [&quot;2&quot;]}</code></pre>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "URL.js&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

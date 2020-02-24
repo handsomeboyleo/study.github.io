@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Canvas的基本使用 ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期三, 二月 20日 2019, 7:59 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    2.1k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 8 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="Canvas的基本使用"><a href="#Canvas的基本使用" class="headerlink" title="Canvas的基本使用"></a>Canvas的基本使用</h1><blockquote>
+<p>canvas 最早由Apple引入WebKit,用于Mac OS X 的 Dashboard,后来又在Safari和Google Chrome被实现。<br>基于 Gecko 1.8的浏览器,比如 Firefox 1.5, 同样支持这个元素。<br><canvas> 元素是WhatWG Web applications 1.0规范的一部分,也包含于HTML 5中。</p>
+</blockquote>
+<h3 id="体验Canvas"><a href="#体验Canvas" class="headerlink" title="体验Canvas"></a>体验Canvas</h3><h4 id="什么是Canvas？"><a href="#什么是Canvas？" class="headerlink" title="什么是Canvas？"></a>什么是Canvas？</h4><p>HTML5 的 canvas 元素使用 JavaScript 在网页上绘制图像。<br>画布是一个矩形区域，您可以控制其每一像素。<br>canvas 拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。</p>
+<h4 id="创建Canvas元素"><a href="#创建Canvas元素" class="headerlink" title="创建Canvas元素"></a>创建Canvas元素</h4><p>向 HTML5 页面添加 canvas 元素。<br>规定元素的 id、宽度和高度：</p>
+<pre><code>&lt;!--1.准备画布--&gt;
+&lt;!--1.1 画布是白色的 而且默认300*150--&gt;
+&lt;!--1.2 设置画布的大小  width=&quot;600&quot; height=&quot;400&quot; --&gt;
+&lt;canvas width=&quot;600&quot; height=&quot;400&quot; &gt;&lt;/canvas&gt;
+&lt;!--2.准备绘制工具--&gt;
+&lt;!--3.利用工具绘图--&gt;</code></pre><p>注意：canvas的大小要在标签内定义，否则会出现意料之外的效果。</p>
+<h4 id="Canvas坐标系"><a href="#Canvas坐标系" class="headerlink" title="Canvas坐标系"></a>Canvas坐标系</h4><p><img src="https://howlcn1997.github.io/2019/08/19/canvas%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/location.jpg" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<h4 id="通过JavaScript来绘制"><a href="#通过JavaScript来绘制" class="headerlink" title="通过JavaScript来绘制"></a>通过JavaScript来绘制</h4><pre><code>/*获取元素*/
+var myCanvas = document.querySelector(&#39;#myCanvas&#39;);
+/*获取上下文 绘制工具箱 */
+/*目前canvas只支持2d*/
+/*若要达到3d效果，需要想象一个3d坐标系后，再投影到canvas上*/
+/*或者配合WebGL达到3d效果*/
+var context = myCanvas.getContext(&#39;2d&#39;);
+/*设置绘图的起始位置*/
+context.moveTo(100,100);
+/*绘制路径*/
+context.lineTo(200,200);
+/*描边*/
+context.stroke();</code></pre><h3 id="Canvas的基本使用-1"><a href="#Canvas的基本使用-1" class="headerlink" title="Canvas的基本使用"></a>Canvas的基本使用</h3><h4 id="图形绘制"><a href="#图形绘制" class="headerlink" title="图形绘制"></a>图形绘制</h4><p>1、开启新的路径</p>
+<pre><code>ctx.beginPath();</code></pre><p>2、画路径</p>
+<pre><code>ctx.moveTo(100,100);  //将画笔放置在100px 100px的位置
+ctx.lineTo(200,100);  //从（100，100）向（200，100）画一条轨迹
+ctx.lineTo(200,200);  //从（200，100）向（200，200）画一条轨迹</code></pre><p>此时，是看不出线条的，因为此时仅仅是一条没有颜色的轨迹。</p>
+<p>3、给路径描边（上色）</p>
+<pre><code>ctx.strokeStyle = &quot;red&quot;; //设置画笔颜色
+ctx.stroke();  //开始描边</code></pre><p>4、闭合路径</p>
+<pre><code>ctx.closePath();  //将路径的起点与终点连接</code></pre><h4 id="填充规则-非零环绕"><a href="#填充规则-非零环绕" class="headerlink" title="填充规则(非零环绕)"></a>填充规则(非零环绕)</h4><p><img src="https://howlcn1997.github.io/2019/08/19/canvas%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/zero.jpg" srcset="/study.github.io/img/loading.gif" alt="img"></p>
+<h4 id="设置样式"><a href="#设置样式" class="headerlink" title="设置样式"></a>设置样式</h4><h5 id="画笔的状态"><a href="#画笔的状态" class="headerlink" title="画笔的状态"></a>画笔的状态</h5><ul>
+<li><p>lineWidth 线宽，默认1</p>
+</li>
+<li><p>lineCap 线末端类型：(butt默认)、round、square</p>
+<p><img src="https://howlcn1997.github.io/2019/08/19/canvas%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/lineCap.png" srcset="/study.github.io/img/loading.gif" alt="lineJoin"></p>
+</li>
+<li><p>lineJoin 相交线的拐点 miter(默认)、round、bevel</p>
+<p><img src="https://howlcn1997.github.io/2019/08/19/canvas%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/lineJoin.png" srcset="/study.github.io/img/loading.gif" alt="lineJoin"></p>
+</li>
+<li><p>strokeStyle 线的颜色</p>
+<pre><code>ctx.strokeStyle = &quot;blue&quot;;</code></pre></li>
+<li><p>fillStyle 填充颜色</p>
+<pre><code>ctx.fillStyle  = &quot;blue&quot;;</code></pre></li>
+<li><p>setLineDash() 设置虚线</p>
+<pre><code>ctx.setLineDash([50,10]);</code></pre><p>setLineDash方法规定虚线的特征，它的参数是一个具有两个元素的数组。</p>
+<p>第一个数组元素规定虚线尺寸，也就是我们可见的部分，比如上面的红色小线段。</p>
+<p>第二个数组元素规定虚线与虚线之间的间隔，通过线段与间隔交替出现，构成了一个完整的虚线。</p>
+</li>
+<li><p>getLineDash() 获取虚线宽度集合</p>
+<pre><code>console.log(ctx.getLineDash());</code></pre><p>打印结果：<code>(2) [500, 10]</code></p>
+</li>
+<li><p>lineDashOffset 设置虚线偏移量（负值向右偏移）</p>
+<pre><code>/*如果是正的值 往后偏移*/
+/*如果是负的值 往前偏移*/
+/*ctx.lineDashOffset = 10;*/
+ctx.lineDashOffset = -10;</code></pre></li>
+</ul>
+<h5 id="线性颜色渐变填充"><a href="#线性颜色渐变填充" class="headerlink" title="线性颜色渐变填充"></a>线性颜色渐变填充</h5><ul>
+<li><p>利用循环绘制从黑道白道的渐变</p>
+<pre><code>ctx.lineWidth = 30;
+for (var i = 0; i &lt; 255; i++) {
+    ctx.beginPath();
+    ctx.moveTo(100+i-1,100);
+    ctx.lineTo(100+i,100);
+    ctx.strokeStyle = &#39;rgb(&#39;+i+&#39;,&#39;+i+&#39;,&#39;+i+&#39;)&#39;;
+    ctx.stroke();
+}</code></pre></li>
+<li><p>createLinearGradient</p>
+<p>1、先利用createLinearGradient创建出一个颜色渐变的样式</p>
+<pre><code>/*1、确定渐变方向*/
+/*渐变起点x  起点y   终点x  终点y*/
+/*由（100px,100px）渐变至（500,400px）*/
+var linearGradient = ctx.createLinearGradient(100,100,500,400);
+
+/*调节起始与终止点的位置  使之在水平对齐  渐变效果为由上而下渐变*/
+// var linearGradient = ctx.createLinearGradient(100,150,200,150);
+
+/*调节起始与终止点的位置  使之在垂直对齐  渐变效果为由左而右渐变*/
+// var linearGradient = ctx.createLinearGradient(250,100,250,200);
+
+/*2、确定渐变颜色*/
+/*位置（取值为0~1）   颜色*/
+linearGradient.addColorStop(0,&#39;pink&#39;);
+linearGradient.addColorStop(0.5,&#39;red&#39;);
+linearGradient.addColorStop(1,&#39;blue&#39;);</code></pre><p>2、给画笔上渐变色！</p>
+<pre><code>ctx.fillStyle = linearGradient;</code></pre><p>3、填充</p>
+<pre><code>ctx.rect(0,0,200,100);
+ctx.fill();  //对stroke()失效</code></pre></li>
+</ul>
+<h5 id="径向颜色渐变填充"><a href="#径向颜色渐变填充" class="headerlink" title="径向颜色渐变填充"></a>径向颜色渐变填充</h5><ul>
+<li><p>createRadialGradient(x0,y0,r0,x1,y1,r1,x2,y2,r2……)</p>
+<p>x0,y0,r0 第一个圆 圆心的x，圆心的y，圆心的半径</p>
+<p>。。。以此类推</p>
+<pre><code>var canvas = document.getElementById(&quot;myCanvas&quot;);
+var ctx = canvas.getContext(&quot;2d&quot;);
+//绘制一个以坐标点(100,100)为圆心、半径为50px的圆形
+ctx.arc(100, 100, 50, 0, Math.PI * 2, false);
+
+//创建一个表示放射性颜色渐变的CanvasGradient对象
+//该对象的作用域是以(100,100)为圆心、半径为10px的内圆和以(100,100)为圆心、半径为50px的外圆之间的环状区域
+var canvasGradient = ctx.createRadialGradient(100, 100, 10, 80, 100, 80);
+//在offset为0的位置(即内圆的圆圈处)添加一个蓝色的渐变
+canvasGradient.addColorStop(0, &quot;blue&quot;);
+//在offset为0.5的位置(环状区域从内到外放射50%的中间位置)添加一个绿色的渐变
+canvasGradient.addColorStop(0.5, &quot;pink&quot;);
+//在offset为0的位置(即外圆的圆圈处)添加一个红色的渐变
+canvasGradient.addColorStop(1, &quot;orange&quot;);
+//将fillStyle的属性值设为该CanvasGradient对象
+ctx.fillStyle = canvasGradient;
+ctx.fill();</code></pre></li>
+</ul>
+<h3 id="Canvas图形绘制"><a href="#Canvas图形绘制" class="headerlink" title="Canvas图形绘制"></a>Canvas图形绘制</h3><h4 id="矩形绘制"><a href="#矩形绘制" class="headerlink" title="矩形绘制"></a>矩形绘制</h4><ul>
+<li><p>rect(x,y,w,h) 只创造出矩形而不绘制（stroke fill），也不结束绘画</p>
+<pre><code>ctx.rect(100,100,200,100); //左上角x轴坐标  左上角y轴坐标 宽 高</code></pre></li>
+<li><p>strokeRect(x,y,w,h) 有独立路径，会自动绘制（stroke），自动结束绘画，不影响下次绘画。</p>
+</li>
+<li><p>fillRect(x,y,w,h) 有独立路径，不影响别的绘制</p>
+</li>
+<li><p>clearRect(x,y,w,h) 擦除矩形区域</p>
+</li>
+</ul>
+<h4 id="圆弧绘制"><a href="#圆弧绘制" class="headerlink" title="圆弧绘制"></a>圆弧绘制</h4><p>arc(x,y,r,startAngle,endAngle,anticlockwise)</p>
+<ul>
+<li>x 圆心横坐标</li>
+<li>y 圆心纵坐标</li>
+<li>r 半径</li>
+<li>startAngle 开始角度</li>
+<li>endAngle 结束角度</li>
+<li>anticlockwise 是否逆时针方向绘制（默认false表示顺时针；true表示逆时针）</li>
+</ul>
+<pre><code>context.arc(200,200,150,0,Math.PI/3,false);  //默认 顺时针
+// context.arc(w/2,h/2,150,0,Math.PI/3,true);  //逆时针</code></pre><h4 id="扇形的绘制"><a href="#扇形的绘制" class="headerlink" title="扇形的绘制"></a>扇形的绘制</h4><pre><code>ctx.moveTo(200,200);
+// arc是紧接着上一次笔触的地方开始画
+// ctx.beginPath();  //当重新开始路劲时效果会发生变化
+ctx.arc(200,200,100,0,Math.PI/3,true);  //这里暗含着 lineTo(300,200);
+ctx.closePath();
+ctx.stroke();</code></pre><h4 id="绘制文本"><a href="#绘制文本" class="headerlink" title="绘制文本"></a>绘制文本</h4><ul>
+<li>ctx.font = ‘微软雅黑’ 设置字体</li>
+<li>strokeText()</li>
+<li>fillText(text,x,y,maxWidth)<ul>
+<li>text 要绘制的文本</li>
+<li>x,y 文本绘制的坐标（文本左下角）</li>
+<li>maxWidth 设置文本最大宽度，可选参数</li>
+</ul>
+</li>
+<li>ctx.textAlign文本水平对齐方式，相对绘制坐标来说的<ul>
+<li>left</li>
+<li>center</li>
+<li>right</li>
+<li>start 默认</li>
+<li>end</li>
+</ul>
+</li>
+<li>ctx.direction属性css(rtl ltr) start和end于此相关<ul>
+<li>如果是ltr,start和left表现一致</li>
+<li>如果是rtl,start和right表现一致</li>
+</ul>
+</li>
+<li>ctx.textBaseline 设置基线（垂直对齐方式 ）<ul>
+<li>top 文本的基线处于文本的正上方，并且有一段距离</li>
+<li>middle 文本的基线处于文本的正中间</li>
+<li>bottom 文本的基线处于文本的证下方，并且有一段距离</li>
+<li>hanging 文本的基线处于文本的正上方，并且和文本粘合</li>
+<li>alphabetic 默认值，基线处于文本的下方，并且穿过文字</li>
+<li>ideographic 和bottom相似，但是不一样</li>
+</ul>
+</li>
+<li>measureText() 获取文本宽度obj.width</li>
+</ul>
+<h3 id="贝塞尔曲线"><a href="#贝塞尔曲线" class="headerlink" title="贝塞尔曲线"></a>贝塞尔曲线</h3><h4 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h4><p><img src="https://howlcn1997.github.io/2019/08/19/canvas%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/01base.gif" srcset="/study.github.io/img/loading.gif" alt="01base"></p>
+<p><img src="https://howlcn1997.github.io/2019/08/19/canvas%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/02base.gif" srcset="/study.github.io/img/loading.gif" alt="02base"></p>
+<p>一个点确定曲线（一次）</p>
+<p><img src="https://howlcn1997.github.io/2019/08/19/canvas%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/bezier02.gif" srcset="/study.github.io/img/loading.gif" alt="bezier02"></p>
+<p>两个点确定曲线（二次）</p>
+<p><img src="https://howlcn1997.github.io/2019/08/19/canvas%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/bezier03.gif" srcset="/study.github.io/img/loading.gif" alt="bezier03"></p>
+<p>三个点确定曲线（三次）</p>
+<p><img src="https://howlcn1997.github.io/2019/08/19/canvas%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/bezier04.gif" srcset="/study.github.io/img/loading.gif" alt="bezier04"></p>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot;&gt;&lt;/canvas&gt;
+//1.拿到画布
+var canvas = document.getElementById(&quot;canvas&quot;);
+//2.拿到画布的上下文
+var context = canvas.getContext(&#39;2d&#39;);
+
+//3.一次贝塞尔曲线
+context.beginPath();
+context.moveTo(300,100);
+context.quadraticCurveTo(100, 100, 300, 300);
+context.stroke();
+
+//4.二次贝塞尔曲线
+context.beginPath();
+context.moveTo(300,100);
+context.bezierCurveTo(100, 100, 300, 300,200,400);
+context.stroke();</code></pre><h3 id="做动画"><a href="#做动画" class="headerlink" title="做动画"></a>做动画</h3><h4 id="绘制图片"><a href="#绘制图片" class="headerlink" title="绘制图片"></a>绘制图片</h4><h5 id="创建图片对象"><a href="#创建图片对象" class="headerlink" title="创建图片对象"></a>创建图片对象</h5><pre><code>var img = new Image();
+img.src = &quot;./image/img1.jpg&quot;;</code></pre><h5 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h5><pre><code>//图片加载完毕 触发事件
+img.onload() = function(){
+    //ctx.drawImage();
+}</code></pre><h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><ul>
+<li>drawImage()<ul>
+<li>三个参数drawImage(img,x,y)<ul>
+<li>img 图片对象、canvas对象、video对象</li>
+<li>x,y 图片绘制的左上角</li>
+</ul>
+</li>
+<li>五个参数drawImage(img,x,y,w,h)<ul>
+<li>img 图片对象、canvas对象、video对象</li>
+<li>x,y 图片绘制的左上角</li>
+<li>w,h 图片绘制尺寸设置(图片缩放，不是截取)</li>
+</ul>
+</li>
+<li>九个参数drawImage(img,x,y,w,h,x1,y1,w1,h1)<ul>
+<li>img 图片对象、canvas对象、video对象</li>
+<li>x,y,w,h 图片中的一个矩形区域（从图片上截取一部分）</li>
+<li>x1,y1,w1,h1 画布中的一个矩形区域</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="坐标变换"><a href="#坐标变换" class="headerlink" title="坐标变换"></a>坐标变换</h4><ul>
+<li>平移 移动画布的原点<ul>
+<li>translate(x,y) 参数表示移动目标点的坐标</li>
+</ul>
+</li>
+<li>缩放<ul>
+<li>scale(x,y) 参数表示宽高的缩放比例</li>
+</ul>
+</li>
+<li>旋转<ul>
+<li>rotate(angle) 参数表示旋转角度</li>
+</ul>
+</li>
+</ul>
+<h4 id="绘制帧动画"><a href="#绘制帧动画" class="headerlink" title="绘制帧动画"></a>绘制帧动画</h4>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Canvas的基本使用&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

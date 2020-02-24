@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/study.github.io/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/study.github.io/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>h5 ~ Hexo</title>
+
+  <link rel="stylesheet" href="/study.github.io/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/study.github.io/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/study.github.io/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/study.github.io/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/study.github.io/">&nbsp;<strong>Handsomeboyleo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/study.github.io/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/study.github.io/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期五, 九月 28日 2018, 10:22 上午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    2.3k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      已阅读 11 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="H5"><a href="#H5" class="headerlink" title="H5"></a>H5</h1><h2 id="HTML接口"><a href="#HTML接口" class="headerlink" title="HTML接口"></a>HTML接口</h2><p>1、监听网络状态接口（只在移动端起作用）</p>
+<pre><code>//online 网络连接事件
+window.add
+
+//offline 网络链接事件</code></pre><p>2、全屏接口</p>
+<pre><code>//请求全屏(操作对象是DOM元素)
+if(DOM.requestFullScreen){
+    DOM.requestFullScreen();
+}else if(DOM.webkitRequestFullScreen){
+    DOM.webkitRequestFullScreen();
+}else if(DOM.mozRequestFullScreen){
+    DOM.mozRequestFullScreen();
+}else if(DOM.msRequestFullScreen){
+    DOM.msRequestFullScreen();
+}
+
+//退出全屏(操作对象是document)
+if(document.cancelFullScreen){
+    document.cancelFullScreen();
+}else if(document.webkitCancelFullScreen){
+    document.webkitCancelFullScreen();
+}else if(document.mozCancelFullScreen){
+    document.mozCancelFullScreen();
+}else if(document.msCancelFullScreen){
+    document.msCancelFullScreen();
+}
+
+//是否是全屏状态(操作对象是document)
+if(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullscreenElement || document.msFullscreenElement){
+    console.log(&#39;true&#39;); //全屏
+}else{
+    console.log(&#39;false&#39;);//非全屏
+}</code></pre><p>3、文件读取接口</p>
+<pre><code>&lt;body&gt;
+    &lt;input type=&quot;file&quot; id=&quot;subfile&quot;&gt;
+    &lt;img src=&quot;&quot; id=&quot;img&quot;&gt;
+&lt;/body&gt;
+var img = document.getElementById(&#39;img&#39;);
+var file = document.getElementById(&#39;subfile&#39;);
+//onchange 当file input内容发生改变时触发
+file.onchange = function(){
+    //创建一个文件读取对象
+    var reader = new FileReader();
+
+    if (this.files &amp;&amp; this.files.length &gt; 0) {
+
+        //读取上文头像的数据
+        reader.readAsDataURL(this.files[0]);
+
+        //数据读取成功之后回调函数
+        reader.onload = function(){
+            img.src = reader.result
+        }
+
+        //读取文件错误
+        reader.onerror = function(){
+            console.log(&#39;读取文件错误&#39;);
+        }
+
+        //读取的进度
+        reader.onprogress=function(e){
+            var percent = e.loaded/e.total*100+&quot;%&quot;;
+            console.log(percent);
+        }
+    }    
+}</code></pre><p>4、拖拽接口</p>
+<pre><code>//作用于被拖动元素的
+    //ondragstart  拖动开始
+    //ondragend    拖动结束
+    //ondrag       拖动过程中
+
+
+    //作用于目标元素的
+    //ondragenter   进入目标元素
+    //ondragleave   移开目标元素
+    //ondragover    在目标元素上移动。要在这个方法中阻止默认时间，ondrop方法才会执行
+    //ondrop        在目标元素上丢下
+
+
+    //向剪切板中存了一条数据（key是element，值是被拖动元素的id信息）
+e.dataTransfer.setData(&quot;element&quot;,e.target.id);
+//从剪切板中获取数据
+var id = e.dataTransfer.getData(&quot;element&quot;);</code></pre><p>例子</p>
+<pre><code>&lt;body&gt;
+    &lt;div id=&quot;box1&quot;&gt;
+        &lt;p id=&quot;p1&quot;&gt;xxxxxxxxxxx&lt;/p&gt;
+        &lt;p id=&quot;p2&quot;&gt;xxxxxxxxxxx&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;box2&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+var p1 = document.getElementById(&#39;p1&#39;);
+var p2 = document.getElementById(&#39;p2&#39;);
+
+document.ondragstart = function(e){
+    //e.dataTransfer类似剪贴板 且只保存字符串形式的数据
+    e.dataTransfer.setData(&#39;ele&#39;,e.target.id);
+    // e.target.style.cursor = &#39;move&#39;; 
+}
+document.ondragend = function(){
+
+}
+document.ondrag = function(e){
+
+}
+
+document.ondragenter = function(){
+
+}
+document.ondragleave = function(){
+
+}
+document.ondragover = function(e){
+    e.preventDefault();
+}
+//若要是ondrop生效 需要取消ondragover的默认操作
+document.ondrop = function(e){
+    var id = e.dataTransfer.getData(&#39;ele&#39;);
+    e.target.appendChild(document.getElementById(id));
+}</code></pre><h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><pre><code>localStorage.setItem(&quot;key&quot;,&quot;value&quot;);   //以key来存储一条数据
+localStorage.getItem(&quot;key&quot;);        //以key来获取数据
+localStorage.removeItem(&quot;key&quot;);    //以key来移除数据
+localStorage. clear();              //清除localStorage中的内容</code></pre><h2 id="应用缓存"><a href="#应用缓存" class="headerlink" title="应用缓存"></a>应用缓存</h2><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1、创建一个扩展名是appcache的文件，并进行配置，配置如下</p>
+<pre><code>CACHE MANIFEST
+#上面一句代码必须是当前文档的第一句
+#后面写注释
+
+#需要缓存的文件清单列表
+CACHE:
+#下面就是需要缓存的清单列表
+../第1阶段HTML/img/三国演义.jpg
+../第1阶段HTML/img/水浒传.jpg
+../第1阶段HTML/img/红楼梦.jpg
+# *:代表所有文件
+
+#配置每一次都需要重新从服务器获取的文件清单列表
+NETWORK:
+../第1阶段HTML/img/西游记.jpg
+
+#配置如果文件无法通过网络获取该文件则使用指定的文件进行替代
+FALLBACK:
+../第1阶段HTML/img/西游记.jpg ../第1阶段HTML/img/1.PNG
+# /:代表所有文件</code></pre><p>2、在html页面中的标签中添加属性<strong>manifest=”demo.appcache”</strong></p>
+<p>html文件如下</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;!--manifest=&quot;应用程序缓存清单文件的路径  建议文件的扩展名是appcache,这个文件的本质就是一个文本文件&quot;--&gt;
+&lt;html lang=&quot;en&quot; manifest=&quot;demo.appcache&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+        &lt;style&gt;
+            img{
+                width: 100px;
+                display: block;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;img src=&quot;../第1阶段HTML/img/三国演义.jpg&quot;&gt;
+        &lt;img src=&quot;../第1阶段HTML/img/水浒传.jpg&quot;&gt;
+        &lt;img src=&quot;../第1阶段HTML/img/红楼梦.jpg&quot;&gt;
+        &lt;img src=&quot;../第1阶段HTML/img/西游记.jpg&quot;&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre><p>3、运行</p>
+<p>在vscode中安装 live server插件，安装完成后，右键选择Open with live server打开。</p>
+<p>4、测试</p>
+<p>f12 –&gt; Network –&gt; Offline</p>
+<h2 id="视频播放"><a href="#视频播放" class="headerlink" title="视频播放"></a>视频播放</h2><pre><code>video.paused   视频是否正在播放
+video.pause()   暂停视频播放
+video.play()     开始视频播放
+video.duration   获取视频的总时长
+video.currentTime  获取视频当前播放的时长
+
+//视频处于能够播放状态
+video.oncanplay = function(){}
+
+//视频播放过程中执行的回调函数
+video.ontimeupdate = function(){}
+
+//视频播放完毕
+video.onended = function(){}</code></pre><p>例子</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+        &lt;script src=&quot;./jquery-1.12.2.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;./common.js&quot;&gt;&lt;/script&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+        &lt;style&gt;
+            body {
+                padding: 0;
+                margin: 0;
+                font-family: &#39;microsoft yahei&#39;, &#39;Helvetica&#39;, simhei, simsun, sans-serif;
+                background-color: #F7F7F7;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .playerTitle{
+                width:100%;
+                margin: 0 auto;
+                line-height:100px;
+                font-size: 40px;
+                text-align: center;
+            }
+
+            .player{
+                width: 720px;
+                height: 360px;
+                margin: 0 auto;
+                background: url(&quot;./images/loading.gif&quot;) center no-repeat;
+                background-size: cover;
+                position: relative;
+            }
+            video{
+                height:100%;
+                width: 100%;
+                margin: 0 auto;
+                display: none;
+            }
+            .controls {
+                width: 720px;
+                height: 40px;
+                position: absolute;
+                left: 0px;
+                bottom: -40px;
+                background-color: #000;
+            }
+            .controls &gt; .switch{
+                width: 20px;
+                height: 20px;
+                display: block;
+                font-size: 20px;
+                color: #fff;
+                position: absolute;
+                left: 10px;
+                top: 10px;
+            }
+            .controls &gt; .expand{
+                width: 20px;
+                height: 20px;
+                display: block;
+                font-size: 20px;
+                color: #fff;
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+            .controls &gt; .progress{
+                width: 430px;
+                height: 10px;
+                position: absolute;
+                left:40px;
+                bottom:15px;
+                background-color: #555;
+            }
+            .controls &gt; .progress &gt; .bar{
+                width:100%;
+                height:100%;
+                border-radius: 3px;
+                cursor: pointer;
+                position: absolute;
+                left: 0;
+                top: 0;
+                opacity: 0;
+                z-index: 999;
+            }
+
+            .controls &gt; .progress &gt; .elapse{
+                width:0%;
+                height:100%;
+                background-color: #fff;
+                border-radius: 3px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 3;
+            }
+            .controls &gt; .time{
+                height: 20px;
+                position: absolute;
+                left:490px;
+                top: 10px;
+                color: #fff;
+                font-size: 14px;
+            }
+
+        &lt;/style&gt;
+   &lt;body&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;./fonts/font-awesome.css&quot;&gt;
+        &lt;h3 class=&quot;playerTitle&quot;&gt;视频播放器&lt;/h3&gt;
+        &lt;div class=&quot;player&quot;&gt;
+            &lt;video src=&quot;./mp4/chrome.mp4&quot;&gt;&lt;/video&gt;
+            &lt;div class=&quot;controls&quot;&gt;
+                &lt;a href=&quot;javascript:;&quot; class=&quot;switch fa fa-play&quot;&gt;&lt;/a&gt;
+                &lt;a href=&quot;javascript:;&quot; class=&quot;expand fa fa-expand&quot;&gt;&lt;/a&gt;
+                &lt;div class=&quot;progress&quot;&gt;
+                    &lt;!--bar是透明的，主要作用用来控制拖动--&gt;
+                    &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;
+                    &lt;!--elapse主要用来显示已经播放的进度--&gt;
+                    &lt;div class=&quot;elapse&quot;&gt;&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;time&quot;&gt;
+                    &lt;span class=&quot;currentTime&quot;&gt;00:00:00&lt;/span&gt;
+                    \
+                    &lt;span class=&quot;totalTime&quot;&gt;00:00:00&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;script&gt;
+            $(function(){
+                var video = $(&#39;video&#39;)[0];
+                var dur;
+                //屏幕点击播放或者暂停
+                $(video).click(function(){
+                    if(video.paused){
+                        video.play();
+                    }else{
+                        video.pause();
+                    }
+                    $(&#39;.switch&#39;).toggleClass(&#39;fa-play fa-pause&#39;);
+                });
+
+                //播放暂停按钮
+                $(&#39;.switch&#39;).click(function(){
+                    if(video.paused){
+                        video.play();
+                    }else{
+                        video.pause();
+                    }
+                    $(this).toggleClass(&#39;fa-play fa-pause&#39;);
+                });
+
+                //正在播放的处理
+                video.ontimeupdate = function(){
+                    //时长显示
+                    var cur = video.currentTime;
+                    $(&#39;.currentTime&#39;).text(getFormatStr(cur));
+                    //进度条显示
+                    var percent = cur/dur*100;
+                    console.log(percent);
+                    $(&#39;.elapse&#39;).css(&#39;width&#39;,percent+&#39;%&#39;);
+                }
+                //双击视频全屏
+                $(video).dblclick(function(){
+                    /*全屏&gt;&gt;不同浏览器需要添加不同的前缀&gt;&gt;能力测试*/
+                    if(video.requestFullScreen){
+                        video.requestFullScreen();
+                    }
+                    else if(video.webkitRequestFullScreen){
+                        video.webkitRequestFullScreen();
+                    }
+                    else if(video.mozRequestFullScreen){
+                        video.mozRequestFullScreen();
+                    }
+                    else if(video.msRequestFullScreen){
+                        video.msRequestFullScreen();
+                    }
+                });
+
+                //全屏
+                $(&quot;.expand&quot;).click(function(){
+                    /*全屏&gt;&gt;不同浏览器需要添加不同的前缀&gt;&gt;能力测试*/
+                    if(video.requestFullScreen){
+                        video.requestFullScreen();
+                    }
+                    else if(video.webkitRequestFullScreen){
+                        video.webkitRequestFullScreen();
+                    }
+                    else if(video.mozRequestFullScreen){
+                        video.mozRequestFullScreen();
+                    }
+                    else if(video.msRequestFullScreen){
+                        video.msRequestFullScreen();
+                    }
+                });
+
+                //视频加载完毕可以播放时 触发事件
+                video.oncanplay = function(){
+                    //多媒体总时长
+                    dur = video.duration;
+                    $(&#39;.totalTime&#39;).text(getFormatStr(dur));
+                    $(this).show();
+                }
+            })  
+        &lt;/script&gt;
+        &lt;/body&gt;
+&lt;/html&gt;</code></pre><h2 id="first-child-和-first-of-type"><a href="#first-child-和-first-of-type" class="headerlink" title="first-child 和 first-of-type"></a>first-child 和 first-of-type</h2><pre><code>/*找到P元素,通过P找到父元素，通过父元素找所有的子元素，找第一个元素，匹配判断类型(如果不是无效选择器)*/
+p:first-child{
+       background-color: red;
+}
+/*找到P元素，通过P找到父元素，通过父元素找子元素当中类型为P的，然再去找第几个*/
+p:first-of-type{
+       background-color: blue;
+}</code></pre><h2 id="伪类选择器与为元素选择器的区别"><a href="#伪类选择器与为元素选择器的区别" class="headerlink" title="伪类选择器与为元素选择器的区别"></a>伪类选择器与为元素选择器的区别</h2><p> css之后规定 伪类选择器为一个冒号: 元素选择器为两个冒号::</p>
+<p><strong>伪类选择器</strong>之所以称作为伪类选择器，是因为作用域类选择器类似。</p>
+<p> 可以认为，伪类选择器为指定元素以类选择器的方式设置样式。直接为当前元素设置样式。</p>
+<p><strong>伪元素选择器</strong>实质上是临时给指定的内容外面包裹了一个元素(这个元素是无法知道的，下面我们以为例)。在对此元素增加样式。</p>
+<p>如</p>
+<pre><code>div::first-letter{
+  color:green;
+}
+&lt;div&gt;这是一个div&lt;/div&gt;
+&lt;!-- 经过伪元素选择器的修饰后 --&gt;
+&lt;div&gt;&lt;i style=&quot;color:green&quot;&gt;这&lt;/i&gt;是一个div&lt;/div&gt; &lt;!-- 实质上这个 i 元素我们是看不到的 --&gt;</code></pre><p>伪元素选择器</p>
+<pre><code>::after
+
+::before
+
+::first-letter
+
+::first-line
+
+::selection
+
+::backdrop</code></pre>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/study.github.io/lib/jquery/jquery.min.js" ></script>
+<script src="/study.github.io/lib/popper/popper.min.js" ></script>
+<script src="/study.github.io/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/study.github.io/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/study.github.io/js/main.js" ></script>
+
+
+  <script src="/study.github.io/js/lazyload.js" ></script>
+
+
+
+  <script src="/study.github.io/js/post.js" ></script>
+  
+    <script src="/study.github.io/lib/tocbot/tocbot.min.js" ></script>
+    <script>
+      $(document).ready(function () {
+        tocbot.init({
+          tocSelector: '#tocbot',
+          contentSelector: '.post-content',
+          headingSelector: 'h1,h2,h3,h4,h5,h6',
+          linkClass: 'tocbot-link',
+          activeLinkClass: 'tocbot-active-link',
+          listClass: 'tocbot-list',
+          isCollapsedClass: 'tocbot-is-collapsed',
+          collapsibleClass: 'tocbot-is-collapsible',
+          scrollSmooth: true,
+        });
+      });
+    </script>
+  
+
+
+
+  <script src="/study.github.io/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+
+  <script src="/study.github.io/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/study.github.io/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "h5&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/study.github.io/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/study.github.io/js/local-search.js" ></script>
+  <script>
+    var path = "/study.github.io/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/study.github.io/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>
